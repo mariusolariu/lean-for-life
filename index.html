@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Lean for Life — 86 → 75 kg Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F1E8D5; --bg-2:#EADFC8; --surface:#FBF6EB; --surface-2:#F5ECD9;
+  --ink:#29251E; --ink-soft:#5B5345; --muted:#8C8270; --line:#E2D5BB;
+  --clay:#BE5A3A; --clay-deep:#9C4527; --olive:#6E7B47; --olive-deep:#515D2F;
+  --ochre:#D89A2B; --aegean:#2E6E6B;
+  --clay-tint:rgba(190,90,58,.10); --olive-tint:rgba(110,123,71,.13); --ochre-tint:rgba(216,154,43,.14);
+  --shadow:0 1px 2px rgba(41,37,30,.04), 0 8px 24px -12px rgba(41,37,30,.18);
+  --shadow-lg:0 2px 4px rgba(41,37,30,.05), 0 24px 48px -20px rgba(41,37,30,.28);
+  --r:18px; --r-sm:12px; --maxw:1120px; --pad:24px;
+  --serif:"Fraunces",Georgia,serif; --sans:"Hanken Grotesk",system-ui,sans-serif; --mono:"JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{
+  background:#EFE6D2; /* opaque fallback so no dark backdrop ever shows through */
+  -webkit-text-size-adjust:100%; text-size-adjust:100%;
+  overflow-x:hidden;
+}
+html{scroll-behavior:smooth;scroll-padding-top:78px}
+body{
+  font-family:var(--sans); color:var(--ink); line-height:1.6; font-size:17px;
+  width:100%; max-width:100%; overflow-x:hidden; position:relative;
+  -webkit-font-smoothing:antialiased;
+  background-color:#F1E8D5;
+  background-image:
+    radial-gradient(120% 70% at 88% -8%, rgba(216,154,43,.30), transparent 60%),
+    radial-gradient(90% 60% at -8% 30%, rgba(110,123,71,.18), transparent 60%),
+    radial-gradient(80% 60% at 108% 88%, rgba(190,90,58,.16), transparent 60%);
+  background-repeat:no-repeat;
+}
+h1,h2,h3,h4,p,span,a,li,div{overflow-wrap:break-word}
+a{color:inherit;text-decoration:none}
+img,svg{max-width:100%}
+::selection{background:var(--clay);color:#fff}
+
+/* ---------- LAYOUT (longhand padding to avoid shorthand conflicts) ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+section{padding-top:80px;padding-bottom:80px;position:relative}
+
+/* ---------- NAV ---------- */
+.nav{position:sticky;top:0;z-index:50;display:flex;justify-content:center;padding:13px var(--pad);
+  backdrop-filter:saturate(140%) blur(12px);-webkit-backdrop-filter:saturate(140%) blur(12px);
+  background:rgba(244,236,217,.86);border-bottom:1px solid var(--line)}
+.nav-inner{width:100%;max-width:var(--maxw);display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:600;font-size:1.08rem;letter-spacing:-.01em;flex:none}
+.nav-links{display:flex;gap:3px;align-items:center}
+.nav-links a{font-size:.82rem;font-weight:600;padding:8px 12px;border-radius:99px;color:var(--ink-soft);transition:.25s;white-space:nowrap}
+.nav-links a:hover{color:var(--ink);background:var(--surface)}
+.nav-links a.active{color:#fff;background:var(--clay)}
+.nav-cta{font-family:var(--mono);font-size:.7rem;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;flex:none}
+@media(max-width:880px){.nav-links,.nav-cta{display:none}}
+
+/* ---------- SHARED HEADINGS ---------- */
+.eyebrow{font-family:var(--mono);font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.2em;color:var(--clay);display:inline-flex;align-items:center;gap:8px;margin-bottom:14px}
+.eyebrow::before{content:"";width:26px;height:1.5px;background:var(--clay)}
+h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw,3.1rem);line-height:1.05;letter-spacing:-.025em;margin-bottom:14px}
+.sec-lead{font-size:1.08rem;color:var(--ink-soft);max-width:62ch;margin-bottom:40px}
+.sec-lead em{font-style:italic;color:var(--clay-deep);font-family:var(--serif)}
+
+/* ---------- HERO ---------- */
+.hero{padding-top:64px;padding-bottom:60px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:52px;align-items:center}
+@media(max-width:920px){.hero-grid{grid-template-columns:1fr;gap:36px}}
+.hero .tag{font-family:var(--mono);font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.18em;color:var(--olive-deep);margin-bottom:20px;display:flex;align-items:center;gap:9px}
+.hero .tag .dot{width:7px;height:7px;border-radius:50%;background:var(--olive);box-shadow:0 0 0 4px var(--olive-tint);flex:none}
+.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.5rem,11vw,4.8rem);line-height:1;letter-spacing:-.035em;margin-bottom:22px}
+.hero h1 .accent{font-style:italic;color:var(--clay);position:relative}
+.hero h1 .accent svg{position:absolute;left:0;bottom:-9px;width:100%;height:13px}
+.hero p.sub{font-size:1.15rem;color:var(--ink-soft);max-width:46ch;margin-bottom:30px}
+.hero p.sub b{color:var(--ink);font-weight:600}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{font-family:var(--sans);font-weight:700;font-size:.95rem;padding:14px 24px;border-radius:99px;border:none;cursor:pointer;transition:.25s;display:inline-flex;align-items:center;gap:9px}
+.btn-primary{background:var(--clay);color:#fff;box-shadow:0 10px 24px -10px var(--clay)}
+.btn-primary:hover{background:var(--clay-deep);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--ink);background:var(--surface)}
+
+.medallion{position:relative;aspect-ratio:1;max-width:340px;margin:0 auto;display:flex;align-items:center;justify-content:center}
+.medallion .ring-bg{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 50% 38%,var(--surface),var(--surface-2));box-shadow:var(--shadow-lg),inset 0 0 0 1px var(--line)}
+.medallion svg.sun{position:absolute;width:78%;height:78%;color:var(--ochre);opacity:.9}
+.medallion .num-stack{position:relative;z-index:2;text-align:center}
+.medallion .from{font-family:var(--mono);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.medallion .big{font-family:var(--serif);font-weight:600;font-size:clamp(3.2rem,16vw,4.4rem);line-height:.9;letter-spacing:-.03em;color:var(--ink);margin:4px 0}
+.medallion .big span{color:var(--clay)}
+.medallion .arrow{font-size:1.3rem;color:var(--olive);margin:2px 0}
+.medallion .to{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--ink-soft)}
+
+.stat-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:48px;box-shadow:var(--shadow)}
+.stat{background:var(--surface);padding:20px 14px;text-align:center}
+.stat .v{font-family:var(--serif);font-weight:600;font-size:1.7rem;letter-spacing:-.02em;line-height:1;color:var(--clay-deep)}
+.stat .v small{font-size:.9rem;color:var(--ink-soft);font-family:var(--sans);font-weight:600}
+.stat .k{font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:8px}
+@media(max-width:780px){.stat-strip{grid-template-columns:repeat(2,1fr)}.stat:last-child{grid-column:1/-1}}
+
+/* ---------- CARD / GRID ---------- */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);transition:.3s}
+.grid{display:grid;gap:20px}
+.cols-2{grid-template-columns:repeat(2,1fr)}
+.cols-3{grid-template-columns:repeat(3,1fr)}
+.cols-4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.cols-3,.cols-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.cols-2,.cols-3,.cols-4{grid-template-columns:1fr}}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- CALCULATOR ---------- */
+.calc-shell{display:grid;grid-template-columns:.92fr 1.08fr;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-lg)}
+@media(max-width:880px){.calc-shell{grid-template-columns:1fr}}
+.calc-in{background:var(--surface-2);padding:30px 26px}
+.calc-out{background:linear-gradient(150deg,#29251E 0%,#1f1c16 100%);color:#F1E8D5;padding:30px 26px;position:relative;overflow:hidden}
+.calc-out::after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(216,154,43,.20),transparent 70%);top:-110px;right:-90px;pointer-events:none}
+.calc-in h3,.calc-out h3{font-family:var(--serif);font-weight:600;font-size:1.15rem;margin-bottom:4px}
+.calc-in .hint{font-size:.84rem;color:var(--muted);margin-bottom:22px}
+.field{margin-bottom:18px}
+.field label{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-soft);margin-bottom:8px}
+.field label .lv{font-family:var(--mono);font-size:.92rem;color:var(--clay-deep);text-transform:none;letter-spacing:0;text-align:right}
+.field input[type=number],.field select{width:100%;font-family:var(--sans);font-size:1.05rem;font-weight:600;padding:12px 14px;border:1.5px solid var(--line);border-radius:var(--r-sm);background:var(--surface);color:var(--ink);transition:.2s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--clay);box-shadow:0 0 0 4px var(--clay-tint)}
+.field input[type=range]{width:100%;accent-color:var(--clay);height:6px;margin-top:6px}
+.def-badge{display:inline-block;font-family:var(--mono);font-size:.68rem;font-weight:600;padding:3px 9px;border-radius:99px;text-transform:uppercase;letter-spacing:.06em}
+.def-gentle{background:var(--olive-tint);color:var(--olive-deep)}
+.def-ok{background:var(--clay-tint);color:var(--clay-deep)}
+.def-hard{background:rgba(156,69,39,.16);color:var(--clay-deep)}
+.range-scale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.62rem;color:var(--muted);margin-top:4px}
+.cal-hero{display:flex;align-items:flex-end;gap:12px;margin-bottom:6px}
+.cal-hero .kcal{font-family:var(--serif);font-weight:600;font-size:clamp(3rem,12vw,4rem);line-height:.85;letter-spacing:-.03em;color:#fff}
+.cal-hero .kcal-lab{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--ochre);padding-bottom:9px}
+.cal-sub{font-size:.88rem;color:rgba(241,232,213,.66);margin-bottom:24px}
+.macro-row{display:grid;grid-template-columns:140px 1fr;gap:20px;align-items:center;margin-bottom:22px}
+@media(max-width:480px){.macro-row{grid-template-columns:1fr;justify-items:center;text-align:center;gap:16px}}
+.donut{width:140px;height:140px;border-radius:50%;position:relative;flex:none}
+.donut::before{content:"";position:absolute;inset:20px;border-radius:50%;background:#211e18}
+.donut-c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2}
+.donut-c .dn{font-family:var(--serif);font-weight:600;font-size:1.45rem;color:#fff;line-height:1}
+.donut-c .dl{font-family:var(--mono);font-size:.56rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(241,232,213,.55);margin-top:3px}
+.macro-leg{display:flex;flex-direction:column;gap:12px;width:100%}
+.mleg{display:flex;align-items:center;gap:10px}
+.mleg .sw{width:11px;height:11px;border-radius:3px;flex:none}
+.mleg .mn{font-weight:700;font-size:1rem;color:#fff}
+.mleg .ml{font-size:.78rem;color:rgba(241,232,213,.55)}
+.mleg .mk{font-size:.78rem;color:rgba(241,232,213,.6);margin-left:auto;font-family:var(--mono)}
+.out-foot{border-top:1px solid rgba(241,232,213,.14);padding-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.out-foot .ff .v{font-family:var(--serif);font-weight:600;font-size:1.4rem;color:var(--ochre);line-height:1}
+.out-foot .ff .k{font-size:.72rem;color:rgba(241,232,213,.6);margin-top:5px}
+.prog-wrap{margin-top:22px}
+.prog-top{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-bottom:8px}
+.prog-track{height:14px;border-radius:99px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden}
+.prog-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--olive),var(--ochre),var(--clay));width:0;transition:width .8s cubic-bezier(.2,.7,.2,1)}
+.prog-lab{font-size:.82rem;color:var(--ink-soft);margin-top:9px;text-align:center}
+.prog-lab b{color:var(--clay-deep)}
+.note{background:var(--ochre-tint);border:1px solid rgba(216,154,43,.32);border-radius:var(--r-sm);padding:14px 16px;font-size:.86rem;color:var(--ink-soft);margin-top:22px;display:flex;gap:11px}
+.note svg{flex:none;color:var(--ochre);margin-top:2px}
+</style>
+</head>
+<body>
+<style>
+/* ---------- CHIPS / BLOCK / UL ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+.chip{font-size:.8rem;font-weight:600;padding:7px 13px;border-radius:99px;background:var(--surface);border:1px solid var(--line);color:var(--ink-soft)}
+.chip.accent{background:var(--olive-tint);border-color:transparent;color:var(--olive-deep)}
+.block{padding:26px}
+.block p{color:var(--ink-soft);font-size:.94rem;margin-bottom:12px}
+.block p:last-child{margin-bottom:0}
+.block .label{font-family:var(--mono);font-size:.66rem;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--clay);margin-bottom:12px}
+.block h4{font-family:var(--serif);font-weight:600;font-size:1.25rem;margin-bottom:6px;letter-spacing:-.01em}
+.ul{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:6px}
+.ul li{display:flex;gap:12px;font-size:.92rem;color:var(--ink-soft);line-height:1.5}
+.ul li .mk{flex:none;width:23px;height:23px;border-radius:7px;background:var(--olive-tint);color:var(--olive-deep);display:flex;align-items:center;justify-content:center;font-size:.78rem;margin-top:1px;font-weight:700}
+.ul li b{color:var(--ink);font-weight:600}
+
+/* ---------- BOWL TEMPLATE ---------- */
+.bowl{padding:26px}
+.bowl h4{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin-bottom:6px}
+.bowl-comp{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-radius:var(--r-sm);overflow:hidden;border:1px solid var(--line);margin-top:18px}
+@media(max-width:720px){.bowl-comp{grid-template-columns:repeat(2,1fr)}}
+.bc{background:var(--surface);padding:18px 15px}
+.bc .ico{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.bc .ico svg{width:18px;height:18px}
+.bc .t{font-weight:700;font-size:.95rem;margin-bottom:3px}
+.bc .q{font-family:var(--mono);font-size:.64rem;color:var(--clay-deep);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.bc .lst{font-size:.81rem;color:var(--ink-soft);line-height:1.5}
+
+/* ---------- KITCHEN: sub-tabs + day strip + meals + grocery ---------- */
+.subtabs{display:inline-flex;gap:4px;background:var(--surface-2);border:1px solid var(--line);border-radius:99px;padding:5px;margin-bottom:26px}
+.subtab{font-family:var(--sans);font-size:.9rem;font-weight:700;padding:10px 22px;border-radius:99px;border:none;background:transparent;color:var(--ink-soft);cursor:pointer;transition:.22s;display:flex;align-items:center;gap:8px}
+.subtab.active{background:var(--clay);color:#fff;box-shadow:0 6px 16px -8px var(--clay)}
+.kview{display:none}
+.kview.show{display:block;animation:fade .4s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.daystrip{display:flex;gap:9px;overflow-x:auto;padding:4px 2px 14px;margin-bottom:8px;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
+.daystrip::-webkit-scrollbar{height:5px}
+.daystrip::-webkit-scrollbar-thumb{background:var(--line);border-radius:9px}
+.daytab{flex:none;scroll-snap-align:start;min-width:78px;text-align:center;padding:12px 14px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;transition:.22s}
+.daytab .dd{font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.daytab .dn{font-family:var(--serif);font-weight:600;font-size:1.05rem;margin-top:3px;color:var(--ink)}
+.daytab:hover{border-color:var(--ink)}
+.daytab.active{background:var(--ink);border-color:var(--ink)}
+.daytab.active .dd{color:var(--ochre)}
+.daytab.active .dn{color:#fff}
+
+.mealblock{margin-top:26px}
+.mealblock .mbh{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.mealblock .mbh .mbi{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex:none}
+.mealblock .mbh .mbt{font-family:var(--serif);font-weight:600;font-size:1.35rem;letter-spacing:-.01em}
+.mealblock .mbh .mbc{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-left:auto}
+.bf .mbi{background:var(--ochre-tint);color:#9a6b14}
+.ln .mbi{background:var(--olive-tint);color:var(--olive-deep)}
+.dn-b .mbi{background:var(--clay-tint);color:var(--clay-deep)}
+
+/* meal accordion */
+.acc{border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;background:var(--surface);margin-bottom:10px}
+.acc-head{display:flex;align-items:center;gap:13px;padding:15px 16px;cursor:pointer;user-select:none}
+.acc-head .mname{font-family:var(--serif);font-weight:600;font-size:1.04rem;letter-spacing:-.01em;flex:1;min-width:0}
+.acc-head .chev{transition:.3s;color:var(--muted);flex:none}
+.acc.open .chev{transform:rotate(180deg)}
+.mm{font-family:var(--mono);font-size:.66rem;font-weight:600;padding:4px 8px;border-radius:7px;white-space:nowrap;flex:none}
+.mm.k{background:var(--clay-tint);color:var(--clay-deep)}
+.mm.p{background:var(--olive-tint);color:var(--olive-deep)}
+.mm.t{background:var(--surface-2);color:var(--muted)}
+@media(max-width:560px){.acc-head .mm.t{display:none}}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.2,.7,.2,1)}
+.acc-body-in{padding:4px 16px 18px}
+.recipe-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:640px){.recipe-grid{grid-template-columns:1fr;gap:16px}}
+.rsec .rh{font-family:var(--mono);font-size:.66rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--clay);margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.ing{list-style:none;display:flex;flex-direction:column}
+.ing li{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:.88rem}
+.ing li .iq{font-family:var(--mono);font-size:.8rem;color:var(--clay-deep);font-weight:600;white-space:nowrap}
+.method{list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:11px}
+.method li{counter-increment:s;display:flex;gap:11px;font-size:.88rem;color:var(--ink-soft);line-height:1.5}
+.method li::before{content:counter(s);flex:none;width:23px;height:23px;border-radius:50%;background:var(--olive);color:#fff;font-family:var(--mono);font-size:.74rem;font-weight:600;display:flex;align-items:center;justify-content:center;margin-top:1px}
+
+/* grocery */
+.gnote{background:var(--olive-tint);border:1px solid rgba(110,123,71,.25);border-radius:var(--r-sm);padding:14px 16px;font-size:.86rem;color:var(--olive-deep);margin-bottom:22px;display:flex;gap:11px}
+.gnote svg{flex:none;margin-top:2px}
+.gprog{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.gprog .gtrack{flex:1;height:10px;border-radius:99px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden}
+.gprog .gfill{height:100%;background:linear-gradient(90deg,var(--olive),var(--ochre));width:0;transition:width .4s}
+.gprog .glab{font-family:var(--mono);font-size:.74rem;color:var(--muted);white-space:nowrap}
+.grocery-cats{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;align-items:start}
+@media(max-width:740px){.grocery-cats{grid-template-columns:1fr}}
+.gcat{padding:20px 22px}
+.gcat .gch{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.gcat .gch .gci{width:30px;height:30px;border-radius:8px;background:var(--clay-tint);color:var(--clay-deep);display:flex;align-items:center;justify-content:center;flex:none}
+.gcat .gch h4{font-family:var(--serif);font-weight:600;font-size:1.12rem}
+.gitem{display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid var(--line);cursor:pointer;user-select:none}
+.gitem:first-of-type{border-top:none;margin-top:6px}
+.gitem .gbox{width:21px;height:21px;border-radius:6px;border:2px solid var(--line);flex:none;display:flex;align-items:center;justify-content:center;transition:.2s}
+.gitem .gbox svg{opacity:0;color:#fff;transition:.2s}
+.gitem.got .gbox{background:var(--olive);border-color:var(--olive)}
+.gitem.got .gbox svg{opacity:1}
+.gitem .gname{font-size:.9rem;font-weight:600;transition:.2s}
+.gitem.got .gname{color:var(--muted);text-decoration:line-through}
+.gitem .gqty{margin-left:auto;font-family:var(--mono);font-size:.8rem;font-weight:600;color:var(--clay-deep);white-space:nowrap}
+.gitem.got .gqty{color:var(--muted)}
+.gtools{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap}
+.gtool{font-family:var(--mono);font-size:.72rem;font-weight:500;color:var(--muted);background:none;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:.08em;text-decoration:underline;text-underline-offset:3px}
+.gtool:hover{color:var(--clay)}
+
+/* ---------- SCHEDULE (training week) ---------- */
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+@media(max-width:860px){.week{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:520px){.week{grid-template-columns:repeat(2,1fr)}}
+.day{border-radius:var(--r-sm);padding:15px 13px;border:1px solid var(--line);background:var(--surface);min-height:122px;display:flex;flex-direction:column}
+.day .dh{font-family:var(--mono);font-size:.64rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:11px}
+.day .pill{font-size:.72rem;font-weight:700;padding:5px 9px;border-radius:8px;display:inline-block;margin-bottom:7px;width:fit-content}
+.day .pl-lift{background:var(--clay-tint);color:var(--clay-deep)}
+.day .pl-card{background:var(--olive-tint);color:var(--olive-deep)}
+.day .pl-rest{background:var(--surface-2);color:var(--muted)}
+.day .dnm{font-weight:700;font-size:.9rem;line-height:1.25;margin-bottom:3px}
+.day .dt{font-family:var(--mono);font-size:.64rem;color:var(--muted)}
+
+/* workout accordion badges */
+.acc-head .badge{font-family:var(--serif);font-weight:600;width:38px;height:38px;border-radius:10px;background:var(--clay);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex:none}
+.acc-head .at{font-family:var(--serif);font-weight:600;font-size:1.1rem;letter-spacing:-.01em}
+.acc-head .ad{font-size:.8rem;color:var(--muted);margin-top:1px}
+.ex{display:grid;grid-template-columns:1fr auto;gap:12px;padding:11px 0;border-top:1px solid var(--line);align-items:center}
+.ex .en{font-weight:600;font-size:.93rem}
+.ex .es{font-family:var(--mono);font-size:.8rem;font-weight:500;color:var(--clay-deep);background:var(--clay-tint);padding:4px 10px;border-radius:7px;white-space:nowrap}
+
+/* statcards + thresholds */
+.statcards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:760px){.statcards{grid-template-columns:1fr}}
+.sc{padding:24px;border-radius:var(--r);border:1px solid var(--line);background:var(--surface)}
+.sc .scv{font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,8vw,3rem);line-height:.9;letter-spacing:-.03em;color:var(--clay)}
+.sc .scl{font-size:.9rem;color:var(--ink-soft);margin-top:10px;line-height:1.45}
+.sc .scl b{color:var(--ink)}
+.sc .src{font-family:var(--mono);font-size:.62rem;color:var(--muted);margin-top:12px;text-transform:uppercase;letter-spacing:.08em}
+.th{padding:20px;border-radius:var(--r);border:1px solid var(--line);background:var(--surface);border-left:4px solid var(--clay)}
+.th.up{border-left-color:var(--olive)}
+.th.hold{border-left-color:var(--ochre)}
+.th .thx{font-family:var(--mono);font-size:.68rem;font-weight:600;padding:3px 9px;border-radius:6px;text-transform:uppercase;letter-spacing:.06em;display:inline-block;margin-bottom:8px}
+.x-up{background:var(--olive-tint);color:var(--olive-deep)}
+.x-cut{background:var(--clay-tint);color:var(--clay-deep)}
+.x-hold{background:var(--ochre-tint);color:#9a6b14}
+.th .thd{font-size:.87rem;color:var(--ink-soft);line-height:1.5}
+.th .thd b{color:var(--ink)}
+
+/* tracker */
+.tracker{display:grid;grid-template-columns:230px 1fr;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-lg)}
+@media(max-width:780px){.tracker{grid-template-columns:1fr}}
+.tk-ring{background:linear-gradient(160deg,var(--olive-deep),#3e4824);padding:30px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center}
+.ring-svg{transform:rotate(-90deg)}
+.ring-svg .bgc{stroke:rgba(255,255,255,.16)}
+.ring-svg .fgc{stroke:var(--ochre);stroke-linecap:round;transition:stroke-dashoffset .6s cubic-bezier(.2,.7,.2,1)}
+.rpct{font-family:var(--serif);font-weight:600;font-size:2rem}
+.rlab{font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.12em;opacity:.8}
+.rsub{font-size:.8rem;opacity:.75}
+.tk-list{background:var(--surface);padding:26px}
+.tk-list h4{font-family:var(--serif);font-weight:600;font-size:1.15rem;margin-bottom:3px}
+.tk-list .tksub{font-size:.8rem;color:var(--muted);margin-bottom:16px}
+.habit{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--line);cursor:pointer;user-select:none}
+.habit:first-of-type{border-top:none}
+.habit .box{width:23px;height:23px;border-radius:7px;border:2px solid var(--line);flex:none;display:flex;align-items:center;justify-content:center;transition:.2s}
+.habit .box svg{opacity:0;transform:scale(.5);transition:.2s;color:#fff}
+.habit.done .box{background:var(--olive);border-color:var(--olive)}
+.habit.done .box svg{opacity:1;transform:scale(1)}
+.habit .ht{font-size:.92rem;font-weight:600}
+.habit.done .ht{color:var(--muted);text-decoration:line-through}
+.tk-week{margin-top:20px;border-top:1px solid var(--line);padding-top:18px}
+.tk-week .twh{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.tk-week .twt{font-family:var(--mono);font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-soft)}
+.tk-week .streak{font-size:.82rem;color:var(--clay-deep);font-weight:700}
+.dots{display:flex;gap:8px;justify-content:space-between}
+.wd{flex:1;text-align:center;cursor:pointer;max-width:46px}
+.wd .wdc{width:100%;aspect-ratio:1;margin:0 auto 6px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;transition:.2s;background:var(--surface-2)}
+.wd .wdc svg{opacity:0;color:#fff;transition:.2s}
+.wd.on .wdc{background:var(--clay);border-color:var(--clay)}
+.wd.on .wdc svg{opacity:1}
+.wd .wdl{font-family:var(--mono);font-size:.6rem;color:var(--muted);text-transform:uppercase}
+.tk-reset{margin-top:16px;font-family:var(--mono);font-size:.72rem;font-weight:500;color:var(--muted);background:none;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:.08em;text-decoration:underline;text-underline-offset:3px}
+.tk-reset:hover{color:var(--clay)}
+
+/* footer */
+.footer{background:var(--ink);color:rgba(241,232,213,.8);padding:60px 0 40px;margin-top:24px}
+.footer h3{font-family:var(--serif);font-weight:600;font-size:1.6rem;color:#fff;margin-bottom:16px;letter-spacing:-.02em}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:44px;margin-bottom:36px}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:26px}}
+.footer .disclaim{font-size:.85rem;line-height:1.65;color:rgba(241,232,213,.62)}
+.footer .src-list{font-size:.79rem;line-height:1.7;color:rgba(241,232,213,.55)}
+.footer .src-list .sh{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.12em;color:var(--ochre);margin-bottom:10px}
+.foot-bot{border-top:1px solid rgba(241,232,213,.14);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:.68rem;color:rgba(241,232,213,.45);text-transform:uppercase;letter-spacing:.1em}
+
+@media(max-width:600px){:root{--pad:18px}section{padding-top:58px;padding-bottom:58px}}
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <svg width="25" height="25" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="6.5" fill="#D89A2B"/><g stroke="#BE5A3A" stroke-width="2" stroke-linecap="round"><line x1="16" y1="2" x2="16" y2="6"/><line x1="16" y1="26" x2="16" y2="30"/><line x1="2" y1="16" x2="6" y2="16"/><line x1="26" y1="16" x2="30" y2="16"/><line x1="6.2" y1="6.2" x2="9" y2="9"/><line x1="23" y1="23" x2="25.8" y2="25.8"/><line x1="25.8" y1="6.2" x2="23" y2="9"/><line x1="9" y1="23" x2="6.2" y2="25.8"/></g></svg>
+      Lean for Life
+    </div>
+    <div class="nav-links">
+      <a href="#overview" class="active">Overview</a>
+      <a href="#calculator">Numbers</a>
+      <a href="#kitchen">Kitchen</a>
+      <a href="#move">Move</a>
+      <a href="#rest">Rest</a>
+      <a href="#track">Track</a>
+    </div>
+    <div class="nav-cta">86 → 75 kg</div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero wrap" id="overview">
+  <div class="hero-grid">
+    <div class="reveal in">
+      <div class="tag"><span class="dot"></span>A lifestyle, engineered &mdash; not a crash diet</div>
+      <h1>Get lean.<br>Then stay
+        <span class="accent">there.
+          <svg viewBox="0 0 200 14" preserveAspectRatio="none" fill="none"><path d="M2 9C40 3 100 3 198 7" stroke="#D89A2B" stroke-width="4" stroke-linecap="round"/></svg>
+        </span>
+      </h1>
+      <p class="sub">A sustainable, evidence-based plan to drop <b>11 kg over ~5 months</b> and keep it off &mdash; built on a moderate deficit, three lifts a week, Mediterranean meal-prep, and sleep that survives a toddler.</p>
+      <div class="hero-cta">
+        <a href="#calculator" class="btn btn-primary">Run my numbers
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#kitchen" class="btn btn-ghost">Open the kitchen</a>
+      </div>
+    </div>
+    <div class="reveal in">
+      <div class="medallion">
+        <div class="ring-bg"></div>
+        <svg class="sun" viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="22" fill="currentColor" opacity="0.18"/><circle cx="60" cy="60" r="15" fill="currentColor" opacity="0.55"/><g stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.5"><line x1="60" y1="14" x2="60" y2="26"/><line x1="60" y1="94" x2="60" y2="106"/><line x1="14" y1="60" x2="26" y2="60"/><line x1="94" y1="60" x2="106" y2="60"/><line x1="27" y1="27" x2="36" y2="36"/><line x1="84" y1="84" x2="93" y2="93"/><line x1="93" y1="27" x2="84" y2="36"/><line x1="36" y1="84" x2="27" y2="93"/></g></svg>
+        <div class="num-stack">
+          <div class="from">Starting line</div>
+          <div class="big">86<span>kg</span></div>
+          <div class="arrow">&darr;</div>
+          <div class="to">target <b>75 kg</b> &middot; 170 cm</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stat-strip reveal">
+    <div class="stat"><div class="v">~2,150</div><div class="k">kcal / day</div></div>
+    <div class="stat"><div class="v">~160<small>g</small></div><div class="k">protein / day</div></div>
+    <div class="stat"><div class="v">5&ndash;6</div><div class="k">active days / wk</div></div>
+    <div class="stat"><div class="v">8&ndash;10<small>k</small></div><div class="k">steps / day</div></div>
+    <div class="stat"><div class="v">~5<small> mo</small></div><div class="k">to goal weight</div></div>
+  </div>
+</header>
+
+<!-- ============ CALCULATOR ============ -->
+<section id="calculator" class="wrap">
+  <div class="reveal">
+    <div class="eyebrow">Your numbers, live</div>
+    <h2 class="sec-title">The math behind the deficit</h2>
+    <p class="sec-lead">Mifflin&ndash;St Jeor BMR, your activity level, and a deficit <em>you</em> control. Update your weight as it drops &mdash; targets recalculate, because a lighter you burns less.</p>
+  </div>
+  <div class="calc-shell reveal">
+    <div class="calc-in">
+      <h3>About you</h3>
+      <p class="hint">Pre-filled with your stats. Tweak anytime.</p>
+      <div class="field"><label>Current weight <span class="lv" id="lw">86 kg</span></label><input type="number" id="w" value="86" min="50" max="200" step="0.5" inputmode="decimal"></div>
+      <div class="field"><label>Height <span class="lv" id="lh">170 cm</span></label><input type="number" id="h" value="170" min="120" max="220" step="1" inputmode="numeric"></div>
+      <div class="field"><label>Age <span class="lv" id="la">38 yrs</span></label><input type="number" id="age" value="38" min="16" max="90" step="1" inputmode="numeric"></div>
+      <div class="field"><label>Activity level</label>
+        <select id="act">
+          <option value="1.2">Sedentary &mdash; desk job, no training</option>
+          <option value="1.375">Light &mdash; train 1&ndash;3&times;/week</option>
+          <option value="1.55" selected>Moderate &mdash; train 3&ndash;5&times;/week</option>
+          <option value="1.725">Very active &mdash; train 6&ndash;7&times;/week</option>
+        </select>
+      </div>
+      <div class="field"><label>Daily deficit <span class="lv"><span id="ldef">550</span> kcal&nbsp; <span class="def-badge def-ok" id="defbadge">Sustainable</span></span></label>
+        <input type="range" id="deficit" value="550" min="300" max="800" step="50">
+        <div class="range-scale"><span>300 gentle</span><span>550 ideal</span><span>800 aggressive</span></div>
+      </div>
+    </div>
+    <div class="calc-out">
+      <h3 style="color:#fff">Your daily target</h3>
+      <div class="cal-hero"><div class="kcal" id="o-kcal">2,150</div><div class="kcal-lab">kcal<br>to eat</div></div>
+      <div class="cal-sub">BMR <span id="o-bmr">1,738</span> kcal &nbsp;&bull;&nbsp; maintenance (TDEE) <span id="o-tdee">2,693</span> kcal</div>
+      <div class="macro-row">
+        <div class="donut" id="donut"><div class="donut-c"><div class="dn" id="o-pg">163g</div><div class="dl">protein</div></div></div>
+        <div class="macro-leg">
+          <div class="mleg"><span class="sw" style="background:var(--olive)"></span><span class="mn"><span id="o-p">163</span>g</span><span class="ml">Protein</span><span class="mk" id="o-pp">31%</span></div>
+          <div class="mleg"><span class="sw" style="background:var(--clay)"></span><span class="mn"><span id="o-c">191</span>g</span><span class="ml">Carbs</span><span class="mk" id="o-cp">37%</span></div>
+          <div class="mleg"><span class="sw" style="background:var(--ochre)"></span><span class="mn"><span id="o-f">76</span>g</span><span class="ml">Fat</span><span class="mk" id="o-fp">32%</span></div>
+        </div>
+      </div>
+      <div class="out-foot">
+        <div class="ff"><div class="v" id="o-rate">0.50</div><div class="k">kg lost / week (est.)</div></div>
+        <div class="ff"><div class="v" id="o-date">early Nov</div><div class="k">on track to hit 75 kg</div></div>
+      </div>
+      <div class="prog-wrap">
+        <div class="prog-top"><span>86 kg start</span><span>75 kg goal</span></div>
+        <div class="prog-track"><div class="prog-fill" id="o-prog"></div></div>
+        <div class="prog-lab" id="o-proglab"><b>0%</b> of the way there &mdash; 11.0 kg to go</div>
+      </div>
+    </div>
+  </div>
+  <div class="note reveal">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5" stroke-linecap="round"/></svg>
+    <span>The activity multiplier is the least precise input. Treat this as a starting hypothesis &mdash; weigh in for 2&ndash;3 weeks; if your <b>trend</b> is slower than ~0.4 kg/wk eat a little less, faster than ~0.9 kg/wk eat a little more to protect muscle.</span>
+  </div>
+</section>
+
+<!-- ============ KITCHEN ============ -->
+<section id="kitchen" class="wrap">
+  <div class="reveal">
+    <div class="eyebrow">The kitchen &mdash; eat well, prep once</div>
+    <h2 class="sec-title">A full Mediterranean week,<br>for two adults &amp; a toddler</h2>
+    <p class="sec-lead">High Mediterranean-diet adherence is linked to roughly <em>double the odds</em> of keeping weight off. Below: a 7-day plan with three options for every meal, and a generous family shopping list you can tick off as you go.</p>
+  </div>
+
+  <!-- bowl template -->
+  <div class="card bowl reveal" style="margin-bottom:34px">
+    <h4>The mix-and-match bowl</h4>
+    <p style="color:var(--ink-soft);font-size:.93rem">Every plate below follows this shape. Batch the parts on Sunday; assemble in 60 seconds all week.</p>
+    <div class="bowl-comp">
+      <div class="bc"><div class="ico" style="background:var(--olive-tint);color:var(--olive-deep)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 13a8 8 0 0116 0M4 13h16" stroke-linecap="round"/><circle cx="12" cy="9" r="1.3" fill="currentColor" stroke="none"/></svg></div><div class="t">Lean protein</div><div class="q">~30&ndash;40 g</div><div class="lst">Chicken, white fish, salmon, tuna, eggs, yoghurt, shrimp, lentils, chickpeas</div></div>
+      <div class="bc"><div class="ico" style="background:var(--clay-tint);color:var(--clay-deep)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 20c0-4 3-7 7-7s7 3 7 7M8 13c-1-2-1-5 1-7M12 13c0-3 0-6 2-8" stroke-linecap="round"/></svg></div><div class="t">Complex carb</div><div class="q">1 cupped hand</div><div class="lst">Quinoa, farro, bulgur, brown rice, whole-grain pasta, potato, pita</div></div>
+      <div class="bc"><div class="ico" style="background:var(--olive-tint);color:var(--olive-deep)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21c5-3 8-7 8-12 0-2-1-4-3-4-2 0-3 1.5-5 4-2-2.5-3-4-5-4-2 0-3 2-3 4 0 5 3 9 8 12z" stroke-linejoin="round"/></svg></div><div class="t">High-volume veg</div><div class="q">half the plate</div><div class="lst">Peppers, courgette, broccoli, tomato, greens, aubergine, cucumber</div></div>
+      <div class="bc"><div class="ico" style="background:var(--ochre-tint);color:#9a6b14"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 11c0-3 2-5 5-5s5 2 5 5-2 8-5 8-5-5-5-8z"/><circle cx="12" cy="11" r="2" fill="currentColor" stroke="none"/></svg></div><div class="t">Healthy fat</div><div class="q">thumb-size</div><div class="lst">Extra-virgin olive oil, olives, feta, nuts, tahini, avocado</div></div>
+    </div>
+  </div>
+
+  <!-- sub-tabs -->
+  <div class="reveal">
+    <div class="subtabs">
+      <button class="subtab active" data-kview="plan"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4" stroke-linecap="round"/></svg>7-Day Plan</button>
+      <button class="subtab" data-kview="grocery"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 4h2l2.5 12h10L20 7H6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg>Grocery List</button>
+    </div>
+
+    <!-- PLAN VIEW -->
+    <div class="kview show" id="view-plan">
+      <div class="daystrip" id="dayStrip">
+        <div class="daytab active" data-day="Mon"><div class="dd">Day 1</div><div class="dn">Mon</div></div>
+        <div class="daytab" data-day="Tue"><div class="dd">Day 2</div><div class="dn">Tue</div></div>
+        <div class="daytab" data-day="Wed"><div class="dd">Day 3</div><div class="dn">Wed</div></div>
+        <div class="daytab" data-day="Thu"><div class="dd">Day 4</div><div class="dn">Thu</div></div>
+        <div class="daytab" data-day="Fri"><div class="dd">Day 5</div><div class="dn">Fri</div></div>
+        <div class="daytab" data-day="Sat"><div class="dd">Day 6</div><div class="dn">Sat</div></div>
+        <div class="daytab" data-day="Sun"><div class="dd">Day 7</div><div class="dn">Sun</div></div>
+      </div>
+      <div id="planContent"></div>
+      <div class="note">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5" stroke-linecap="round"/></svg>
+        <span>Macros shown are <b>per adult serving</b>. For the family, cook ~2.5&times; (a toddler eats roughly half an adult portion) &mdash; the grocery list is already scaled up for that. Keep toddler portions lightly salted and cut grapes/olives in half.</span>
+      </div>
+    </div>
+
+    <!-- GROCERY VIEW -->
+    <div class="kview" id="view-grocery">
+      <div class="gnote">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>One generous week for <b>2 adults + 1 toddler</b>, quantities in grams. Deliberately over-provisioned so you won't run out &mdash; staples (oats, grains, oil, tins) carry over to the next week.</span>
+      </div>
+      <div class="gprog"><div class="gtrack"><div class="gfill" id="gfill"></div></div><div class="glab"><span id="gcount">0</span> / <span id="gtotal">0</span> in basket</div></div>
+      <div class="grocery-cats" id="groceryContent"></div>
+      <div class="gtools">
+        <button class="gtool" id="gReset">Uncheck all</button>
+        <button class="gtool" id="gCopy">Copy list as text</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MOVE ============ -->
+<section id="move" class="wrap">
+  <div class="reveal">
+    <div class="eyebrow">Move &mdash; lift heavy, walk often</div>
+    <h2 class="sec-title">Train for the body,<br>not just the scale</h2>
+    <p class="sec-lead">Lifting during a deficit cuts muscle loss by up to <em>~93%</em> &mdash; so the weight you lose is fat, not the lean mass that keeps you lean. Three full-body sessions, easy cardio, and a lot of walking.</p>
+  </div>
+  <div class="reveal" style="margin-bottom:40px">
+    <div class="week">
+      <div class="day"><div class="dh">Mon</div><span class="pill pl-lift">Lift</span><div class="dnm">Full Body A</div><div class="dt">~50 min</div></div>
+      <div class="day"><div class="dh">Tue</div><span class="pill pl-card">Cardio</span><div class="dnm">Zone 2</div><div class="dt">40&ndash;50 min</div></div>
+      <div class="day"><div class="dh">Wed</div><span class="pill pl-lift">Lift</span><div class="dnm">Full Body B</div><div class="dt">~50 min</div></div>
+      <div class="day"><div class="dh">Thu</div><span class="pill pl-card">Cardio</span><div class="dnm">Zone 2 / walk</div><div class="dt">30&ndash;45 min</div></div>
+      <div class="day"><div class="dh">Fri</div><span class="pill pl-lift">Lift</span><div class="dnm">Full Body C</div><div class="dt">~50 min</div></div>
+      <div class="day"><div class="dh">Sat</div><span class="pill pl-card">Optional</span><div class="dnm">HIIT or family</div><div class="dt">20&ndash;25 min</div></div>
+      <div class="day"><div class="dh">Sun</div><span class="pill pl-rest">Rest</span><div class="dnm">Light walk</div><div class="dt">recover</div></div>
+    </div>
+  </div>
+  <div class="grid cols-2 reveal" style="align-items:start">
+    <div>
+      <h3 style="font-family:var(--serif);font-weight:600;font-size:1.5rem;letter-spacing:-.02em;margin-bottom:16px">The three sessions</h3>
+      <div class="acc">
+        <div class="acc-head"><div class="badge">A</div><div style="flex:1"><div class="at">Full Body A</div><div class="ad">Squat-focused</div></div><svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="acc-body"><div class="acc-body-in">
+          <div class="ex"><span class="en">Back squat / leg press</span><span class="es">3 &times; 6&ndash;8</span></div>
+          <div class="ex"><span class="en">Bench press / push-up</span><span class="es">3 &times; 8&ndash;10</span></div>
+          <div class="ex"><span class="en">Lat pulldown / row</span><span class="es">3 &times; 8&ndash;10</span></div>
+          <div class="ex"><span class="en">Romanian deadlift</span><span class="es">3 &times; 10&ndash;12</span></div>
+          <div class="ex"><span class="en">Plank</span><span class="es">3 &times; 30&ndash;45s</span></div>
+        </div></div>
+      </div>
+      <div class="acc">
+        <div class="acc-head"><div class="badge">B</div><div style="flex:1"><div class="at">Full Body B</div><div class="ad">Hinge-focused</div></div><svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="acc-body"><div class="acc-body-in">
+          <div class="ex"><span class="en">Deadlift / hip hinge</span><span class="es">3 &times; 5&ndash;6</span></div>
+          <div class="ex"><span class="en">Overhead press</span><span class="es">3 &times; 6&ndash;8</span></div>
+          <div class="ex"><span class="en">Seated cable row</span><span class="es">3 &times; 8&ndash;10</span></div>
+          <div class="ex"><span class="en">Leg curl</span><span class="es">3 &times; 10&ndash;12</span></div>
+          <div class="ex"><span class="en">Face pulls</span><span class="es">3 &times; 12&ndash;15</span></div>
+        </div></div>
+      </div>
+      <div class="acc">
+        <div class="acc-head"><div class="badge">C</div><div style="flex:1"><div class="at">Full Body C</div><div class="ad">Volume &amp; arms</div></div><svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="acc-body"><div class="acc-body-in">
+          <div class="ex"><span class="en">Leg press / walking lunge</span><span class="es">3 &times; 8&ndash;10</span></div>
+          <div class="ex"><span class="en">Incline DB press</span><span class="es">3 &times; 8&ndash;10</span></div>
+          <div class="ex"><span class="en">Assisted pull-ups</span><span class="es">3 &times; 6&ndash;10</span></div>
+          <div class="ex"><span class="en">Dumbbell row</span><span class="es">3 &times; 8&ndash;10</span></div>
+          <div class="ex"><span class="en">Hanging knee raise</span><span class="es">3 &times; 12&ndash;15</span></div>
+        </div></div>
+      </div>
+      <div class="note" style="margin-top:16px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2l2.5 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.5-.5z" stroke-linejoin="round"/></svg>
+        <span><b>Double-progression:</b> stay at a weight until you hit the top of the rep range on every set, then add the smallest increment and build back up. Log every set.</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div class="card block"><div class="label">Cardio</div><h4>Bias toward Zone 2</h4><p>Matched for effort, HIIT and steady-state burn similar fat &mdash; but <b>Zone 2</b> (conversational pace, ~60&ndash;70% max HR) is far gentler on recovery, which matters when sleep is short. Keep HIIT to <b>one</b> 20-minute session a week, max.</p><div class="chips" style="margin-top:14px"><span class="chip accent">Incline treadmill walk</span><span class="chip accent">Cycling</span><span class="chip accent">Rower</span></div></div>
+      <div class="card block"><div class="label">NEAT &mdash; the silent lever</div><h4>8,000&ndash;10,000 steps</h4><p>Non-exercise movement can swing daily burn by up to ~2,000 kcal between similar people &mdash; and it quietly <em>drops</em> when you diet. When the scale stalls, add 1,000&ndash;2,000 steps before cutting food.</p><ul class="ul" style="margin-top:8px"><li><span class="mk">&rarr;</span><span>Walking meetings &amp; hourly desk breaks</span></li><li><span class="mk">&rarr;</span><span>A 10-min walk after each meal</span></li><li><span class="mk">&rarr;</span><span>Stairs, far parking, pram laps with the toddler</span></li></ul></div>
+      <div class="card block"><div class="label">Recovery for tired parents</div><h4>Train smart on no sleep</h4><p>Keep lifting to 3 days so muscles get 48h+ to recover. On a bad-sleep day, swap HIIT for a Zone 2 walk. <b>Deload</b> (cut volume ~40%) every 6&ndash;8 weeks or after a rough stretch.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REST ============ -->
+<section id="rest" class="wrap">
+  <div class="reveal">
+    <div class="eyebrow">Rest &mdash; the fat-loss lever you're skipping</div>
+    <h2 class="sec-title">Sleep decides where<br>the weight comes off</h2>
+    <p class="sec-lead">In a controlled trial, dieters on identical calories who slept <em>5.5h vs 8.5h</em> lost the same total weight &mdash; but far less of it was fat, and far more was muscle. With a 2-year-old you can't guarantee 8 hours. You <b>can</b> stack the odds.</p>
+  </div>
+  <div class="statcards reveal" style="margin-bottom:38px">
+    <div class="sc"><div class="scv">&minus;55%</div><div class="scl">of weight lost came from <b>fat</b> on short sleep &mdash; the rest was lean mass (which rose 60%).</div><div class="src">Nedeltcheva et al., 2010</div></div>
+    <div class="sc"><div class="scv">+28%</div><div class="scl">ghrelin (hunger hormone) after just two short nights &mdash; leptin down 18%, hunger up 24%.</div><div class="src">Spiegel et al., 2004</div></div>
+    <div class="sc"><div class="scv">+45%</div><div class="scl">spike in appetite for <b>calorie-dense, high-carb</b> foods when sleep-deprived. Tired brains crave sugar.</div><div class="src">Spiegel et al., 2004</div></div>
+  </div>
+  <div class="grid cols-2 reveal" style="align-items:start">
+    <div class="card block">
+      <div class="label">Protect the sleep you can get</div>
+      <h4>Seven realistic moves</h4>
+      <ul class="ul" style="margin-top:14px">
+        <li><span class="mk">1</span><span><b>Anchor your wake time.</b> A fixed rise time &mdash; even after a broken night &mdash; steadies your body clock more than a fixed bedtime.</span></li>
+        <li><span class="mk">2</span><span><b>Guard an 8h window.</b> Be in bed for the opportunity even if sleep fragments; the buffer absorbs night-wakings.</span></li>
+        <li><span class="mk">3</span><span><b>Caffeine off by 2pm.</b> Half-life ~5&ndash;6h; even 6h before bed it measurably cuts sleep.</span></li>
+        <li><span class="mk">4</span><span><b>Nap smart.</b> 20&ndash;30 min on weekdays; one 90-min cycle on a weekend. Avoid late-afternoon naps.</span></li>
+      </ul>
+    </div>
+    <div class="card block">
+      <div class="label">&nbsp;</div>
+      <h4 style="height:0;margin:0;opacity:0">.</h4>
+      <ul class="ul">
+        <li><span class="mk">5</span><span><b>Wind-down ritual (30&ndash;60 min).</b> Warm shower &rarr; dim lights below ~100 lux &rarr; read. The same sequence nightly conditions sleep onset.</span></li>
+        <li><span class="mk">6</span><span><b>Limit alcohol.</b> It fragments the back half of the night and suppresses early REM.</span></li>
+        <li><span class="mk">7</span><span><b>On low-sleep days:</b> swap HIIT for a walk, front-load protein at breakfast, lean on pre-planned meals so willpower isn't the gatekeeper. Don't catastrophise one bad night.</span></li>
+      </ul>
+      <div class="note" style="margin-top:18px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z" stroke-linejoin="round"/></svg><span>Short-term hormone effects vary between studies &mdash; but the body-composition and behavioural effects are robust. Either way: protect sleep.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRACK ============ -->
+<section id="track" class="wrap">
+  <div class="reveal">
+    <div class="eyebrow">Track &mdash; what makes it stick</div>
+    <h2 class="sec-title">The lifestyle is the intervention</h2>
+    <p class="sec-lead">People who keep weight off share a short list of habits: they weigh in regularly, eat enough protein, stay active, and &mdash; crucially &mdash; <em>don't quit over one bad day</em>. Build the habits below and the deficit becomes temporary; the lean stays.</p>
+  </div>
+  <div class="statcards reveal" style="margin-bottom:38px">
+    <div class="sc"><div class="scv">87%</div><div class="scl">of successful losers kept off <b>&ge;10%</b> of body weight at both 5 and 10 years.</div><div class="src">National Weight Control Registry</div></div>
+    <div class="sc"><div class="scv">79%</div><div class="scl">weigh themselves <b>at least weekly</b>. When self-weighing slips, regain follows.</div><div class="src">Butryn et al., 2007</div></div>
+    <div class="sc"><div class="scv">66 days</div><div class="scl">median for a behaviour to become automatic &mdash; and missing one day <b>doesn't</b> break it.</div><div class="src">Lally et al., 2010</div></div>
+  </div>
+
+  <div class="tracker reveal">
+    <div class="tk-ring">
+      <div style="position:relative;width:150px;height:150px">
+        <svg class="ring-svg" width="150" height="150" viewBox="0 0 150 150">
+          <circle class="bgc" cx="75" cy="75" r="62" fill="none" stroke-width="11"/>
+          <circle class="fgc" id="ring" cx="75" cy="75" r="62" fill="none" stroke-width="11" stroke-dasharray="389.6" stroke-dashoffset="389.6"/>
+        </svg>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
+          <div class="rpct" id="ringPct">0%</div><div class="rlab">today</div>
+        </div>
+      </div>
+      <div class="rsub" id="ringSub" style="margin-top:16px">0 of 8 done today</div>
+    </div>
+    <div class="tk-list">
+      <h4>Today's non-negotiables</h4>
+      <p class="tksub">Tap to check off. Saved on this device.</p>
+      <div id="habitList">
+        <div class="habit" data-id="protein"><span class="box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L19 7"/></svg></span><span class="ht">Hit ~160 g protein</span></div>
+        <div class="habit" data-id="cals"><span class="box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L19 7"/></svg></span><span class="ht">Stayed near calorie target</span></div>
+        <div class="habit" data-id="steps"><span class="box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L19 7"/></svg></span><span class="ht">8,000&ndash;10,000 steps</span></div>
+        <div class="habit" data-id="train"><span class="box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L19 7"/></svg></span><span class="ht">Lift or Zone 2 session</span></div>
+        <div class="habit" data-id="sleep"><span class="box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L19 7"/></svg></span><span class="ht">7.5&ndash;8h sleep window</span></div>
+        <div class="habit" data-id="caffeine"><span class="box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L19 7"/></svg></span><span class="ht">No caffeine after 2pm</span></div>
+        <div class="habit" data-id="weigh"><span class="box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L19 7"/></svg></span><span class="ht">Logged morning weight</span></div>
+        <div class="habit" data-id="water"><span class="box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L19 7"/></svg></span><span class="ht">2L+ water</span></div>
+      </div>
+      <div class="tk-week">
+        <div class="twh"><span class="twt">This week</span><span class="streak"><span id="weekCount">0</span>/7 days hit</span></div>
+        <div class="dots" id="weekDots">
+          <div class="wd" data-day="0"><div class="wdc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L19 7"/></svg></div><div class="wdl">M</div></div>
+          <div class="wd" data-day="1"><div class="wdc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L19 7"/></svg></div><div class="wdl">T</div></div>
+          <div class="wd" data-day="2"><div class="wdc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L19 7"/></svg></div><div class="wdl">W</div></div>
+          <div class="wd" data-day="3"><div class="wdc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L19 7"/></svg></div><div class="wdl">T</div></div>
+          <div class="wd" data-day="4"><div class="wdc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L19 7"/></svg></div><div class="wdl">F</div></div>
+          <div class="wd" data-day="5"><div class="wdc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L19 7"/></svg></div><div class="wdl">S</div></div>
+          <div class="wd" data-day="6"><div class="wdc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L19 7"/></svg></div><div class="wdl">S</div></div>
+        </div>
+      </div>
+      <button class="tk-reset" id="resetBtn">Reset week</button>
+    </div>
+  </div>
+
+  <div class="grid cols-2 reveal" style="margin-top:40px;align-items:start">
+    <div class="card block">
+      <div class="label">How to read progress</div>
+      <h4>Trends, not daily noise</h4>
+      <ul class="ul" style="margin-top:14px">
+        <li><span class="mk">&rarr;</span><span><b>Weigh daily, judge the weekly average.</b> Day-to-day swings of 1&ndash;2 kg are water, salt, carbs and poor sleep &mdash; not fat.</span></li>
+        <li><span class="mk">&rarr;</span><span><b>Track protein &amp; calories</b> while you learn portions, then loosen to "protein + portion awareness".</span></li>
+        <li><span class="mk">&rarr;</span><span><b>Monthly waist + photos</b> catch recomposition the scale hides early on.</span></li>
+        <li><span class="mk">&rarr;</span><span><b>Your strength log is proof:</b> lifts holding or rising in a deficit = muscle preserved.</span></li>
+      </ul>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="th up"><span class="thx x-up">Eat more</span><div class="thd">Losing <b>&gt;1 kg/week</b> for 2+ weeks, or lifts dropping &rarr; nudge calories up. Lean mass is at risk.</div></div>
+      <div class="th"><span class="thx x-cut">Then trim</span><div class="thd">Genuinely adherent but <b>stalled 3 weeks</b> &rarr; add 1,000&ndash;2,000 steps first, then cut ~100&ndash;150 kcal.</div></div>
+      <div class="th hold"><span class="thx x-hold">Hold &amp; fix</span><div class="thd">Two bad-sleep weeks &rarr; cut HIIT, hold calories steady, repair sleep before pushing the deficit harder.</div></div>
+    </div>
+  </div>
+  <div class="grid cols-2 reveal" style="margin-top:22px">
+    <div class="card block"><div class="label">Diet breaks</div><h4>Plan the pauses</h4><p>Every <b>6&ndash;8 weeks</b>, take 1&ndash;2 weeks at maintenance calories. Evidence (MATADOR) suggests scheduled breaks help retain metabolic rate and adherence with similar fat loss &mdash; and they're a sanity-saver for a stressed parent. A tool, not a cheat code.</p></div>
+    <div class="card block"><div class="label">The finish line that isn't one</div><h4>Transition to maintenance</h4><p>At 75 kg, recalc your numbers (BMR &asymp; 1,683; TDEE &asymp; 2,610) and add back ~250&ndash;500 kcal gradually over 2&ndash;4 weeks. Keep everything else: the lifts, the steps, the protein, the weekly weigh-in. <b>The deficit ends; the habits don't.</b></p></div>
+  </div>
+</section>
+
+<!-- ============ EQUIPMENT ============ -->
+<section id="kit" class="wrap" style="padding-top:20px">
+  <div class="reveal">
+    <div class="eyebrow">The kit</div>
+    <h2 class="sec-title">Gear that makes prep effortless</h2>
+    <p class="sec-lead">Spend where it removes friction. The right tools turn a two-hour Sunday into a fridge full of meals and make hitting your numbers automatic.</p>
+  </div>
+  <div class="grid cols-4 reveal">
+    <div class="card block" style="padding:22px"><div class="label" style="color:var(--clay-deep)">Essential</div><h4 style="font-size:1.08rem">Digital food scale</h4><p style="font-size:.87rem">The single best accuracy tool. Eyeballing portions is the #1 reason calorie targets quietly fail.</p></div>
+    <div class="card block" style="padding:22px"><div class="label" style="color:var(--clay-deep)">Essential</div><h4 style="font-size:1.08rem">Glass containers &times;14</h4><p style="font-size:.87rem">Portioned, BPA-free, microwave-safe. Make grab-and-go real and reheating clean.</p></div>
+    <div class="card block" style="padding:22px"><div class="label">High impact</div><h4 style="font-size:1.08rem">Instant Pot</h4><p style="font-size:.87rem">Hands-off batch beans, grains, shredded chicken, soups and stews in a fraction of the time.</p></div>
+    <div class="card block" style="padding:22px"><div class="label">High impact</div><h4 style="font-size:1.08rem">Air fryer</h4><p style="font-size:.87rem">Crisp lean proteins and veg with barely any oil, fast, no preheat. Weeknight workhorse.</p></div>
+    <div class="card block" style="padding:22px"><div class="label">Nice to have</div><h4 style="font-size:1.08rem">Sheet pans + Dutch oven</h4><p style="font-size:.87rem">Roast a whole tray of veg and one-pot a stew while you do something else.</p></div>
+    <div class="card block" style="padding:22px"><div class="label">Nice to have</div><h4 style="font-size:1.08rem">Chef's knife + chopper</h4><p style="font-size:.87rem">A sharp knife and an electric chopper cut prep from minutes to seconds.</p></div>
+    <div class="card block" style="padding:22px"><div class="label">Nice to have</div><h4 style="font-size:1.08rem">Instant-read thermometer</h4><p style="font-size:.87rem">No more dry, overcooked chicken &mdash; a top reason people abandon their prep.</p></div>
+    <div class="card block" style="padding:22px"><div class="label">Optional</div><h4 style="font-size:1.08rem">Vacuum sealer</h4><p style="font-size:.87rem">Freeze batch portions, slash spoilage, always have a compliant meal on hand.</p></div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h3>Start small. Stay consistent.<br>Let the lifestyle do the work.</h3>
+        <p class="disclaim">General, evidence-informed lifestyle guidance &mdash; not individualised medical advice. All calorie/TDEE figures are estimates (the activity multiplier is the weakest link); let 2&ndash;3 weeks of real scale-trend data override the formula. Please clear any new exercise or diet programme with your physician, especially given chronic sleep disruption or any cardiometabolic history.</p>
+      </div>
+      <div class="src-list">
+        <div class="sh">Grounded in</div>
+        Spiegel et al., <i>Ann Intern Med</i> 2004 &middot; Nedeltcheva et al., <i>Ann Intern Med</i> 2010<br>
+        PREDIMED, <i>Lancet D&amp;E</i> 2019 &middot; MedWeight &amp; ATTICA cohorts<br>
+        Mettler et al., 2010 &middot; resistance-training meta-analyses 2018/2025<br>
+        National Weight Control Registry &middot; Lally et al., 2010
+      </div>
+    </div>
+    <div class="foot-bot"><span>Lean for Life &middot; Personal blueprint</span><span>86 &rarr; 75 kg &middot; ~5 months &middot; forever after</span></div>
+  </div>
+</footer>
+
+<script>
+/* =================== MEAL DATA =================== */
+var RECIPES = {
+  /* ---- BREAKFAST ---- */
+  b1:{name:"Greek Yoghurt & Berry Bowl",k:320,p:28,t:5,ing:[["200 g","Greek yoghurt (0-2%)"],["80 g","mixed berries"],["20 g","walnuts, chopped"],["10 g","honey"],["10 g","chia seeds"]],steps:["Spoon yoghurt into a bowl.","Top with berries, walnuts and chia.","Drizzle with honey."]},
+  b2:{name:"Spinach & Feta Omelette",k:340,p:26,t:10,ing:[["3","eggs"],["40 g","feta, crumbled"],["30 g","spinach"],["5 g","olive oil"],["1 pinch","black pepper"]],steps:["Wilt spinach in oiled non-stick pan, 1 min.","Pour in whisked eggs; cook on low.","Scatter feta, fold and serve."]},
+  b3:{name:"Apple-Cinnamon Overnight Oats",k:380,p:18,t:5,ing:[["60 g","rolled oats"],["200 ml","milk"],["60 g","apple, grated"],["15 g","almonds"],["10 g","honey"],["1 pinch","cinnamon"]],steps:["Mix oats, milk, apple and cinnamon in a jar.","Chill overnight.","Top with almonds and honey before eating."]},
+  b4:{name:"Shakshuka",k:330,p:20,t:20,ing:[["2","eggs"],["200 g","chopped tomatoes"],["60 g","onion, diced"],["60 g","pepper, diced"],["1 clove","garlic"],["20 g","feta"],["5 g","olive oil"],["1 tsp","cumin & paprika"]],steps:["Soften onion, pepper and garlic in oil.","Add tomatoes and spices; simmer 8 min.","Make wells, crack in eggs, cover until set.","Top with feta and parsley."]},
+  b5:{name:"Avocado & Egg Toast",k:360,p:18,t:8,ing:[["50 g","whole-grain bread"],["75 g","avocado"],["1","egg, poached"],["1 squeeze","lemon"],["1 pinch","chilli flakes"]],steps:["Toast the bread.","Mash avocado with lemon and spread.","Top with poached egg and chilli flakes."]},
+  b6:{name:"Cottage Cheese & Tomato Toast",k:300,p:24,t:5,ing:[["50 g","whole-grain bread"],["120 g","cottage cheese"],["60 g","cherry tomatoes, halved"],["3 g","olive oil"],["1 pinch","oregano"]],steps:["Toast the bread.","Spread cottage cheese.","Top with tomatoes, oregano and a drizzle of oil."]},
+  b7:{name:"Banana-Oat Pancakes (toddler-friendly)",k:350,p:16,t:15,ing:[["60 g","rolled oats, blended"],["1","banana"],["2","eggs"],["5 g","olive oil"],["1 pinch","cinnamon"]],steps:["Blend oats, banana, eggs and cinnamon to a batter.","Cook small pancakes in a lightly oiled pan.","Serve with a spoon of yoghurt and berries."]},
+  b8:{name:"Muesli with Yoghurt & Fruit",k:360,p:20,t:5,ing:[["50 g","muesli (no added sugar)"],["150 g","Greek yoghurt"],["80 g","orange or grapes"],["10 g","mixed nuts"]],steps:["Layer muesli and yoghurt.","Top with fruit and nuts."]},
+  b9:{name:"Egg & Veg Muffins (batch of 12)",k:220,p:22,t:25,ing:[["8","eggs"],["80 g","spinach, chopped"],["60 g","feta"],["80 g","pepper, diced"],["5 g","olive oil"]],steps:["Heat oven to 190C; oil a muffin tin.","Whisk eggs; stir in veg and feta.","Pour into tin; bake 18 min. Macros = 3 muffins."]},
+  b10:{name:"Smoked Salmon & Egg Scramble",k:350,p:30,t:8,ing:[["3","eggs"],["40 g","smoked salmon"],["5 g","olive oil"],["1 tsp","chives"],["50 g","whole-grain bread"]],steps:["Soft-scramble eggs in oil on low heat.","Fold through torn smoked salmon and chives.","Serve with toast."]},
+  b11:{name:"Tomato & White Bean Toast",k:330,p:17,t:8,ing:[["50 g","whole-grain bread"],["120 g","white beans, drained"],["60 g","tomato"],["1 clove","garlic"],["5 g","olive oil"]],steps:["Warm beans with crushed garlic and oil; mash lightly.","Toast the bread.","Top with beans and sliced tomato."]},
+  b12:{name:"Greek Yoghurt, Honey & Walnut",k:310,p:22,t:3,ing:[["200 g","Greek yoghurt"],["20 g","walnuts"],["15 g","honey"],["1 pinch","cinnamon"]],steps:["Spoon yoghurt into a bowl.","Top with walnuts, honey and cinnamon."]},
+
+  /* ---- LUNCH ---- */
+  l1:{name:"Lemon-Oregano Chicken & Quinoa Bowl",k:480,p:45,t:10,ing:[["120 g","cooked chicken breast"],["100 g","cooked quinoa"],["80 g","cucumber"],["80 g","tomato"],["30 g","tzatziki"],["1 squeeze","lemon"],["5 g","olive oil"]],steps:["Combine quinoa, cucumber and tomato.","Slice chicken on top.","Add tzatziki, lemon and a drizzle of oil."]},
+  l2:{name:"Tuna & White Bean Salad",k:400,p:35,t:8,ing:[["100 g","tuna (in water), drained"],["120 g","white beans"],["40 g","rocket"],["40 g","artichoke hearts"],["30 g","red onion"],["8 g","olive oil + lemon"]],steps:["Flake tuna over beans and rocket.","Add artichoke and thin-sliced onion.","Dress with oil and lemon; toss."]},
+  l3:{name:"Greek Salad with Chickpeas",k:420,p:18,t:10,ing:[["120 g","chickpeas"],["100 g","tomato"],["80 g","cucumber"],["40 g","feta"],["30 g","olives"],["30 g","red onion"],["8 g","olive oil"],["1 pinch","oregano"]],steps:["Chop tomato, cucumber and onion.","Add chickpeas, olives and feta.","Dress with oil and oregano; toss."]},
+  l4:{name:"Chicken & Hummus Pita",k:450,p:38,t:8,ing:[["60 g","whole-grain pita"],["100 g","cooked chicken"],["40 g","hummus"],["30 g","salad leaves"],["40 g","tomato"]],steps:["Warm the pita.","Spread hummus inside.","Fill with chicken, leaves and tomato."]},
+  l5:{name:"Farro, Roasted Veg & Feta",k:430,p:16,t:10,ing:[["120 g","cooked farro"],["150 g","roasted courgette & pepper"],["40 g","feta"],["8 g","olive oil"],["1 tbsp","parsley"]],steps:["Combine farro with roasted veg.","Crumble over feta.","Finish with oil and parsley."]},
+  l6:{name:"Shrimp & Spinach Farro Bowl",k:430,p:35,t:12,ing:[["120 g","shrimp"],["100 g","cooked farro"],["60 g","spinach"],["60 g","cherry tomatoes"],["30 g","feta"],["6 g","olive oil"]],steps:["Sear shrimp in oil, 3-4 min.","Wilt spinach in the same pan.","Toss with farro, tomatoes and feta."]},
+  l7:{name:"Lentil & Roasted Veg Bowl",k:420,p:22,t:12,ing:[["150 g","cooked green lentils"],["150 g","roasted aubergine & pepper"],["30 g","feta"],["15 g","tahini + lemon"]],steps:["Spoon lentils into a bowl.","Top with roasted veg and feta.","Drizzle tahini loosened with lemon and water."]},
+  l8:{name:"Mediterranean Tuna Pasta Salad",k:450,p:30,t:12,ing:[["80 g","whole-grain pasta"],["100 g","tuna"],["80 g","cherry tomatoes"],["30 g","olives"],["30 g","rocket"],["8 g","olive oil + lemon"]],steps:["Boil pasta; cool under cold water.","Toss with tuna, tomatoes, olives and rocket.","Dress with oil and lemon."]},
+  l9:{name:"Chicken Souvlaki Salad",k:460,p:40,t:15,ing:[["130 g","chicken, cubed"],["60 g","salad leaves"],["80 g","tomato"],["60 g","cucumber"],["30 g","tzatziki"],["6 g","olive oil"]],steps:["Toss chicken in oil and oregano; grill 8-10 min.","Build a salad of leaves, tomato and cucumber.","Top with chicken and tzatziki."]},
+  l10:{name:"White Bean & Chicken-Sausage Soup",k:380,p:30,t:25,ing:[["80 g","chicken sausage, sliced"],["150 g","white beans"],["60 g","kale or spinach"],["60 g","onion"],["1 clove","garlic"],["250 ml","stock"],["100 g","chopped tomatoes"]],steps:["Brown sausage with onion and garlic.","Add beans, tomatoes and stock; simmer 12 min.","Stir in greens until wilted."]},
+  l11:{name:"Baked Falafel Chickpea Bowl",k:430,p:18,t:20,ing:[["150 g","chickpeas, mashed"],["100 g","cooked bulgur"],["60 g","salad"],["15 g","tahini"],["1 tsp","cumin"],["5 g","olive oil"]],steps:["Mash chickpeas with cumin; form small patties.","Bake at 200C for 15 min, turning once.","Serve over bulgur and salad with tahini."]},
+  l12:{name:"Caprese & Chicken Plate",k:440,p:40,t:8,ing:[["120 g","cooked chicken"],["80 g","tomato"],["60 g","mozzarella"],["6 g","olive oil"],["3 leaves","basil"]],steps:["Slice tomato, mozzarella and chicken.","Layer on a plate.","Drizzle with oil; top with basil."]},
+  l13:{name:"Egg & Avocado Salad Jar",k:380,p:20,t:10,ing:[["2","eggs, boiled"],["75 g","avocado"],["40 g","salad leaves"],["60 g","cherry tomatoes"],["8 g","olive oil + lemon"]],steps:["Layer leaves, tomatoes and sliced avocado in a jar.","Add halved boiled eggs.","Pack dressing separately; shake before eating."]},
+  l14:{name:"Halloumi & Roasted Veg Wrap",k:450,p:24,t:12,ing:[["90 g","halloumi"],["1","whole-grain wrap"],["120 g","roasted pepper & courgette"],["30 g","rocket"],["30 g","hummus"]],steps:["Sear halloumi slices, 2 min each side.","Spread hummus on the wrap.","Fill with halloumi, roasted veg and rocket; roll."]},
+
+  /* ---- DINNER ---- */
+  d1:{name:"Slow-Roasted Salmon, Farro & Broccoli",k:520,p:38,t:25,ing:[["150 g","salmon fillet"],["100 g","cooked farro"],["150 g","broccoli"],["1 squeeze","lemon"],["8 g","olive oil"]],steps:["Roast salmon at 200C for 12-15 min.","Steam broccoli until tender.","Serve over farro with lemon and oil."]},
+  d2:{name:"Greek Turkey-Feta Kofta with Bulgur",k:450,p:38,t:25,ing:[["150 g","turkey mince"],["30 g","feta"],["100 g","cooked bulgur"],["120 g","Greek salad"],["1 tbsp","mint"],["5 g","olive oil"]],steps:["Mix mince, feta and mint; shape into kofta.","Grill or pan-fry 10-12 min.","Serve with bulgur and a quick Greek salad."]},
+  d3:{name:"Baked Cod with Tomatoes & Olives",k:430,p:38,t:25,ing:[["160 g","cod fillet"],["150 g","cherry tomatoes"],["30 g","olives"],["150 g","potatoes"],["1 clove","garlic"],["8 g","olive oil"]],steps:["Roast diced potatoes at 200C for 20 min.","Add cod, tomatoes, olives and garlic.","Bake a further 12-15 min until cod flakes."]},
+  d4:{name:"Mediterranean Chicken Traybake",k:480,p:42,t:35,ing:[["150 g","chicken thigh"],["200 g","pepper, courgette & onion"],["150 g","potatoes"],["8 g","olive oil"],["1 tsp","oregano"]],steps:["Toss everything with oil and oregano on a tray.","Roast at 200C for 30-35 min.","Turn once halfway for even colour."]},
+  d5:{name:"Lentil Bolognese with Whole-Grain Pasta",k:470,p:22,t:30,ing:[["150 g","cooked lentils"],["200 g","chopped tomatoes"],["60 g","onion & carrot"],["1 clove","garlic"],["80 g","whole-grain pasta"],["15 g","parmesan"]],steps:["Soften onion, carrot and garlic.","Add lentils and tomatoes; simmer 15 min.","Serve over pasta with parmesan."]},
+  d6:{name:"Shrimp & Courgette Pasta",k:460,p:34,t:20,ing:[["130 g","shrimp"],["80 g","pasta"],["100 g","courgette"],["60 g","cherry tomatoes"],["1 clove","garlic"],["8 g","olive oil"],["10 g","parmesan"]],steps:["Boil pasta.","Sear shrimp, courgette and garlic in oil.","Toss with pasta, tomatoes and parmesan."]},
+  d7:{name:"Chicken Souvlaki with Tzatziki & Rice",k:510,p:42,t:25,ing:[["150 g","chicken, cubed"],["100 g","cooked brown rice"],["40 g","tzatziki"],["100 g","salad"],["6 g","olive oil"]],steps:["Toss chicken in oil and oregano; grill 10 min.","Serve over brown rice.","Add tzatziki and a side salad."]},
+  d8:{name:"Stuffed Peppers (rice, beans, feta)",k:440,p:20,t:40,ing:[["2","peppers"],["80 g","cooked brown rice"],["100 g","white beans"],["60 g","tomato"],["30 g","feta"],["5 g","olive oil"]],steps:["Halve and deseed peppers.","Fill with rice, beans, tomato and feta.","Bake at 190C for 30-35 min."]},
+  d9:{name:"Baked Salmon, Potatoes & Green Beans",k:520,p:38,t:30,ing:[["150 g","salmon"],["200 g","potatoes"],["120 g","green beans"],["1 squeeze","lemon"],["8 g","olive oil"]],steps:["Roast diced potatoes at 200C for 20 min.","Add salmon and beans; roast 12 min more.","Finish with lemon."]},
+  d10:{name:"Turkey & Vegetable Stew with Beans",k:440,p:38,t:35,ing:[["150 g","turkey, diced"],["120 g","white beans"],["80 g","carrot & onion"],["200 g","chopped tomatoes"],["250 ml","stock"],["60 g","greens"]],steps:["Brown turkey; add carrot and onion.","Add tomatoes, beans and stock; simmer 20 min.","Stir in greens until wilted."]},
+  d11:{name:"Pasta Primavera with Chicken",k:490,p:40,t:25,ing:[["130 g","chicken"],["80 g","pasta"],["150 g","courgette, peas & tomato"],["1 clove","garlic"],["8 g","olive oil"],["10 g","parmesan"]],steps:["Boil pasta.","Sauté chicken, then the vegetables with garlic.","Toss with pasta, oil and parmesan."]},
+  d12:{name:"White Fish en Papillote",k:420,p:36,t:25,ing:[["160 g","white fish (sea bass/cod)"],["120 g","courgette & tomato"],["150 g","potatoes"],["1 squeeze","lemon"],["6 g","olive oil"],["1 sprig","thyme"]],steps:["Wrap fish, veg, lemon and thyme in parchment.","Bake at 200C for 15 min.","Serve with boiled or roasted potatoes."]},
+  d13:{name:"Chickpea & Spinach Stew with Rice",k:430,p:18,t:25,ing:[["150 g","chickpeas"],["80 g","spinach"],["200 g","chopped tomatoes"],["60 g","onion"],["1 clove","garlic"],["100 g","cooked brown rice"],["1 tsp","cumin"]],steps:["Soften onion, garlic and cumin.","Add chickpeas and tomatoes; simmer 12 min.","Stir in spinach; serve over rice."]},
+  d14:{name:"Grilled Chicken, Salad & Pita",k:470,p:42,t:20,ing:[["150 g","chicken breast"],["60 g","whole-grain pita"],["80 g","tomato"],["60 g","cucumber"],["40 g","salad leaves"],["8 g","olive oil"]],steps:["Grill seasoned chicken, 10 min.","Make a tomato-cucumber salad.","Serve with warm pita and chicken."]}
+};
+
+var PLAN = {
+  Mon:{b:["b1","b2","b3"],l:["l1","l2","l3"],d:["d1","d2","d3"]},
+  Tue:{b:["b4","b5","b6"],l:["l4","l5","l6"],d:["d4","d5","d6"]},
+  Wed:{b:["b7","b8","b9"],l:["l7","l8","l9"],d:["d7","d8","d9"]},
+  Thu:{b:["b10","b11","b12"],l:["l10","l11","l12"],d:["d10","d11","d12"]},
+  Fri:{b:["b1","b4","b7"],l:["l13","l14","l1"],d:["d13","d14","d1"]},
+  Sat:{b:["b2","b5","b10"],l:["l2","l4","l9"],d:["d2","d4","d7"]},
+  Sun:{b:["b3","b6","b11"],l:["l3","l6","l12"],d:["d3","d8","d11"]}
+};
+
+var GROCERY = [
+  {cat:"Proteins & Fish",icon:"protein",items:[["Chicken breast","900 g"],["Chicken thigh","500 g"],["Salmon fillets","600 g"],["White fish (cod/sea bass)","500 g"],["Shrimp","400 g"],["Canned tuna (in water)","400 g"],["Smoked salmon","120 g"],["Turkey mince","650 g"],["Chicken sausage","250 g"],["Eggs","24"]]},
+  {cat:"Dairy & Chilled",icon:"dairy",items:[["Greek yoghurt (0-2%)","1,500 g"],["Feta","400 g"],["Mozzarella","150 g"],["Halloumi","225 g"],["Cottage cheese","300 g"],["Parmesan","150 g"],["Tzatziki / hummus","600 g"],["Milk","3,000 ml"]]},
+  {cat:"Legumes & Grains",icon:"grain",items:[["Chickpeas (tinned)","800 g"],["White/cannellini beans (tinned)","800 g"],["Green/brown lentils (dry)","500 g"],["Quinoa (dry)","400 g"],["Farro (dry)","400 g"],["Bulgur (dry)","350 g"],["Brown rice (dry)","500 g"],["Whole-grain pasta","500 g"],["Rolled oats","750 g"],["Muesli","400 g"]]},
+  {cat:"Vegetables",icon:"veg",items:[["Cherry tomatoes","750 g"],["Tomatoes","800 g"],["Cucumber","600 g"],["Bell peppers","900 g"],["Courgette","800 g"],["Aubergine","500 g"],["Broccoli","700 g"],["Spinach","600 g"],["Rocket","300 g"],["Mixed salad leaves","400 g"],["Kale / greens","300 g"],["Green beans","400 g"],["Carrots","700 g"],["Red onion","500 g"],["Brown onion","700 g"],["Garlic","2 bulbs"],["Potatoes","1,500 g"],["Frozen peas","500 g"]]},
+  {cat:"Fruit",icon:"fruit",items:[["Bananas","7"],["Apples","6"],["Mixed berries (fresh/frozen)","750 g"],["Oranges","6"],["Grapes","500 g"],["Lemons","6"],["Avocado","3"]]},
+  {cat:"Bread & Bakery",icon:"bread",items:[["Whole-grain bread","1 loaf"],["Whole-grain pita","6"],["Whole-grain wraps","4"]]},
+  {cat:"Pantry, Oils & Extras",icon:"pantry",items:[["Extra-virgin olive oil","750 ml"],["Olives","300 g"],["Tahini","250 g"],["Honey","250 g"],["Walnuts","200 g"],["Almonds / mixed nuts","200 g"],["Chia seeds","150 g"],["Chopped tomatoes (tinned)","1,200 g"],["Tomato paste","150 g"],["Artichoke hearts (jar)","280 g"],["Stock (chicken/veg)","1,000 ml"],["Red wine vinegar","1 bottle"]]},
+  {cat:"Herbs & Spices",icon:"herb",items:[["Fresh parsley","1 bunch"],["Fresh dill","1 bunch"],["Fresh mint","1 bunch"],["Fresh basil","1 bunch"],["Dried oregano","1 jar"],["Cumin","1 jar"],["Paprika","1 jar"],["Cinnamon","1 jar"],["Chilli flakes","1 jar"]]}
+];
+</script>
+
+<script>
+/* =================== APP LOGIC =================== */
+(function(){
+  "use strict";
+  var $=function(id){return document.getElementById(id);};
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+  /* ---- safe persistent store (localStorage + in-memory fallback) ---- */
+  var store=(function(){
+    var ok=false,mem={};
+    try{var k="__lfl";localStorage.setItem(k,"1");localStorage.removeItem(k);ok=true;}catch(e){ok=false;}
+    return{
+      get:function(key){try{return ok?localStorage.getItem(key):(mem[key]||null);}catch(e){return mem[key]||null;}},
+      set:function(key,v){try{ok?localStorage.setItem(key,v):(mem[key]=v);}catch(e){mem[key]=v;}}
+    };
+  })();
+  function loadObj(key){var r=store.get(key);if(!r)return{};try{return JSON.parse(r)||{};}catch(e){return{};}}
+  function saveObj(key,o){store.set(key,JSON.stringify(o));}
+
+  /* ---- CALCULATOR ---- */
+  var fmt=function(n){return Math.round(n).toLocaleString("en-US");};
+  function fmtDate(d){var day=d.getDate();var part=day<=10?"early":day<=20?"mid":"late";var mon=d.toLocaleString("en-US",{month:"short"});return part+" "+mon+" '"+String(d.getFullYear()).slice(2);}
+  function calc(){
+    var w=parseFloat($("w").value)||86, h=parseFloat($("h").value)||170, age=parseFloat($("age").value)||38;
+    var act=parseFloat($("act").value)||1.55, def=parseInt($("deficit").value,10)||550;
+    var bmr=10*w+6.25*h-5*age+5, tdee=bmr*act, target=Math.max(tdee-def,1200);
+    var p=Math.round(w*1.9), f=Math.round(target*0.32/9), c=Math.max(Math.round((target-p*4-f*9)/4),0);
+    var pPct=Math.round(p*4/target*100), fPct=Math.round(f*9/target*100), cPct=Math.max(100-pPct-fPct,0);
+    var kcalR=Math.round(target/10)*10;
+    $("lw").textContent=w+" kg"; $("lh").textContent=h+" cm"; $("la").textContent=age+" yrs"; $("ldef").textContent=def;
+    $("o-kcal").textContent=fmt(kcalR); $("o-bmr").textContent=fmt(bmr); $("o-tdee").textContent=fmt(tdee);
+    $("o-p").textContent=p; $("o-pg").textContent=p+"g"; $("o-c").textContent=c; $("o-f").textContent=f;
+    $("o-pp").textContent=pPct+"%"; $("o-cp").textContent=cPct+"%"; $("o-fp").textContent=fPct+"%";
+    var pDeg=pPct/100*360, cDeg=(pPct+cPct)/100*360;
+    $("donut").style.background="conic-gradient(var(--olive) 0 "+pDeg+"deg,var(--clay) "+pDeg+"deg "+cDeg+"deg,var(--ochre) "+cDeg+"deg 360deg)";
+    var weekly=def*7/7700; $("o-rate").textContent=weekly.toFixed(2);
+    var badge=$("defbadge");
+    if(def<450){badge.textContent="Gentle";badge.className="def-badge def-gentle";}
+    else if(def<=650){badge.textContent="Sustainable";badge.className="def-badge def-ok";}
+    else{badge.textContent="Aggressive";badge.className="def-badge def-hard";}
+    var start=86,goal=75,prog=Math.max(0,Math.min(100,(start-w)/(start-goal)*100));
+    $("o-prog").style.width=prog+"%";
+    var togo=Math.max(0,w-goal);
+    $("o-proglab").innerHTML="<b>"+Math.round(prog)+"%</b> of the way there &mdash; "+togo.toFixed(1)+" kg to go";
+    if(w>goal&&weekly>0){var wks=(w-goal)/weekly;var d=new Date();d.setDate(d.getDate()+Math.round(wks*7));$("o-date").textContent=fmtDate(d);}
+    else{$("o-date").textContent="at goal";}
+  }
+  ["w","h","age","act","deficit"].forEach(function(id){var el=$(id);if(el){el.addEventListener("input",calc);el.addEventListener("change",calc);}});
+  calc();
+
+  /* ---- accordion (event delegation: serves workouts + meals) ---- */
+  document.addEventListener("click",function(e){
+    var head=e.target.closest&&e.target.closest(".acc-head");
+    if(!head)return;
+    var acc=head.parentElement, body=acc.querySelector(".acc-body");
+    if(!body)return;
+    var open=acc.classList.toggle("open");
+    body.style.maxHeight=open?(body.scrollHeight+"px"):"0";
+  });
+
+  /* ---- 7-DAY PLAN render ---- */
+  function recipeCard(id){
+    var r=RECIPES[id]; if(!r)return"";
+    var ing=r.ing.map(function(x){return "<li><span>"+esc(x[1])+"</span><span class='iq'>"+esc(x[0])+"</span></li>";}).join("");
+    var steps=r.steps.map(function(s){return "<li>"+esc(s)+"</li>";}).join("");
+    return ""+
+    "<div class='acc'>"+
+      "<div class='acc-head'>"+
+        "<span class='mname'>"+esc(r.name)+"</span>"+
+        "<span class='mm k'>"+r.k+" kcal</span>"+
+        "<span class='mm p'>"+r.p+"g P</span>"+
+        "<span class='mm t'>"+r.t+" min</span>"+
+        "<svg class='chev' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M6 9l6 6 6-6'/></svg>"+
+      "</div>"+
+      "<div class='acc-body'><div class='acc-body-in'><div class='recipe-grid'>"+
+        "<div class='rsec'><div class='rh'><svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.2'><path d='M3 4h18M3 12h18M3 20h18' stroke-linecap='round'/></svg>Ingredients</div><ul class='ing'>"+ing+"</ul></div>"+
+        "<div class='rsec'><div class='rh'><svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.2'><path d='M4 7h16M4 12h16M4 17h10' stroke-linecap='round'/></svg>Method</div><ol class='method'>"+steps+"</ol></div>"+
+      "</div></div></div>"+
+    "</div>";
+  }
+  function mealGroup(cls,icon,label,ids){
+    var cards=ids.map(recipeCard).join("");
+    return "<div class='mealblock "+cls+"'><div class='mbh'><div class='mbi'>"+icon+"</div><div class='mbt'>"+label+"</div><div class='mbc'>3 options</div></div>"+cards+"</div>";
+  }
+  var IC={
+    b:"<svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><circle cx='12' cy='12' r='4'/><path d='M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6L17 7M7 17l-1.4 1.4' stroke-linecap='round'/></svg>",
+    l:"<svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M4 13a8 8 0 0116 0H4z' stroke-linejoin='round'/><path d='M3 13h18M12 5V3' stroke-linecap='round'/></svg>",
+    d:"<svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M21 13a9 9 0 11-9-9 7 7 0 009 9z' stroke-linejoin='round'/></svg>"
+  };
+  function renderDay(day){
+    var p=PLAN[day]; if(!p)return;
+    $("planContent").innerHTML=
+      mealGroup("bf",IC.b,"Breakfast",p.b)+
+      mealGroup("ln",IC.l,"Lunch",p.l)+
+      mealGroup("dn-b",IC.d,"Dinner",p.d);
+  }
+  /* day tabs */
+  Array.prototype.forEach.call(document.querySelectorAll("#dayStrip .daytab"),function(tab){
+    tab.addEventListener("click",function(){
+      document.querySelectorAll("#dayStrip .daytab").forEach(function(t){t.classList.remove("active");});
+      tab.classList.add("active");
+      renderDay(tab.getAttribute("data-day"));
+    });
+  });
+  /* default to today's weekday (fallback Mon) */
+  var DAYS=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  var today=DAYS[new Date().getDay()]; if(!PLAN[today])today="Mon";
+  (function(){var tab=document.querySelector("#dayStrip .daytab[data-day='"+today+"']");
+    document.querySelectorAll("#dayStrip .daytab").forEach(function(t){t.classList.remove("active");});
+    if(tab){tab.classList.add("active");tab.scrollIntoView({block:"nearest",inline:"center"});}
+    renderDay(today);
+  })();
+
+  /* ---- GROCERY render + persistence ---- */
+  var gIcon="<svg width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.2'><path d='M5 8h14l-1.2 11H6.2L5 8zM8 8V6a4 4 0 018 0v2' stroke-linecap='round' stroke-linejoin='round'/></svg>";
+  var GKEY="lfl_grocery";
+  function renderGrocery(){
+    var saved=loadObj(GKEY), html="", total=0;
+    GROCERY.forEach(function(cat,ci){
+      var rows="";
+      cat.items.forEach(function(it,ii){
+        total++;
+        var key="g"+ci+"_"+ii, on=saved[key]?" got":"";
+        rows+="<div class='gitem"+on+"' data-key='"+key+"'><span class='gbox'><svg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3.5'><path d='M5 12l5 5L19 7'/></svg></span><span class='gname'>"+esc(it[0])+"</span><span class='gqty'>"+esc(it[1])+"</span></div>";
+      });
+      html+="<div class='card gcat'><div class='gch'><div class='gci'>"+gIcon+"</div><h4>"+esc(cat.cat)+"</h4></div>"+rows+"</div>";
+    });
+    $("groceryContent").innerHTML=html;
+    $("gtotal").textContent=total;
+    updateGroceryCount();
+  }
+  function updateGroceryCount(){
+    var items=document.querySelectorAll("#groceryContent .gitem");
+    var done=document.querySelectorAll("#groceryContent .gitem.got").length;
+    $("gcount").textContent=done;
+    $("gfill").style.width=(items.length?(done/items.length*100):0)+"%";
+  }
+  $("groceryContent").addEventListener("click",function(e){
+    var row=e.target.closest&&e.target.closest(".gitem"); if(!row)return;
+    var on=row.classList.toggle("got");
+    var saved=loadObj(GKEY); var k=row.getAttribute("data-key");
+    if(on)saved[k]=1; else delete saved[k];
+    saveObj(GKEY,saved); updateGroceryCount();
+  });
+  $("gReset").addEventListener("click",function(){
+    saveObj(GKEY,{});
+    document.querySelectorAll("#groceryContent .gitem.got").forEach(function(r){r.classList.remove("got");});
+    updateGroceryCount();
+  });
+  $("gCopy").addEventListener("click",function(){
+    var lines=["Mediterranean week — 2 adults + 1 toddler",""];
+    GROCERY.forEach(function(cat){lines.push(cat.cat.toUpperCase());cat.items.forEach(function(it){lines.push("- "+it[0]+"  "+it[1]);});lines.push("");});
+    var txt=lines.join("\n"); var btn=$("gCopy");
+    function done(){var o=btn.textContent;btn.textContent="Copied";setTimeout(function(){btn.textContent=o;},1400);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,function(){window.prompt("Copy list:",txt);});}
+    else{window.prompt("Copy list:",txt);}
+  });
+  renderGrocery();
+
+  /* ---- sub-tab switch (Plan / Grocery) ---- */
+  Array.prototype.forEach.call(document.querySelectorAll(".subtab"),function(btn){
+    btn.addEventListener("click",function(){
+      document.querySelectorAll(".subtab").forEach(function(b){b.classList.remove("active");});
+      btn.classList.add("active");
+      var view=btn.getAttribute("data-kview");
+      $("view-plan").classList.toggle("show",view==="plan");
+      $("view-grocery").classList.toggle("show",view==="grocery");
+    });
+  });
+
+  /* ---- HABIT TRACKER ---- */
+  var HKEY="lfl_habits", WKEY="lfl_week", C=389.6;
+  var habitEls=document.querySelectorAll("#habitList .habit");
+  function paintHabits(){
+    var saved=loadObj(HKEY), done=0, total=habitEls.length;
+    habitEls.forEach(function(el){var id=el.getAttribute("data-id");if(saved[id]){el.classList.add("done");done++;}else{el.classList.remove("done");}});
+    var pct=total?done/total:0;
+    $("ring").style.strokeDashoffset=C*(1-pct);
+    $("ringPct").textContent=Math.round(pct*100)+"%";
+    $("ringSub").textContent=done+" of "+total+" done today";
+  }
+  habitEls.forEach(function(el){el.addEventListener("click",function(){
+    var saved=loadObj(HKEY), id=el.getAttribute("data-id");
+    if(saved[id])delete saved[id]; else saved[id]=1;
+    saveObj(HKEY,saved); paintHabits();
+  });});
+  var weekEls=document.querySelectorAll("#weekDots .wd");
+  function paintWeek(){
+    var saved=loadObj(WKEY), n=0;
+    weekEls.forEach(function(el){var d=el.getAttribute("data-day");if(saved[d]){el.classList.add("on");n++;}else{el.classList.remove("on");}});
+    $("weekCount").textContent=n;
+  }
+  weekEls.forEach(function(el){el.addEventListener("click",function(){
+    var saved=loadObj(WKEY), d=el.getAttribute("data-day");
+    if(saved[d])delete saved[d]; else saved[d]=1;
+    saveObj(WKEY,saved); paintWeek();
+  });});
+  $("resetBtn").addEventListener("click",function(){saveObj(HKEY,{});saveObj(WKEY,{});paintHabits();paintWeek();});
+  paintHabits(); paintWeek();
+
+  /* ---- NAV active state (IntersectionObserver) ---- */
+  var secs=["overview","calculator","kitchen","move","rest","track"];
+  var linkFor={}; document.querySelectorAll(".nav-links a").forEach(function(a){linkFor[a.getAttribute("href").slice(1)]=a;});
+  if("IntersectionObserver" in window){
+    var no=new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        if(en.isIntersecting){var id=en.target.id;
+          document.querySelectorAll(".nav-links a").forEach(function(a){a.classList.remove("active");});
+          if(linkFor[id])linkFor[id].classList.add("active");
+        }
+      });
+    },{rootMargin:"-45% 0px -50% 0px"});
+    secs.forEach(function(id){var el=$(id);if(el)no.observe(el);});
+
+    /* ---- reveal-on-scroll ---- */
+    var ro=new IntersectionObserver(function(es){
+      es.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");ro.unobserve(en.target);}});
+    },{threshold:0.12});
+    document.querySelectorAll(".reveal").forEach(function(el){ro.observe(el);});
+  } else {
+    document.querySelectorAll(".reveal").forEach(function(el){el.classList.add("in");});
+  }
+})();
+</script>
+</body>
+</html>

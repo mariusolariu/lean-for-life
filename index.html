@@ -23,12 +23,14 @@
 html{
   background:#EFE6D2; /* opaque fallback so no dark backdrop ever shows through */
   -webkit-text-size-adjust:100%; text-size-adjust:100%;
-  overflow-x:hidden;
 }
-html{scroll-behavior:smooth;scroll-padding-top:78px}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--navh,66px) + 12px)}
+/* clip horizontal overflow on content containers (NOT html/body — that would break the sticky nav) */
+.hero,section,.footer{overflow-x:clip}
 body{
   font-family:var(--sans); color:var(--ink); line-height:1.6; font-size:17px;
-  width:100%; max-width:100%; overflow-x:hidden; position:relative;
+  width:100%; max-width:100%; position:relative;
+  padding-top:var(--navh,66px);
   -webkit-font-smoothing:antialiased;
   background-color:#F1E8D5;
   background-image:
@@ -47,17 +49,42 @@ img,svg{max-width:100%}
 section{padding-top:80px;padding-bottom:80px;position:relative}
 
 /* ---------- NAV ---------- */
-.nav{position:sticky;top:0;z-index:50;display:flex;justify-content:center;padding:13px var(--pad);
-  backdrop-filter:saturate(140%) blur(12px);-webkit-backdrop-filter:saturate(140%) blur(12px);
-  background:rgba(244,236,217,.86);border-bottom:1px solid var(--line)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-content:center;padding:16px var(--pad);
+  backdrop-filter:saturate(150%) blur(14px);-webkit-backdrop-filter:saturate(150%) blur(14px);
+  background:var(--surface);border-bottom:1.5px solid var(--line);
+  box-shadow:0 1px 0 rgba(41,37,30,.04), 0 6px 22px -14px rgba(41,37,30,.35);
+  transition:box-shadow .3s ease,padding .3s ease,background .3s ease}
+.nav.scrolled{padding:11px var(--pad);background:rgba(251,246,235,.96);
+  box-shadow:0 1px 0 rgba(41,37,30,.06), 0 14px 34px -16px rgba(41,37,30,.5)}
 .nav-inner{width:100%;max-width:var(--maxw);display:flex;align-items:center;justify-content:space-between;gap:14px}
-.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:600;font-size:1.08rem;letter-spacing:-.01em;flex:none}
-.nav-links{display:flex;gap:3px;align-items:center}
-.nav-links a{font-size:.82rem;font-weight:600;padding:8px 12px;border-radius:99px;color:var(--ink-soft);transition:.25s;white-space:nowrap}
-.nav-links a:hover{color:var(--ink);background:var(--surface)}
-.nav-links a.active{color:#fff;background:var(--clay)}
-.nav-cta{font-family:var(--mono);font-size:.7rem;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;flex:none}
-@media(max-width:880px){.nav-links,.nav-cta{display:none}}
+.brand{display:flex;align-items:center;gap:11px;font-family:var(--serif);font-weight:700;font-size:1.28rem;letter-spacing:-.015em;flex:none}
+.brand svg{width:29px;height:29px}
+.nav-links{display:flex;gap:4px;align-items:center}
+.nav-links a{font-size:.92rem;font-weight:700;padding:9px 16px;border-radius:99px;color:var(--ink-soft);transition:.25s;white-space:nowrap}
+.nav-links a:hover{color:var(--ink);background:var(--surface-2)}
+.nav-links a.active{color:#fff;background:var(--clay);box-shadow:0 6px 16px -7px var(--clay)}
+.nav-cta{font-family:var(--mono);font-size:.72rem;font-weight:600;color:var(--clay-deep);text-transform:uppercase;letter-spacing:.12em;flex:none;padding:6px 12px;border:1.5px solid var(--line);border-radius:99px}
+.nav-toggle{display:none;align-items:center;justify-content:center;width:42px;height:42px;border:1.5px solid var(--line);border-radius:11px;background:var(--surface);cursor:pointer;flex:none;color:var(--ink);-webkit-tap-highlight-color:transparent}
+.nav-toggle:active{background:var(--surface-2)}
+.nav-toggle .bars{position:relative;width:18px;height:14px}
+.nav-toggle .bars span{position:absolute;left:0;width:100%;height:2px;background:currentColor;border-radius:2px;transition:.25s}
+.nav-toggle .bars span:nth-child(1){top:0}
+.nav-toggle .bars span:nth-child(2){top:6px}
+.nav-toggle .bars span:nth-child(3){top:12px}
+.nav.open .nav-toggle .bars span:nth-child(1){top:6px;transform:rotate(45deg)}
+.nav.open .nav-toggle .bars span:nth-child(2){opacity:0}
+.nav.open .nav-toggle .bars span:nth-child(3){top:6px;transform:rotate(-45deg)}
+@media(max-width:880px){
+  .nav-cta{display:none}
+  .nav-toggle{display:flex}
+  .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:4px;
+    background:rgba(244,236,217,.97);backdrop-filter:saturate(140%) blur(12px);-webkit-backdrop-filter:saturate(140%) blur(12px);
+    border-bottom:1px solid var(--line);padding:10px var(--pad) 14px;box-shadow:var(--shadow-lg);
+    transform:translateY(-10px);opacity:0;visibility:hidden;pointer-events:none;
+    transition:opacity .25s ease,transform .25s ease,visibility .25s}
+  .nav.open .nav-links{transform:none;opacity:1;visibility:visible;pointer-events:auto}
+  .nav-links a{font-size:1.02rem;padding:13px 16px;border-radius:12px}
+}
 
 /* ---------- SHARED HEADINGS ---------- */
 .eyebrow{font-family:var(--mono);font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.2em;color:var(--clay);display:inline-flex;align-items:center;gap:8px;margin-bottom:14px}
@@ -209,6 +236,16 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
 .daytab.active .dd{color:var(--ochre)}
 .daytab.active .dn{color:#fff}
 
+.daysum{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 20px;margin-top:18px;box-shadow:var(--shadow)}
+.daysum .dslab{font-family:var(--mono);font-size:.66rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-right:auto}
+.daysum .dsstat{display:flex;align-items:baseline;gap:7px}
+.daysum .dsstat .v{font-family:var(--serif);font-weight:600;font-size:1.55rem;line-height:1;letter-spacing:-.02em}
+.daysum .dsstat.prot .v{color:var(--olive-deep)}
+.daysum .dsstat.cals .v{color:var(--clay-deep)}
+.daysum .dsstat .u{font-size:.78rem;color:var(--ink-soft);font-weight:600}
+.daysum .dsdiv{width:1px;align-self:stretch;background:var(--line)}
+@media(max-width:560px){.daysum{gap:12px 16px}.daysum .dslab{flex-basis:100%;margin:0 0 2px}.daysum .dsdiv{display:none}}
+
 .mealblock{margin-top:26px}
 .mealblock .mbh{display:flex;align-items:center;gap:12px;margin-bottom:14px}
 .mealblock .mbh .mbi{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex:none}
@@ -217,6 +254,7 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
 .bf .mbi{background:var(--ochre-tint);color:#9a6b14}
 .ln .mbi{background:var(--olive-tint);color:var(--olive-deep)}
 .dn-b .mbi{background:var(--clay-tint);color:var(--clay-deep)}
+.sn-b .mbi{background:rgba(46,110,107,.14);color:var(--aegean)}
 
 /* meal accordion */
 .acc{border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;background:var(--surface);margin-bottom:10px}
@@ -228,6 +266,26 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
 .mm.k{background:var(--clay-tint);color:var(--clay-deep)}
 .mm.p{background:var(--olive-tint);color:var(--olive-deep)}
 .mm.t{background:var(--surface-2);color:var(--muted)}
+/* meal selector circle + picked state */
+.acc-head .mpick{flex:none;width:26px;height:26px;border-radius:50%;border:2px solid var(--line);background:var(--surface);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s;-webkit-tap-highlight-color:transparent}
+.acc-head .mpick svg{opacity:0;color:#fff;transition:.2s}
+.acc-head .mpick:hover{border-color:var(--olive)}
+.acc.picked{border-color:var(--olive);box-shadow:0 0 0 1px var(--olive),0 8px 22px -14px var(--olive-deep)}
+.acc.picked .mpick{background:var(--olive);border-color:var(--olive)}
+.acc.picked .mpick svg{opacity:1}
+.acc.picked .mname{color:var(--olive-deep)}
+/* live "your plate" summary */
+.platebar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;background:var(--olive-tint);border:1px solid rgba(110,123,71,.32);border-radius:var(--r-sm);padding:15px 20px;margin-top:12px}
+.platebar .pblab{font-family:var(--mono);font-size:.66rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--olive-deep);display:flex;align-items:center;gap:8px;margin-right:auto}
+.platebar .pblab .cnt{background:var(--olive);color:#fff;border-radius:99px;padding:2px 9px;font-size:.7rem}
+.platebar .pbstat{display:flex;align-items:baseline;gap:6px}
+.platebar .pbstat .v{font-family:var(--serif);font-weight:600;font-size:1.4rem;line-height:1;letter-spacing:-.02em;color:var(--olive-deep)}
+.platebar .pbstat .u{font-size:.76rem;color:var(--ink-soft);font-weight:600}
+.platebar .pbdiv{width:1px;align-self:stretch;background:rgba(110,123,71,.3)}
+.platebar .pbhint{font-size:.84rem;color:var(--olive-deep);margin-right:auto}
+.platebar .pbreset{font-family:var(--mono);font-size:.68rem;font-weight:600;color:var(--olive-deep);background:none;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:.07em;text-decoration:underline;text-underline-offset:3px;opacity:.8}
+.platebar .pbreset:hover{opacity:1}
+@media(max-width:560px){.platebar{gap:10px 14px}.platebar .pblab{flex-basis:100%;margin:0 0 2px}.platebar .pbdiv{display:none}}
 @media(max-width:560px){.acc-head .mm.t{display:none}}
 .acc-body{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.2,.7,.2,1)}
 .acc-body-in{padding:4px 16px 18px}
@@ -366,7 +424,7 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
       <svg width="25" height="25" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="6.5" fill="#D89A2B"/><g stroke="#BE5A3A" stroke-width="2" stroke-linecap="round"><line x1="16" y1="2" x2="16" y2="6"/><line x1="16" y1="26" x2="16" y2="30"/><line x1="2" y1="16" x2="6" y2="16"/><line x1="26" y1="16" x2="30" y2="16"/><line x1="6.2" y1="6.2" x2="9" y2="9"/><line x1="23" y1="23" x2="25.8" y2="25.8"/><line x1="25.8" y1="6.2" x2="23" y2="9"/><line x1="9" y1="23" x2="6.2" y2="25.8"/></g></svg>
       Lean for Life
     </div>
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
       <a href="#overview" class="active">Overview</a>
       <a href="#calculator">Numbers</a>
       <a href="#kitchen">Kitchen</a>
@@ -375,6 +433,9 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
       <a href="#track">Track</a>
     </div>
     <div class="nav-cta">86 → 75 kg</div>
+    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+      <span class="bars"><span></span><span></span><span></span></span>
+    </button>
   </div>
 </nav>
 
@@ -516,7 +577,7 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
       <div id="planContent"></div>
       <div class="note">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5" stroke-linecap="round"/></svg>
-        <span>Macros shown are <b>per adult serving</b>. For the family, cook ~2.5&times; (a toddler eats roughly half an adult portion) &mdash; the grocery list is already scaled up for that. Keep toddler portions lightly salted and cut grapes/olives in half.</span>
+        <span>Macros shown are <b>per adult serving</b>; the daily total above assumes one option per meal plus one snack pairing, landing near your <b>~160 g protein / ~2,150 kcal</b> target. Each snack is two mini-snacks &mdash; split them (e.g. mid-morning + post-workout). For the family, cook ~2.5&times; (a toddler eats roughly half an adult portion); snacks are for you, so they aren't scaled up. Keep toddler portions lightly salted and cut grapes/olives in half.</span>
       </div>
     </div>
 
@@ -800,27 +861,38 @@ var RECIPES = {
   d11:{name:"Pasta Primavera with Chicken",k:490,p:40,t:25,ing:[["130 g","chicken"],["80 g","pasta"],["150 g","courgette, peas & tomato"],["1 clove","garlic"],["8 g","olive oil"],["10 g","parmesan"]],steps:["Boil pasta.","Sauté chicken, then the vegetables with garlic.","Toss with pasta, oil and parmesan."]},
   d12:{name:"White Fish en Papillote",k:420,p:36,t:25,ing:[["160 g","white fish (sea bass/cod)"],["120 g","courgette & tomato"],["150 g","potatoes"],["1 squeeze","lemon"],["6 g","olive oil"],["1 sprig","thyme"]],steps:["Wrap fish, veg, lemon and thyme in parchment.","Bake at 200C for 15 min.","Serve with boiled or roasted potatoes."]},
   d13:{name:"Chickpea & Spinach Stew with Rice",k:430,p:18,t:25,ing:[["150 g","chickpeas"],["80 g","spinach"],["200 g","chopped tomatoes"],["60 g","onion"],["1 clove","garlic"],["100 g","cooked brown rice"],["1 tsp","cumin"]],steps:["Soften onion, garlic and cumin.","Add chickpeas and tomatoes; simmer 12 min.","Stir in spinach; serve over rice."]},
-  d14:{name:"Grilled Chicken, Salad & Pita",k:470,p:42,t:20,ing:[["150 g","chicken breast"],["60 g","whole-grain pita"],["80 g","tomato"],["60 g","cucumber"],["40 g","salad leaves"],["8 g","olive oil"]],steps:["Grill seasoned chicken, 10 min.","Make a tomato-cucumber salad.","Serve with warm pita and chicken."]}
+  d14:{name:"Grilled Chicken, Salad & Pita",k:470,p:42,t:20,ing:[["150 g","chicken breast"],["60 g","whole-grain pita"],["80 g","tomato"],["60 g","cucumber"],["40 g","salad leaves"],["8 g","olive oil"]],steps:["Grill seasoned chicken, 10 min.","Make a tomato-cucumber salad.","Serve with warm pita and chicken."]},
+
+  /* ---- SNACKS (pairings — split across the day; sized to close the gap to target) ---- */
+  s1:{name:"Whey Shake + Yoghurt-Granola Berry Bowl",k:890,p:70,t:5,ing:[["45 g","whey protein"],["300 ml","milk"],["150 g","Greek yoghurt"],["40 g","granola"],["80 g","mixed berries"],["10 g","honey"]],steps:["Blend whey with milk for the shake (post-workout or mid-morning).","Top yoghurt with granola, berries and honey for the second snack."]},
+  s2:{name:"Blended Shake + PB-Oat Energy",k:870,p:66,t:5,ing:[["40 g","whey protein"],["300 ml","milk"],["1","banana"],["30 g","rolled oats"],["30 g","peanut butter"]],steps:["Blend whey, milk, banana and oats into a thick shake.","Have the peanut butter on apple or oatcakes alongside, split across the day."]},
+  s3:{name:"Cottage Cheese, Eggs + Apple & Almonds",k:880,p:62,t:8,ing:[["250 g","cottage cheese"],["2","eggs, boiled"],["1","apple"],["30 g","almonds"],["10 g","honey"]],steps:["Boil the eggs ahead; pack with the apple and almonds for one snack.","Have cottage cheese with honey for the other (whole-food, no shake)."]},
+  s4:{name:"Tuna Crackers + Yoghurt & Walnuts",k:900,p:68,t:6,ing:[["80 g","tuna (in water)"],["40 g","whole-grain crackers"],["200 g","Greek yoghurt"],["30 g","walnuts"],["10 g","honey"]],steps:["Top crackers with tuna for a savoury snack.","Stir honey into yoghurt; top with walnuts for the second."]},
+  s5:{name:"Shake + Hummus, Edamame & Pita",k:860,p:67,t:8,ing:[["40 g","whey protein"],["300 ml","milk"],["60 g","hummus"],["150 g","edamame (shelled)"],["40 g","whole-grain pita"]],steps:["Blend the shake.","Steam edamame; serve with hummus and warm pita strips for the second snack."]},
+  s6:{name:"Edamame, Jerky + Cheese & Crackers",k:890,p:64,t:5,ing:[["150 g","edamame (shelled)"],["40 g","beef jerky"],["30 g","cheese"],["40 g","whole-grain crackers"],["20 g","dark chocolate"]],steps:["Steam or thaw edamame; pair with jerky for a high-protein snack.","Cheese, crackers and a square of dark chocolate later (whole-food, no shake)."]},
+  s7:{name:"Shake + Cottage Cheese, Berries & Granola",k:900,p:69,t:5,ing:[["40 g","whey protein"],["300 ml","milk"],["150 g","cottage cheese"],["80 g","mixed berries"],["30 g","granola"]],steps:["Blend whey with milk.","Top cottage cheese with berries and granola for the second snack."]},
+  s8:{name:"Protein Yoghurt Bowl + Banana & PB",k:870,p:65,t:5,ing:[["200 g","Greek yoghurt"],["25 g","whey protein"],["80 g","mixed berries"],["1","banana"],["30 g","peanut butter"]],steps:["Stir whey into yoghurt; top with berries.","Have banana with peanut butter as the second snack."]},
+  s9:{name:"Eggs, Tuna Hummus + Nuts & Pita",k:880,p:66,t:8,ing:[["2","eggs, boiled"],["80 g","tuna (in water)"],["60 g","hummus"],["40 g","whole-grain pita"],["30 g","almonds"]],steps:["Pack boiled eggs and a handful of almonds for one snack.","Mix tuna into hummus; scoop with pita strips for the other (whole-food, no shake)."]}
 };
 
 var PLAN = {
-  Mon:{b:["b1","b2","b3"],l:["l1","l2","l3"],d:["d1","d2","d3"]},
-  Tue:{b:["b4","b5","b6"],l:["l4","l5","l6"],d:["d4","d5","d6"]},
-  Wed:{b:["b7","b8","b9"],l:["l7","l8","l9"],d:["d7","d8","d9"]},
-  Thu:{b:["b10","b11","b12"],l:["l10","l11","l12"],d:["d10","d11","d12"]},
-  Fri:{b:["b1","b4","b7"],l:["l13","l14","l1"],d:["d13","d14","d1"]},
-  Sat:{b:["b2","b5","b10"],l:["l2","l4","l9"],d:["d2","d4","d7"]},
-  Sun:{b:["b3","b6","b11"],l:["l3","l6","l12"],d:["d3","d8","d11"]}
+  Mon:{b:["b1","b2","b3"],l:["l1","l2","l3"],d:["d1","d2","d3"],s:["s1","s3","s5"]},
+  Tue:{b:["b4","b5","b6"],l:["l4","l5","l6"],d:["d4","d5","d6"],s:["s2","s4","s6"]},
+  Wed:{b:["b7","b8","b9"],l:["l7","l8","l9"],d:["d7","d8","d9"],s:["s7","s8","s9"]},
+  Thu:{b:["b10","b11","b12"],l:["l10","l11","l12"],d:["d10","d11","d12"],s:["s1","s4","s6"]},
+  Fri:{b:["b1","b4","b7"],l:["l13","l14","l1"],d:["d13","d14","d1"],s:["s2","s5","s7"]},
+  Sat:{b:["b2","b5","b10"],l:["l2","l4","l9"],d:["d2","d4","d7"],s:["s3","s8","s9"]},
+  Sun:{b:["b3","b6","b11"],l:["l3","l6","l12"],d:["d3","d8","d11"],s:["s1","s6","s9"]}
 };
 
 var GROCERY = [
-  {cat:"Proteins & Fish",icon:"protein",items:[["Chicken breast","900 g"],["Chicken thigh","500 g"],["Salmon fillets","600 g"],["White fish (cod/sea bass)","500 g"],["Shrimp","400 g"],["Canned tuna (in water)","400 g"],["Smoked salmon","120 g"],["Turkey mince","650 g"],["Chicken sausage","250 g"],["Eggs","24"]]},
-  {cat:"Dairy & Chilled",icon:"dairy",items:[["Greek yoghurt (0-2%)","1,500 g"],["Feta","400 g"],["Mozzarella","150 g"],["Halloumi","225 g"],["Cottage cheese","300 g"],["Parmesan","150 g"],["Tzatziki / hummus","600 g"],["Milk","3,000 ml"]]},
+  {cat:"Proteins & Fish",icon:"protein",items:[["Chicken breast","900 g"],["Chicken thigh","500 g"],["Salmon fillets","600 g"],["White fish (cod/sea bass)","500 g"],["Shrimp","400 g"],["Canned tuna (in water)","400 g"],["Smoked salmon","120 g"],["Turkey mince","650 g"],["Chicken sausage","250 g"],["Beef jerky","200 g"],["Eggs","24"]]},
+  {cat:"Dairy & Chilled",icon:"dairy",items:[["Greek yoghurt (0-2%)","1,500 g"],["Feta","400 g"],["Mozzarella","150 g"],["Halloumi","225 g"],["Cottage cheese","600 g"],["Parmesan","150 g"],["Tzatziki / hummus","600 g"],["Milk","4,500 ml"],["Whey protein powder","1 kg"]]},
   {cat:"Legumes & Grains",icon:"grain",items:[["Chickpeas (tinned)","800 g"],["White/cannellini beans (tinned)","800 g"],["Green/brown lentils (dry)","500 g"],["Quinoa (dry)","400 g"],["Farro (dry)","400 g"],["Bulgur (dry)","350 g"],["Brown rice (dry)","500 g"],["Whole-grain pasta","500 g"],["Rolled oats","750 g"],["Muesli","400 g"]]},
-  {cat:"Vegetables",icon:"veg",items:[["Cherry tomatoes","750 g"],["Tomatoes","800 g"],["Cucumber","600 g"],["Bell peppers","900 g"],["Courgette","800 g"],["Aubergine","500 g"],["Broccoli","700 g"],["Spinach","600 g"],["Rocket","300 g"],["Mixed salad leaves","400 g"],["Kale / greens","300 g"],["Green beans","400 g"],["Carrots","700 g"],["Red onion","500 g"],["Brown onion","700 g"],["Garlic","2 bulbs"],["Potatoes","1,500 g"],["Frozen peas","500 g"]]},
+  {cat:"Vegetables",icon:"veg",items:[["Cherry tomatoes","750 g"],["Tomatoes","800 g"],["Cucumber","600 g"],["Bell peppers","900 g"],["Courgette","800 g"],["Aubergine","500 g"],["Broccoli","700 g"],["Spinach","600 g"],["Rocket","300 g"],["Mixed salad leaves","400 g"],["Kale / greens","300 g"],["Green beans","400 g"],["Carrots","700 g"],["Red onion","500 g"],["Brown onion","700 g"],["Garlic","2 bulbs"],["Potatoes","1,500 g"],["Frozen peas","500 g"],["Edamame (frozen, shelled)","500 g"]]},
   {cat:"Fruit",icon:"fruit",items:[["Bananas","7"],["Apples","6"],["Mixed berries (fresh/frozen)","750 g"],["Oranges","6"],["Grapes","500 g"],["Lemons","6"],["Avocado","3"]]},
   {cat:"Bread & Bakery",icon:"bread",items:[["Whole-grain bread","1 loaf"],["Whole-grain pita","6"],["Whole-grain wraps","4"]]},
-  {cat:"Pantry, Oils & Extras",icon:"pantry",items:[["Extra-virgin olive oil","750 ml"],["Olives","300 g"],["Tahini","250 g"],["Honey","250 g"],["Walnuts","200 g"],["Almonds / mixed nuts","200 g"],["Chia seeds","150 g"],["Chopped tomatoes (tinned)","1,200 g"],["Tomato paste","150 g"],["Artichoke hearts (jar)","280 g"],["Stock (chicken/veg)","1,000 ml"],["Red wine vinegar","1 bottle"]]},
+  {cat:"Pantry, Oils & Extras",icon:"pantry",items:[["Extra-virgin olive oil","750 ml"],["Olives","300 g"],["Tahini","250 g"],["Honey","250 g"],["Walnuts","200 g"],["Almonds / mixed nuts","300 g"],["Peanut butter","350 g"],["Granola","500 g"],["Whole-grain crackers","300 g"],["Dark chocolate (85%)","100 g"],["Chia seeds","150 g"],["Chopped tomatoes (tinned)","1,200 g"],["Tomato paste","150 g"],["Artichoke hearts (jar)","280 g"],["Stock (chicken/veg)","1,000 ml"],["Red wine vinegar","1 bottle"]]},
   {cat:"Herbs & Spices",icon:"herb",items:[["Fresh parsley","1 bunch"],["Fresh dill","1 bunch"],["Fresh mint","1 bunch"],["Fresh basil","1 bunch"],["Dried oregano","1 jar"],["Cumin","1 jar"],["Paprika","1 jar"],["Cinnamon","1 jar"],["Chilli flakes","1 jar"]]}
 ];
 </script>
@@ -886,13 +958,14 @@ var GROCERY = [
   });
 
   /* ---- 7-DAY PLAN render ---- */
-  function recipeCard(id){
+  function recipeCard(id,cat){
     var r=RECIPES[id]; if(!r)return"";
     var ing=r.ing.map(function(x){return "<li><span>"+esc(x[1])+"</span><span class='iq'>"+esc(x[0])+"</span></li>";}).join("");
     var steps=r.steps.map(function(s){return "<li>"+esc(s)+"</li>";}).join("");
     return ""+
-    "<div class='acc'>"+
+    "<div class='acc' data-cat='"+cat+"' data-id='"+id+"'>"+
       "<div class='acc-head'>"+
+        "<span class='mpick' role='checkbox' aria-checked='false' title='Add to your plate'><svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3.5'><path d='M5 12l5 5L19 7'/></svg></span>"+
         "<span class='mname'>"+esc(r.name)+"</span>"+
         "<span class='mm k'>"+r.k+" kcal</span>"+
         "<span class='mm p'>"+r.p+"g P</span>"+
@@ -905,22 +978,86 @@ var GROCERY = [
       "</div></div></div>"+
     "</div>";
   }
-  function mealGroup(cls,icon,label,ids){
-    var cards=ids.map(recipeCard).join("");
-    return "<div class='mealblock "+cls+"'><div class='mbh'><div class='mbi'>"+icon+"</div><div class='mbt'>"+label+"</div><div class='mbc'>3 options</div></div>"+cards+"</div>";
+  function mealGroup(cls,icon,label,ids,cat,countLabel){
+    var cards=ids.map(function(id){return recipeCard(id,cat);}).join("");
+    return "<div class='mealblock "+cls+"'><div class='mbh'><div class='mbi'>"+icon+"</div><div class='mbt'>"+label+"</div><div class='mbc'>"+(countLabel||"3 options")+"</div></div>"+cards+"</div>";
   }
   var IC={
     b:"<svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><circle cx='12' cy='12' r='4'/><path d='M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6L17 7M7 17l-1.4 1.4' stroke-linecap='round'/></svg>",
     l:"<svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M4 13a8 8 0 0116 0H4z' stroke-linejoin='round'/><path d='M3 13h18M12 5V3' stroke-linecap='round'/></svg>",
-    d:"<svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M21 13a9 9 0 11-9-9 7 7 0 009 9z' stroke-linejoin='round'/></svg>"
+    d:"<svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M21 13a9 9 0 11-9-9 7 7 0 009 9z' stroke-linejoin='round'/></svg>",
+    s:"<svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M5 11h14l-1 8a2 2 0 01-2 2H8a2 2 0 01-2-2l-1-8z' stroke-linejoin='round'/><path d='M9 11V7a3 3 0 016 0v4M12 4V3' stroke-linecap='round'/></svg>"
   };
+  function avgOf(ids,key){var s=0,n=0;ids.forEach(function(id){var r=RECIPES[id];if(r){s+=r[key];n++;}});return n?s/n:0;}
+  var picks={};
   function renderDay(day){
     var p=PLAN[day]; if(!p)return;
+    picks={};
+    var sids=p.s||[];
+    var totP=Math.round(avgOf(p.b,"p")+avgOf(p.l,"p")+avgOf(p.d,"p")+avgOf(sids,"p"));
+    var totK=Math.round((avgOf(p.b,"k")+avgOf(p.l,"k")+avgOf(p.d,"k")+avgOf(sids,"k"))/10)*10;
+    var summary=
+      "<div class='daysum'>"+
+        "<span class='dslab'>Day average &middot; one option per meal + snacks</span>"+
+        "<span class='dsstat prot'><span class='v'>"+totP+"</span><span class='u'>g protein</span></span>"+
+        "<span class='dsdiv'></span>"+
+        "<span class='dsstat cals'><span class='v'>"+totK.toLocaleString("en-US")+"</span><span class='u'>kcal</span></span>"+
+      "</div>"+
+      "<div class='platebar' id='plateBar'>"+
+        "<span class='pbhint' id='plateHint'>&#9678; Tick one meal per category below to build your plate &mdash; protein, cook time &amp; calories add up here.</span>"+
+      "</div>";
     $("planContent").innerHTML=
-      mealGroup("bf",IC.b,"Breakfast",p.b)+
-      mealGroup("ln",IC.l,"Lunch",p.l)+
-      mealGroup("dn-b",IC.d,"Dinner",p.d);
+      summary+
+      mealGroup("bf",IC.b,"Breakfast",p.b,"b")+
+      mealGroup("ln",IC.l,"Lunch",p.l,"l")+
+      mealGroup("dn-b",IC.d,"Dinner",p.d,"d")+
+      (sids.length?mealGroup("sn-b",IC.s,"Snacks",sids,"s","3 options &middot; split across the day"):"");
   }
+  /* ---- build-your-plate selection ---- */
+  function updatePlate(){
+    var bar=$("plateBar"); if(!bar)return;
+    var cats=Object.keys(picks), n=cats.length, sp=0,st=0,sk=0;
+    cats.forEach(function(c){var r=RECIPES[picks[c]];if(r){sp+=r.p;st+=r.t;sk+=r.k;}});
+    if(n===0){
+      bar.innerHTML="<span class='pbhint'>&#9678; Tick one meal per category below to build your plate &mdash; protein, cook time &amp; calories add up here.</span>";
+      return;
+    }
+    bar.innerHTML=
+      "<span class='pblab'>Your plate <span class='cnt'>"+n+"/4</span></span>"+
+      "<span class='pbstat'><span class='v'>"+sp+"</span><span class='u'>g protein</span></span>"+
+      "<span class='pbdiv'></span>"+
+      "<span class='pbstat'><span class='v'>~"+st+"</span><span class='u'>min cook</span></span>"+
+      "<span class='pbdiv'></span>"+
+      "<span class='pbstat'><span class='v'>"+sk.toLocaleString("en-US")+"</span><span class='u'>kcal</span></span>"+
+      "<button class='pbreset' id='plateReset'>Clear</button>";
+  }
+  $("planContent").addEventListener("click",function(e){
+    var pick=e.target.closest&&e.target.closest(".mpick");
+    if(pick){
+      e.stopPropagation();
+      var acc=pick.closest(".acc"), cat=acc.getAttribute("data-cat"), id=acc.getAttribute("data-id");
+      if(picks[cat]===id){
+        delete picks[cat]; acc.classList.remove("picked"); pick.setAttribute("aria-checked","false");
+      } else {
+        Array.prototype.forEach.call($("planContent").querySelectorAll(".acc[data-cat='"+cat+"']"),function(a){
+          a.classList.remove("picked");
+          var mp=a.querySelector(".mpick"); if(mp)mp.setAttribute("aria-checked","false");
+        });
+        picks[cat]=id; acc.classList.add("picked"); pick.setAttribute("aria-checked","true");
+      }
+      updatePlate();
+      return;
+    }
+    if(e.target.closest&&e.target.closest("#plateReset")){
+      e.stopPropagation(); picks={};
+      Array.prototype.forEach.call($("planContent").querySelectorAll(".acc.picked"),function(a){
+        a.classList.remove("picked");
+        var mp=a.querySelector(".mpick"); if(mp)mp.setAttribute("aria-checked","false");
+      });
+      updatePlate();
+    }
+  });
+
   /* day tabs */
   Array.prototype.forEach.call(document.querySelectorAll("#dayStrip .daytab"),function(tab){
     tab.addEventListener("click",function(){
@@ -1024,6 +1161,28 @@ var GROCERY = [
   });});
   $("resetBtn").addEventListener("click",function(){saveObj(HKEY,{});saveObj(WKEY,{});paintHabits();paintWeek();});
   paintHabits(); paintWeek();
+
+  /* ---- keep body padding in sync with fixed-nav height ---- */
+  var navEl=document.querySelector(".nav");
+  function setNavHeight(){if(navEl){document.documentElement.style.setProperty("--navh",navEl.offsetHeight+"px");}}
+  setNavHeight();
+  window.addEventListener("resize",setNavHeight);
+  window.addEventListener("load",setNavHeight);
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(setNavHeight);}
+  /* deepen the bar's shadow once the page is scrolled */
+  function onScroll(){if(navEl)navEl.classList.toggle("scrolled",window.scrollY>8);}
+  onScroll();
+  window.addEventListener("scroll",onScroll,{passive:true});
+
+  /* ---- mobile nav toggle ---- */
+  var navBtn=document.querySelector(".nav-toggle");
+  if(navEl&&navBtn){
+    function setNav(open){navEl.classList.toggle("open",open);navBtn.setAttribute("aria-expanded",open?"true":"false");}
+    navBtn.addEventListener("click",function(e){e.stopPropagation();setNav(!navEl.classList.contains("open"));});
+    document.querySelectorAll(".nav-links a").forEach(function(a){a.addEventListener("click",function(){setNav(false);});});
+    document.addEventListener("click",function(e){if(navEl.classList.contains("open")&&!e.target.closest(".nav"))setNav(false);});
+    document.addEventListener("keydown",function(e){if(e.key==="Escape")setNav(false);});
+  }
 
   /* ---- NAV active state (IntersectionObserver) ---- */
   var secs=["overview","calculator","kitchen","move","rest","track"];

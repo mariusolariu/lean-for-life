@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Lean for Life — 86 → 75 kg Blueprint</title>
+<meta name="description" content="A sustainable, evidence-based weight-loss lifestyle plan: calculator, Mediterranean meal plan, training, sleep and habit tracking.">
+<meta name="theme-color" content="#BE5A3A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Lean for Life">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -50,11 +57,10 @@ section{padding-top:80px;padding-bottom:80px;position:relative}
 
 /* ---------- NAV ---------- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-content:center;padding:16px var(--pad);
-  backdrop-filter:saturate(150%) blur(14px);-webkit-backdrop-filter:saturate(150%) blur(14px);
   background:var(--surface);border-bottom:1.5px solid var(--line);
   box-shadow:0 1px 0 rgba(41,37,30,.04), 0 6px 22px -14px rgba(41,37,30,.35);
   transition:box-shadow .3s ease,padding .3s ease,background .3s ease}
-.nav.scrolled{padding:11px var(--pad);background:rgba(251,246,235,.96);
+.nav.scrolled{padding:11px var(--pad);background:var(--surface);
   box-shadow:0 1px 0 rgba(41,37,30,.06), 0 14px 34px -16px rgba(41,37,30,.5)}
 .nav-inner{width:100%;max-width:var(--maxw);display:flex;align-items:center;justify-content:space-between;gap:14px}
 .brand{display:flex;align-items:center;gap:11px;font-family:var(--serif);font-weight:700;font-size:1.28rem;letter-spacing:-.015em;flex:none}
@@ -78,8 +84,8 @@ section{padding-top:80px;padding-bottom:80px;position:relative}
   .nav-cta{display:none}
   .nav-toggle{display:flex}
   .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:4px;
-    background:rgba(244,236,217,.97);backdrop-filter:saturate(140%) blur(12px);-webkit-backdrop-filter:saturate(140%) blur(12px);
-    border-bottom:1px solid var(--line);padding:10px var(--pad) 14px;box-shadow:var(--shadow-lg);
+    background:var(--surface);
+    border-bottom:1.5px solid var(--line);padding:10px var(--pad) 14px;box-shadow:var(--shadow-lg);
     transform:translateY(-10px);opacity:0;visibility:hidden;pointer-events:none;
     transition:opacity .25s ease,transform .25s ease,visibility .25s}
   .nav.open .nav-links{transform:none;opacity:1;visibility:visible;pointer-events:auto}
@@ -92,6 +98,14 @@ section{padding-top:80px;padding-bottom:80px;position:relative}
 h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw,3.1rem);line-height:1.05;letter-spacing:-.025em;margin-bottom:14px}
 .sec-lead{font-size:1.08rem;color:var(--ink-soft);max-width:62ch;margin-bottom:40px}
 .sec-lead em{font-style:italic;color:var(--clay-deep);font-family:var(--serif)}
+.pdf-dl{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,var(--ink),#1f1c16);color:var(--bg);border-radius:var(--r);padding:18px 22px;margin-bottom:34px;text-decoration:none;box-shadow:var(--shadow-lg);transition:transform .25s ease,box-shadow .25s ease}
+.pdf-dl:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(41,37,30,.05),0 30px 56px -22px rgba(41,37,30,.4)}
+.pdf-dl .pdf-ic{flex:none;width:46px;height:46px;border-radius:12px;background:rgba(216,154,43,.18);color:var(--ochre);display:flex;align-items:center;justify-content:center}
+.pdf-dl .pdf-tx{flex:1;min-width:0}
+.pdf-dl .pdf-tt{font-family:var(--serif);font-weight:600;font-size:1.15rem;color:#fff;letter-spacing:-.01em}
+.pdf-dl .pdf-sb{font-size:.85rem;color:rgba(241,232,213,.7);margin-top:2px}
+.pdf-dl .pdf-btn{flex:none;font-family:var(--sans);font-weight:700;font-size:.85rem;background:var(--ochre);color:var(--ink);padding:10px 18px;border-radius:99px;display:inline-flex;align-items:center;gap:8px}
+@media(max-width:560px){.pdf-dl{flex-wrap:wrap}.pdf-dl .pdf-btn{width:100%;justify-content:center}}
 
 /* ---------- HERO ---------- */
 .hero{padding-top:64px;padding-bottom:60px;position:relative}
@@ -225,6 +239,32 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
 .kview.show{display:block;animation:fade .4s ease}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
+/* ---- COOK NOW ---- */
+.cook-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.mealtype{display:inline-flex;gap:3px;background:var(--surface-2);border:1px solid var(--line);border-radius:99px;padding:4px;flex-wrap:wrap}
+.mealtype .mt{font-family:var(--sans);font-size:.86rem;font-weight:700;padding:9px 18px;border-radius:99px;border:none;background:transparent;color:var(--ink-soft);cursor:pointer;transition:.2s;-webkit-tap-highlight-color:transparent}
+.mealtype .mt.active{background:var(--clay);color:#fff;box-shadow:0 5px 14px -7px var(--clay)}
+.favtoggle{margin-left:auto;font-family:var(--sans);font-size:.84rem;font-weight:700;padding:9px 16px;border-radius:99px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink-soft);cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:7px;-webkit-tap-highlight-color:transparent}
+.favtoggle svg{transition:.2s}
+.favtoggle.on{background:var(--ochre-tint);border-color:transparent;color:#9a6b14}
+.favtoggle.on svg{fill:var(--ochre);stroke:var(--ochre)}
+@media(max-width:560px){.favtoggle{margin-left:0;width:100%;justify-content:center}}
+.cook-search{display:flex;align-items:center;gap:10px;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r-sm);padding:0 14px;margin-bottom:10px;transition:.2s}
+.cook-search:focus-within{border-color:var(--clay);box-shadow:0 0 0 4px var(--clay-tint)}
+.cook-search svg{flex:none;color:var(--muted)}
+.cook-search input{flex:1;min-width:0;border:none;background:none;font-family:var(--sans);font-size:1rem;color:var(--ink);padding:13px 0;outline:none}
+.cook-search .cs-clear{flex:none;background:none;border:none;color:var(--muted);font-size:1.4rem;line-height:1;cursor:pointer;padding:0 4px;border-radius:6px}
+.cook-search .cs-clear:hover{color:var(--clay)}
+.cook-count{font-family:var(--mono);font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+.cook-empty{text-align:center;color:var(--muted);font-size:.95rem;padding:40px 24px;display:flex;flex-direction:column;align-items:center;gap:10px}
+/* favourite star on accordion head */
+.acc-head .mfav{flex:none;width:30px;height:30px;border-radius:8px;border:none;background:transparent;color:var(--muted);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s;-webkit-tap-highlight-color:transparent}
+.acc-head .mfav svg{transition:.2s}
+.acc-head .mfav:hover{background:var(--ochre-tint);color:var(--ochre)}
+.acc-head .mfav.faved{color:var(--ochre)}
+.acc-head .mfav.faved svg{fill:var(--ochre)}
+.cook-fav-row .acc{border-color:rgba(216,154,43,.4)}
+
 .daystrip{display:flex;gap:9px;overflow-x:auto;padding:4px 2px 14px;margin-bottom:8px;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
 .daystrip::-webkit-scrollbar{height:5px}
 .daystrip::-webkit-scrollbar-thumb{background:var(--line);border-radius:9px}
@@ -235,6 +275,22 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
 .daytab.active{background:var(--ink);border-color:var(--ink)}
 .daytab.active .dd{color:var(--ochre)}
 .daytab.active .dn{color:#fff}
+.quickpick{display:flex;gap:9px;flex-wrap:wrap;margin:4px 0 2px}
+.qp{font-family:var(--sans);font-size:.82rem;font-weight:700;padding:9px 15px;border-radius:99px;border:1.5px solid transparent;background:var(--olive);color:#fff;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:7px;-webkit-tap-highlight-color:transparent}
+.qp:hover{background:var(--olive-deep)}
+.qp.ghost{background:transparent;color:var(--ink-soft);border-color:var(--line)}
+.qp.ghost:hover{background:var(--surface-2);color:var(--ink);border-color:var(--ink)}
+@media(max-width:560px){.quickpick .qp{flex:1;justify-content:center}}
+
+.daysum{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 20px;margin-top:18px;box-shadow:var(--shadow)}
+.daysum .dslab{font-family:var(--mono);font-size:.66rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-right:auto}
+.daysum .dsstat{display:flex;align-items:baseline;gap:7px}
+.daysum .dsstat .v{font-family:var(--serif);font-weight:600;font-size:1.55rem;line-height:1;letter-spacing:-.02em}
+.daysum .dsstat.prot .v{color:var(--olive-deep)}
+.daysum .dsstat.cals .v{color:var(--clay-deep)}
+.daysum .dsstat .u{font-size:.78rem;color:var(--ink-soft);font-weight:600}
+.daysum .dsdiv{width:1px;align-self:stretch;background:var(--line)}
+@media(max-width:560px){.daysum{gap:12px 16px}.daysum .dslab{flex-basis:100%;margin:0 0 2px}.daysum .dsdiv{display:none}}
 
 .daysum{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 20px;margin-top:18px;box-shadow:var(--shadow)}
 .daysum .dslab{font-family:var(--mono);font-size:.66rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-right:auto}
@@ -325,6 +381,11 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
 .gtools{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap}
 .gtool{font-family:var(--mono);font-size:.72rem;font-weight:500;color:var(--muted);background:none;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:.08em;text-decoration:underline;text-underline-offset:3px}
 .gtool:hover{color:var(--clay)}
+.gctrl{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.gseg{display:inline-flex;gap:3px;background:var(--surface-2);border:1px solid var(--line);border-radius:99px;padding:4px}
+.gseg-btn{font-family:var(--sans);font-size:.82rem;font-weight:700;padding:8px 15px;border-radius:99px;border:none;background:transparent;color:var(--ink-soft);cursor:pointer;transition:.2s;white-space:nowrap}
+.gseg-btn.active{background:var(--olive);color:#fff;box-shadow:0 5px 13px -7px var(--olive-deep)}
+@media(max-width:560px){.gctrl{flex-direction:column;gap:8px}.gseg{width:100%}.gseg-btn{flex:1;text-align:center;padding:9px 8px}}
 
 /* ---------- SCHEDULE (training week) ---------- */
 .week{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
@@ -399,6 +460,46 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
 .wd .wdl{font-family:var(--mono);font-size:.6rem;color:var(--muted);text-transform:uppercase}
 .tk-reset{margin-top:16px;font-family:var(--mono);font-size:.72rem;font-weight:500;color:var(--muted);background:none;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:.08em;text-decoration:underline;text-underline-offset:3px}
 .tk-reset:hover{color:var(--clay)}
+
+/* weight log */
+.wlog{display:grid;grid-template-columns:300px 1fr;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-lg);margin-top:24px}
+@media(max-width:820px){.wlog{grid-template-columns:1fr}}
+.wlog-in{background:var(--surface-2);padding:26px 24px}
+.wlog-in h4{font-family:var(--serif);font-weight:600;font-size:1.15rem;margin-bottom:3px}
+.wlog-in .wsub{font-size:.8rem;color:var(--muted);margin-bottom:18px}
+.wlog-row{display:flex;gap:9px;margin-bottom:14px}
+.wlog-row input{flex:1;min-width:0;font-family:var(--sans);font-size:1.05rem;font-weight:600;padding:11px 13px;border:1.5px solid var(--line);border-radius:var(--r-sm);background:var(--surface);color:var(--ink)}
+.wlog-row input:focus{outline:none;border-color:var(--clay);box-shadow:0 0 0 4px var(--clay-tint)}
+.wlog-row button{flex:none;font-family:var(--sans);font-weight:700;font-size:.92rem;padding:0 18px;border-radius:var(--r-sm);border:none;background:var(--clay);color:#fff;cursor:pointer;transition:.2s}
+.wlog-row button:hover{background:var(--clay-deep)}
+.wstat{display:flex;gap:18px;padding-top:6px;border-top:1px solid var(--line);margin-top:4px}
+.wstat .ws{flex:1}
+.wstat .ws .v{font-family:var(--serif);font-weight:600;font-size:1.5rem;line-height:1;letter-spacing:-.02em}
+.wstat .ws.cur .v{color:var(--clay-deep)}
+.wstat .ws.avg .v{color:var(--olive-deep)}
+.wstat .ws.chg .v{color:var(--ink)}
+.wstat .ws .k{font-size:.66rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-top:6px}
+.wlog-chart{background:var(--surface);padding:22px;position:relative;min-height:240px}
+.wlog-chart .wempty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--muted);font-size:.9rem;padding:24px;gap:6px}
+.wlog-chart svg{width:100%;height:auto;display:block}
+.wlog-list{margin-top:14px;max-height:120px;overflow-y:auto;display:flex;flex-direction:column;gap:0}
+.wlog-list .wli{display:flex;align-items:center;gap:10px;font-size:.84rem;padding:6px 0;border-top:1px solid var(--line)}
+.wlog-list .wli .wd-date{color:var(--muted);font-family:var(--mono);font-size:.76rem}
+.wlog-list .wli .wd-kg{font-weight:700;color:var(--ink)}
+.wlog-list .wli .wd-del{margin-left:auto;color:var(--muted);background:none;border:none;cursor:pointer;font-size:1rem;line-height:1;padding:2px 6px;border-radius:6px}
+.wlog-list .wli .wd-del:hover{color:var(--clay);background:var(--clay-tint)}
+.chart-legend{display:flex;gap:16px;margin-bottom:12px;flex-wrap:wrap}
+.chart-legend .cl{display:flex;align-items:center;gap:7px;font-size:.74rem;color:var(--ink-soft);font-weight:600}
+.chart-legend .cl .ln{width:16px;height:3px;border-radius:2px}
+
+/* data tools (export/import) */
+.datatools{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--surface);border:1px dashed var(--line);border-radius:var(--r-sm);padding:16px 20px;margin-top:24px}
+.datatools .dt-tx{flex:1;min-width:200px}
+.datatools .dt-tt{font-weight:700;font-size:.92rem}
+.datatools .dt-sb{font-size:.8rem;color:var(--muted);margin-top:2px}
+.datatools button{font-family:var(--sans);font-weight:700;font-size:.84rem;padding:9px 16px;border-radius:99px;border:1.5px solid var(--line);background:var(--surface-2);color:var(--ink);cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:7px}
+.datatools button:hover{border-color:var(--ink)}
+.datatools button.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 
 /* footer */
 .footer{background:var(--ink);color:rgba(241,232,213,.8);padding:60px 0 40px;margin-top:24px}
@@ -544,6 +645,17 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
     <p class="sec-lead">High Mediterranean-diet adherence is linked to roughly <em>double the odds</em> of keeping weight off. Below: a 7-day plan with three options for every meal, and a generous family shopping list you can tick off as you go.</p>
   </div>
 
+  <a class="pdf-dl reveal" href="lean-for-life-meal-plan.pdf" download>
+    <span class="pdf-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke-linejoin="round"/><path d="M14 2v6h6M12 11v6M9 14l3 3 3-3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    <span class="pdf-tx">
+      <span class="pdf-tt">Printable 7-day meal plan (PDF)</span>
+      <span class="pdf-sb">One landscape page per day &mdash; every recipe with ingredients, method, protein &amp; cook time. Print-ready with safe margins.</span>
+    </span>
+    <span class="pdf-btn">Download
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+    </span>
+  </a>
+
   <!-- bowl template -->
   <div class="card bowl reveal" style="margin-bottom:34px">
     <h4>The mix-and-match bowl</h4>
@@ -559,12 +671,33 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
   <!-- sub-tabs -->
   <div class="reveal">
     <div class="subtabs">
-      <button class="subtab active" data-kview="plan"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4" stroke-linecap="round"/></svg>7-Day Plan</button>
+      <button class="subtab active" data-kview="cook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8.5 3a2.5 2.5 0 015 0M12 3v6M6 9h12l-1 11H7L6 9z" stroke-linecap="round" stroke-linejoin="round"/></svg>Cook Now</button>
+      <button class="subtab" data-kview="plan"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4" stroke-linecap="round"/></svg>7-Day Plan</button>
       <button class="subtab" data-kview="grocery"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 4h2l2.5 12h10L20 7H6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg>Grocery List</button>
     </div>
 
+    <!-- COOK NOW VIEW -->
+    <div class="kview show" id="view-cook">
+      <div class="cook-bar">
+        <div class="mealtype" id="mealType">
+          <button class="mt active" data-mt="b">Breakfast</button>
+          <button class="mt" data-mt="l">Lunch</button>
+          <button class="mt" data-mt="d">Dinner</button>
+          <button class="mt" data-mt="s">Snacks</button>
+        </div>
+        <button class="favtoggle" id="favOnly"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.8 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z" stroke-linejoin="round"/></svg>Favourites</button>
+      </div>
+      <div class="cook-search">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5" stroke-linecap="round"/></svg>
+        <input type="text" id="cookSearch" placeholder="Search by name or ingredient…" autocomplete="off">
+        <button class="cs-clear" id="cookClear" title="Clear" style="display:none">&times;</button>
+      </div>
+      <div class="cook-count" id="cookCount"></div>
+      <div id="cookResults"></div>
+    </div>
+
     <!-- PLAN VIEW -->
-    <div class="kview show" id="view-plan">
+    <div class="kview" id="view-plan">
       <div class="daystrip" id="dayStrip">
         <div class="daytab active" data-day="Mon"><div class="dd">Day 1</div><div class="dn">Mon</div></div>
         <div class="daytab" data-day="Tue"><div class="dd">Day 2</div><div class="dn">Tue</div></div>
@@ -573,6 +706,11 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
         <div class="daytab" data-day="Fri"><div class="dd">Day 5</div><div class="dn">Fri</div></div>
         <div class="daytab" data-day="Sat"><div class="dd">Day 6</div><div class="dn">Sat</div></div>
         <div class="daytab" data-day="Sun"><div class="dd">Day 7</div><div class="dn">Sun</div></div>
+      </div>
+      <div class="quickpick">
+        <button class="qp" id="qpDay"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>Auto-pick this day</button>
+        <button class="qp" id="qpWeek"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l4 4L20 6"/><path d="M4 18l4 4 1.5-1.5" opacity=".5"/></svg>Pick whole week</button>
+        <button class="qp ghost" id="qpClear">Clear week</button>
       </div>
       <div id="planContent"></div>
       <div class="note">
@@ -583,9 +721,19 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
 
     <!-- GROCERY VIEW -->
     <div class="kview" id="view-grocery">
-      <div class="gnote">
+      <div class="gctrl">
+        <div class="gseg" id="gMode">
+          <button class="gseg-btn active" data-mode="picks">From my picks</button>
+          <button class="gseg-btn" data-mode="staples">Full-week staples</button>
+        </div>
+        <div class="gseg" id="gPortion">
+          <button class="gseg-btn active" data-mult="1">&times;1 &mdash; just me</button>
+          <button class="gseg-btn" data-mult="2.5">&times;2.5 &mdash; family</button>
+        </div>
+      </div>
+      <div class="gnote" id="gNote">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span>One generous week for <b>2 adults + 1 toddler</b>, quantities in grams. Deliberately over-provisioned so you won't run out &mdash; staples (oats, grains, oil, tins) carry over to the next week.</span>
+        <span id="gNoteTx">Built from the meals you tick on the 7-Day Plan. Pick meals across the week and they're aggregated into one shopping list here.</span>
       </div>
       <div class="gprog"><div class="gtrack"><div class="gfill" id="gfill"></div></div><div class="glab"><span id="gcount">0</span> / <span id="gtotal">0</span> in basket</div></div>
       <div class="grocery-cats" id="groceryContent"></div>
@@ -752,9 +900,41 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
     </div>
   </div>
 
-  <div class="grid cols-2 reveal" style="margin-top:40px;align-items:start">
-    <div class="card block">
-      <div class="label">How to read progress</div>
+  <div class="wlog reveal">
+    <div class="wlog-in">
+      <h4>Weight log</h4>
+      <p class="wsub">Weigh first thing each morning. Judge the <b>trend line</b>, not any single day.</p>
+      <div class="wlog-row">
+        <input type="number" id="wInput" placeholder="e.g. 85.4" step="0.1" min="40" max="200" inputmode="decimal">
+        <button id="wAdd">Log</button>
+      </div>
+      <div class="wstat">
+        <div class="ws cur"><div class="v" id="wCur">&mdash;</div><div class="k">latest</div></div>
+        <div class="ws avg"><div class="v" id="wAvg">&mdash;</div><div class="k">7-day avg</div></div>
+        <div class="ws chg"><div class="v" id="wChg">&mdash;</div><div class="k">total change</div></div>
+      </div>
+      <div class="wlog-list" id="wList"></div>
+    </div>
+    <div class="wlog-chart">
+      <div class="chart-legend">
+        <span class="cl"><span class="ln" style="background:var(--line);height:0;border-top:2px dashed var(--muted)"></span>Goal path 86&rarr;75</span>
+        <span class="cl"><span class="ln" style="background:#cdbfa3"></span>Daily</span>
+        <span class="cl"><span class="ln" style="background:var(--clay)"></span>7-day trend</span>
+      </div>
+      <div id="wChartWrap"><div class="wempty" id="wEmpty"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18M7 14l4-4 3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Log a few mornings to see your trend take shape.</span></div></div>
+    </div>
+  </div>
+
+  <div class="datatools reveal">
+    <div class="dt-tx">
+      <div class="dt-tt">Your data lives in this browser</div>
+      <div class="dt-sb">Weight log, habits and meal picks are saved on this device only. Export a backup, or move it to another device.</div>
+    </div>
+    <button id="dtExport" class="primary"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Export backup</button>
+    <button id="dtImport"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V9M7 14l5-5 5 5M5 3h14"/></svg>Import</button>
+    <input type="file" id="dtFile" accept="application/json" style="display:none">
+  </div>
+
       <h4>Trends, not daily noise</h4>
       <ul class="ul" style="margin-top:14px">
         <li><span class="mk">&rarr;</span><span><b>Weigh daily, judge the weekly average.</b> Day-to-day swings of 1&ndash;2 kg are water, salt, carbs and poor sleep &mdash; not fat.</span></li>
@@ -915,6 +1095,10 @@ var GROCERY = [
   })();
   function loadObj(key){var r=store.get(key);if(!r)return{};try{return JSON.parse(r)||{};}catch(e){return{};}}
   function saveObj(key,o){store.set(key,JSON.stringify(o));}
+  function loadArr(key){var r=store.get(key);if(!r)return[];try{var v=JSON.parse(r);return Array.isArray(v)?v:[];}catch(e){return[];}}
+  function saveArr(key,a){store.set(key,JSON.stringify(a));}
+  function todayKey(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+  function weekKey(){var d=new Date();var onejan=new Date(d.getFullYear(),0,1);var wk=Math.ceil(((d-onejan)/86400000+onejan.getDay()+1)/7);return d.getFullYear()+"-W"+wk;}
 
   /* ---- CALCULATOR ---- */
   var fmt=function(n){return Math.round(n).toLocaleString("en-US");};
@@ -989,10 +1173,13 @@ var GROCERY = [
     s:"<svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M5 11h14l-1 8a2 2 0 01-2 2H8a2 2 0 01-2-2l-1-8z' stroke-linejoin='round'/><path d='M9 11V7a3 3 0 016 0v4M12 4V3' stroke-linecap='round'/></svg>"
   };
   function avgOf(ids,key){var s=0,n=0;ids.forEach(function(id){var r=RECIPES[id];if(r){s+=r[key];n++;}});return n?s/n:0;}
-  var picks={};
+  var PKEY="lfl_picks";
+  var picks={}, curDay="Mon";
   function renderDay(day){
     var p=PLAN[day]; if(!p)return;
-    picks={};
+    curDay=day;
+    var allPicks=loadObj(PKEY);
+    picks=allPicks[day]||{};
     var sids=p.s||[];
     var totP=Math.round(avgOf(p.b,"p")+avgOf(p.l,"p")+avgOf(p.d,"p")+avgOf(sids,"p"));
     var totK=Math.round((avgOf(p.b,"k")+avgOf(p.l,"k")+avgOf(p.d,"k")+avgOf(sids,"k"))/10)*10;
@@ -1004,7 +1191,7 @@ var GROCERY = [
         "<span class='dsstat cals'><span class='v'>"+totK.toLocaleString("en-US")+"</span><span class='u'>kcal</span></span>"+
       "</div>"+
       "<div class='platebar' id='plateBar'>"+
-        "<span class='pbhint' id='plateHint'>&#9678; Tick one meal per category below to build your plate &mdash; protein, cook time &amp; calories add up here.</span>"+
+        "<span class='pbhint' id='plateHint'>&#9678; Tick one meal per category below to build your plate &mdash; protein, cook time &amp; calories add up here, and feed your grocery list.</span>"+
       "</div>";
     $("planContent").innerHTML=
       summary+
@@ -1012,7 +1199,14 @@ var GROCERY = [
       mealGroup("ln",IC.l,"Lunch",p.l,"l")+
       mealGroup("dn-b",IC.d,"Dinner",p.d,"d")+
       (sids.length?mealGroup("sn-b",IC.s,"Snacks",sids,"s","3 options &middot; split across the day"):"");
+    /* restore picked state */
+    Object.keys(picks).forEach(function(cat){
+      var a=$("planContent").querySelector(".acc[data-cat='"+cat+"'][data-id='"+picks[cat]+"']");
+      if(a){a.classList.add("picked");var mp=a.querySelector(".mpick");if(mp)mp.setAttribute("aria-checked","true");}
+    });
+    updatePlate();
   }
+  function savePicks(){var all=loadObj(PKEY);all[curDay]=picks;saveObj(PKEY,all);}
   /* ---- build-your-plate selection ---- */
   function updatePlate(){
     var bar=$("plateBar"); if(!bar)return;
@@ -1045,7 +1239,7 @@ var GROCERY = [
         });
         picks[cat]=id; acc.classList.add("picked"); pick.setAttribute("aria-checked","true");
       }
-      updatePlate();
+      savePicks(); updatePlate(); if(window.refreshPickGrocery)window.refreshPickGrocery();
       return;
     }
     if(e.target.closest&&e.target.closest("#plateReset")){
@@ -1054,7 +1248,7 @@ var GROCERY = [
         a.classList.remove("picked");
         var mp=a.querySelector(".mpick"); if(mp)mp.setAttribute("aria-checked","false");
       });
-      updatePlate();
+      savePicks(); updatePlate(); if(window.refreshPickGrocery)window.refreshPickGrocery();
     }
   });
 
@@ -1075,17 +1269,153 @@ var GROCERY = [
     renderDay(today);
   })();
 
-  /* ---- GROCERY render + persistence ---- */
+  /* ---- quick-pick shortcuts ---- */
+  var CATKEYS=["b","l","d","s"];
+  function autoPickDay(day){
+    var p=PLAN[day]; if(!p)return;
+    var all=loadObj(PKEY), dp={};
+    CATKEYS.forEach(function(c){ if(p[c]&&p[c].length){dp[c]=p[c][0];} });
+    all[day]=dp; saveObj(PKEY,all);
+  }
+  function applyPickedToView(){
+    /* refresh .picked classes for the currently-rendered day */
+    var all=loadObj(PKEY), dp=all[curDay]||{};
+    Array.prototype.forEach.call($("planContent").querySelectorAll(".acc"),function(a){
+      a.classList.remove("picked"); var mp=a.querySelector(".mpick"); if(mp)mp.setAttribute("aria-checked","false");
+    });
+    Object.keys(dp).forEach(function(cat){
+      var a=$("planContent").querySelector(".acc[data-cat='"+cat+"'][data-id='"+dp[cat]+"']");
+      if(a){a.classList.add("picked");var mp=a.querySelector(".mpick");if(mp)mp.setAttribute("aria-checked","true");}
+    });
+    picks=dp; updatePlate();
+  }
+  $("qpDay").addEventListener("click",function(){
+    autoPickDay(curDay); applyPickedToView();
+    if(window.refreshPickGrocery)window.refreshPickGrocery();
+  });
+  $("qpWeek").addEventListener("click",function(){
+    Object.keys(PLAN).forEach(autoPickDay);
+    applyPickedToView();
+    if(window.refreshPickGrocery)window.refreshPickGrocery();
+    flash($("qpWeek")," All 7 days picked");
+  });
+  $("qpClear").addEventListener("click",function(){
+    if(!window.confirm("Clear all meal picks for the week?"))return;
+    saveObj(PKEY,{}); applyPickedToView();
+    if(window.refreshPickGrocery)window.refreshPickGrocery();
+  });
+  function flash(btn,msg){var o=btn.innerHTML;btn.textContent=msg;setTimeout(function(){btn.innerHTML=o;},1400);}
+
   var gIcon="<svg width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.2'><path d='M5 8h14l-1.2 11H6.2L5 8zM8 8V6a4 4 0 018 0v2' stroke-linecap='round' stroke-linejoin='round'/></svg>";
-  var GKEY="lfl_grocery";
+  var GKEY="lfl_grocery";           /* checked-state for staples mode */
+  var GPKEY="lfl_grocery_picks";    /* checked-state for picks mode */
+  var gMode="picks", gMult=1;
+
+  /* parse "200 g" / "300 ml" / "1 clove" / "2" / "1 pinch" -> {n, unit, raw} */
+  function parseQty(q){
+    var m=String(q).match(/^([\d.]+)\s*(g|kg|ml|l)?\b/i);
+    if(m){var n=parseFloat(m[1]);var u=(m[2]||"").toLowerCase();
+      if(u==="kg"){n*=1000;u="g";} if(u==="l"){n*=1000;u="ml";}
+      return {n:n,unit:u||"ea",raw:q};}
+    return {n:null,unit:null,raw:q};
+  }
+  function fmtAmt(n,unit){
+    if(unit==="g"||unit==="ml"){ if(n>=1000){return (n/1000).toFixed(n%1000?1:0)+(unit==="g"?" kg":" L");} return Math.round(n)+" "+unit; }
+    return null;
+  }
+  /* categorize an ingredient name into a grocery aisle */
+  var AISLES=[
+    ["Proteins & Fish",/chicken|turkey|salmon|cod|fish|shrimp|tuna|sausage|jerky|egg\b|eggs|bass/i],
+    ["Dairy & Chilled",/yoghurt|feta|mozzarella|halloumi|cottage|parmesan|tzatziki|hummus|milk|whey|cheese/i],
+    ["Legumes & Grains",/chickpea|bean|lentil|quinoa|farro|bulgur|rice|pasta|oats|muesli|granola|cracker/i],
+    ["Vegetables",/tomato|cucumber|pepper|courgette|aubergine|broccoli|spinach|rocket|salad|kale|green bean|carrot|onion|garlic|potato|pea|edamame|artichoke/i],
+    ["Fruit",/banana|apple|berr|orange|grape|lemon|avocado/i],
+    ["Bread & Bakery",/bread|pita|wrap/i],
+    ["Pantry & Oils",/oil|olive|tahini|honey|walnut|almond|nut|chia|chocolate|peanut|stock|vinegar|paste/i],
+    ["Herbs & Spices",/parsley|dill|mint|basil|oregano|cumin|paprika|cinnamon|chilli|thyme|pepper$|salt/i]
+  ];
+  function aisleOf(name){for(var i=0;i<AISLES.length;i++){if(AISLES[i][1].test(name))return AISLES[i][0];}return "Other";}
+
+  /* aggregate all picked meals across the week into {aisle:{name:{n,unit,counts:[]}}} */
+  function buildFromPicks(){
+    var all=loadObj(PKEY), agg={};
+    Object.keys(all).forEach(function(day){
+      var dp=all[day]||{};
+      Object.keys(dp).forEach(function(cat){
+        var r=RECIPES[dp[cat]]; if(!r)return;
+        r.ing.forEach(function(pair){
+          var qty=pair[0], name=pair[1];
+          var key=name.toLowerCase();
+          var pq=parseQty(qty);
+          var aisle=aisleOf(name);
+          agg[aisle]=agg[aisle]||{};
+          var slot=agg[aisle][key]||{name:name,n:0,unit:null,texts:[]};
+          if(pq.n!=null&&(pq.unit==="g"||pq.unit==="ml")){slot.n+=pq.n;slot.unit=pq.unit;}
+          else{slot.texts.push(qty);}
+          agg[aisle][key]=slot;
+        });
+      });
+    });
+    return agg;
+  }
+
   function renderGrocery(){
+    if(gMode==="staples"){renderStaples();return;}
+    var agg=buildFromPicks();
+    var aisles=Object.keys(agg);
+    var saved=loadObj(GPKEY), html="", total=0;
+    if(!aisles.length){
+      $("groceryContent").innerHTML="<div class='card gcat' style='grid-column:1/-1'><p style='color:var(--muted);font-size:.92rem;padding:6px 2px'>No meals picked yet. Go to <b>7-Day Plan</b> and tick the meals you want this week &mdash; they'll be aggregated into a shopping list here.</p></div>";
+      $("gtotal").textContent=0; updateGroceryCount(); return;
+    }
+    /* order aisles by AISLES order */
+    var order=AISLES.map(function(a){return a[0];}).concat(["Other"]);
+    aisles.sort(function(a,b){return order.indexOf(a)-order.indexOf(b);});
+    aisles.forEach(function(aisle){
+      var rows="", items=agg[aisle];
+      Object.keys(items).sort().forEach(function(k){
+        var it=items[k]; total++;
+        var amt="";
+        if(it.n>0){var scaled=it.n*gMult; amt=fmtAmt(scaled,it.unit);}
+        if(it.texts.length){
+          var counts=scaleCounts(it.texts,gMult);
+          amt=amt?(amt+" + "+counts):counts;
+        }
+        var key="p_"+k.replace(/[^a-z0-9]/g,"");
+        var on=saved[key]?" got":"";
+        rows+="<div class='gitem"+on+"' data-key='"+key+"'><span class='gbox'><svg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3.5'><path d='M5 12l5 5L19 7'/></svg></span><span class='gname'>"+esc(it.name)+"</span><span class='gqty'>"+esc(amt)+"</span></div>";
+      });
+      html+="<div class='card gcat'><div class='gch'><div class='gci'>"+gIcon+"</div><h4>"+esc(aisle)+"</h4></div>"+rows+"</div>";
+    });
+    $("groceryContent").innerHTML=html;
+    $("gtotal").textContent=total;
+    updateGroceryCount();
+  }
+
+  /* sum simple count texts like "1 clove","2","1 pinch" grouped by unit-word */
+  function scaleCounts(texts,mult){
+    var byUnit={};
+    texts.forEach(function(t){
+      var m=String(t).match(/^([\d.]+)\s*(.*)$/);
+      if(m){var n=parseFloat(m[1])*mult;var u=m[2]||"ea";byUnit[u]=(byUnit[u]||0)+n;}
+      else{byUnit[t]=(byUnit[t]||0)+0;}
+    });
+    return Object.keys(byUnit).map(function(u){
+      var n=byUnit[u];
+      var nn=(n%1===0)?n:Math.ceil(n);
+      return u==="ea"?(""+nn):(nn+" "+u);
+    }).join(", ");
+  }
+
+  function renderStaples(){
     var saved=loadObj(GKEY), html="", total=0;
     GROCERY.forEach(function(cat,ci){
       var rows="";
       cat.items.forEach(function(it,ii){
         total++;
         var key="g"+ci+"_"+ii, on=saved[key]?" got":"";
-        rows+="<div class='gitem"+on+"' data-key='"+key+"'><span class='gbox'><svg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3.5'><path d='M5 12l5 5L19 7'/></svg></span><span class='gname'>"+esc(it[0])+"</span><span class='gqty'>"+esc(it[1])+"</span></div>";
+        var amt=scaleStaple(it[1],gMult);
+        rows+="<div class='gitem"+on+"' data-key='"+key+"'><span class='gbox'><svg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3.5'><path d='M5 12l5 5L19 7'/></svg></span><span class='gname'>"+esc(it[0])+"</span><span class='gqty'>"+esc(amt)+"</span></div>";
       });
       html+="<div class='card gcat'><div class='gch'><div class='gci'>"+gIcon+"</div><h4>"+esc(cat.cat)+"</h4></div>"+rows+"</div>";
     });
@@ -1093,6 +1423,18 @@ var GROCERY = [
     $("gtotal").textContent=total;
     updateGroceryCount();
   }
+  /* staples list is already family-sized (~2.5x). Treat its numbers as the x2.5 baseline:
+     x2.5 -> as written; x1 -> divide by 2.5 for "just me". */
+  function scaleStaple(q,mult){
+    var factor=mult/2.5;
+    var pq=parseQty(q);
+    if(pq.n!=null&&(pq.unit==="g"||pq.unit==="ml")){return fmtAmt(Math.round(pq.n*factor),pq.unit);}
+    var m=String(q).match(/^([\d.]+)\s*(.*)$/);
+    if(m){var n=Math.max(1,Math.round(parseFloat(m[1])*factor));return m[2]?(n+" "+m[2]):(""+n);}
+    return q;
+  }
+
+  function curKey(){return gMode==="staples"?GKEY:GPKEY;}
   function updateGroceryCount(){
     var items=document.querySelectorAll("#groceryContent .gitem");
     var done=document.querySelectorAll("#groceryContent .gitem.got").length;
@@ -1102,31 +1444,154 @@ var GROCERY = [
   $("groceryContent").addEventListener("click",function(e){
     var row=e.target.closest&&e.target.closest(".gitem"); if(!row)return;
     var on=row.classList.toggle("got");
-    var saved=loadObj(GKEY); var k=row.getAttribute("data-key");
+    var saved=loadObj(curKey()); var k=row.getAttribute("data-key");
     if(on)saved[k]=1; else delete saved[k];
-    saveObj(GKEY,saved); updateGroceryCount();
+    saveObj(curKey(),saved); updateGroceryCount();
   });
   $("gReset").addEventListener("click",function(){
-    saveObj(GKEY,{});
+    saveObj(curKey(),{});
     document.querySelectorAll("#groceryContent .gitem.got").forEach(function(r){r.classList.remove("got");});
     updateGroceryCount();
   });
   $("gCopy").addEventListener("click",function(){
-    var lines=["Mediterranean week — 2 adults + 1 toddler",""];
-    GROCERY.forEach(function(cat){lines.push(cat.cat.toUpperCase());cat.items.forEach(function(it){lines.push("- "+it[0]+"  "+it[1]);});lines.push("");});
+    var who=gMult===1?"just me":"family (x2.5)";
+    var src=gMode==="staples"?"full-week staples":"my picked meals";
+    var lines=["Lean for Life shopping list \u2014 "+src+", "+who,""];
+    document.querySelectorAll("#groceryContent .gcat").forEach(function(cat){
+      var h=cat.querySelector("h4"); if(h)lines.push(h.textContent.toUpperCase());
+      cat.querySelectorAll(".gitem").forEach(function(it){
+        var nm=it.querySelector(".gname").textContent, q=it.querySelector(".gqty").textContent;
+        lines.push("- "+nm+(q?("  "+q):""));
+      });
+      lines.push("");
+    });
     var txt=lines.join("\n"); var btn=$("gCopy");
-    function done(){var o=btn.textContent;btn.textContent="Copied";setTimeout(function(){btn.textContent=o;},1400);}
+    function done(){var o=btn.textContent;btn.textContent="Copied \u2713";setTimeout(function(){btn.textContent=o;},1500);}
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,function(){window.prompt("Copy list:",txt);});}
     else{window.prompt("Copy list:",txt);}
   });
+  /* mode + portion toggles */
+  Array.prototype.forEach.call(document.querySelectorAll("#gMode .gseg-btn"),function(b){
+    b.addEventListener("click",function(){
+      document.querySelectorAll("#gMode .gseg-btn").forEach(function(x){x.classList.remove("active");});
+      b.classList.add("active"); gMode=b.getAttribute("data-mode");
+      $("gNoteTx").textContent = gMode==="staples"
+        ? "A generous, over-provisioned week of staples so you never run out. Numbers are family-sized; switch to \u00d71 for a solo shop."
+        : "Built from the meals you tick on the 7-Day Plan. Pick meals across the week and they're aggregated into one shopping list here.";
+      renderGrocery();
+    });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("#gPortion .gseg-btn"),function(b){
+    b.addEventListener("click",function(){
+      document.querySelectorAll("#gPortion .gseg-btn").forEach(function(x){x.classList.remove("active");});
+      b.classList.add("active"); gMult=parseFloat(b.getAttribute("data-mult"));
+      renderGrocery();
+    });
+  });
+  window.refreshPickGrocery=function(){ if(gMode==="picks")renderGrocery(); };
   renderGrocery();
 
-  /* ---- sub-tab switch (Plan / Grocery) ---- */
+
+  /* ---- COOK NOW: search + cook + favourites ---- */
+  var FAVKEY="lfl_favs";
+  var cookType="b", cookQuery="", cookFavOnly=false;
+  function favs(){return loadObj(FAVKEY);}
+  function isFav(id){return !!favs()[id];}
+  function toggleFav(id){var f=favs();if(f[id])delete f[id];else f[id]=1;saveObj(FAVKEY,f);}
+  var TYPE_LABEL={b:"breakfast",l:"lunch",d:"dinner",s:"snack"};
+  function recipesOfType(t){return Object.keys(RECIPES).filter(function(id){return id[0]===t;});}
+  function matchQuery(r,q){
+    if(!q)return true; q=q.toLowerCase();
+    if(r.name.toLowerCase().indexOf(q)>=0)return true;
+    return r.ing.some(function(pair){return pair[1].toLowerCase().indexOf(q)>=0;});
+  }
+  function cookCard(id){
+    var r=RECIPES[id]; if(!r)return"";
+    var ing=r.ing.map(function(x){return "<li><span>"+esc(x[1])+"</span><span class='iq'>"+esc(x[0])+"</span></li>";}).join("");
+    var steps=r.steps.map(function(s){return "<li>"+esc(s)+"</li>";}).join("");
+    var faved=isFav(id)?" faved":"";
+    return ""+
+    "<div class='acc' data-id='"+id+"'>"+
+      "<div class='acc-head'>"+
+        "<button class='mfav"+faved+"' data-fav='"+id+"' title='Save to favourites' aria-pressed='"+(faved?"true":"false")+"'><svg width='17' height='17' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.8 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z' stroke-linejoin='round'/></svg></button>"+
+        "<span class='mname'>"+esc(r.name)+"</span>"+
+        "<span class='mm k'>"+r.k+" kcal</span>"+
+        "<span class='mm p'>"+r.p+"g P</span>"+
+        "<span class='mm t'>"+r.t+" min</span>"+
+        "<svg class='chev' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M6 9l6 6 6-6'/></svg>"+
+      "</div>"+
+      "<div class='acc-body'><div class='acc-body-in'><div class='recipe-grid'>"+
+        "<div class='rsec'><div class='rh'><svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.2'><path d='M3 4h18M3 12h18M3 20h18' stroke-linecap='round'/></svg>Ingredients</div><ul class='ing'>"+ing+"</ul></div>"+
+        "<div class='rsec'><div class='rh'><svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.2'><path d='M4 7h16M4 12h16M4 17h10' stroke-linecap='round'/></svg>Method</div><ol class='method'>"+steps+"</ol></div>"+
+      "</div></div></div>"+
+    "</div>";
+  }
+  function renderCook(){
+    var list=recipesOfType(cookType).filter(function(id){
+      if(cookFavOnly&&!isFav(id))return false;
+      return matchQuery(RECIPES[id],cookQuery);
+    });
+    /* favourites first, then by name */
+    list.sort(function(a,b){
+      var fa=isFav(a)?0:1, fb=isFav(b)?0:1;
+      if(fa!==fb)return fa-fb;
+      return RECIPES[a].name<RECIPES[b].name?-1:1;
+    });
+    var cc=$("cookCount"), res=$("cookResults");
+    if(!list.length){
+      res.innerHTML="<div class='cook-empty'><svg width='32' height='32' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.6'><circle cx='11' cy='11' r='7'/><path d='M20 20l-3.5-3.5' stroke-linecap='round'/></svg><span>"+
+        (cookFavOnly?"No favourite "+TYPE_LABEL[cookType]+"s yet &mdash; tap the &#9733; on any dish to save it.":"No "+TYPE_LABEL[cookType]+" matches \u201c"+esc(cookQuery)+"\u201d.")+"</span></div>";
+      cc.textContent="";
+      return;
+    }
+    var nf=list.filter(isFav).length;
+    cc.textContent=list.length+" "+TYPE_LABEL[cookType]+(list.length>1?"s":"")+(nf?(" \u00b7 "+nf+" favourite"+(nf>1?"s":"")):"");
+    res.innerHTML=list.map(cookCard).join("");
+  }
+  /* meal-type buttons */
+  Array.prototype.forEach.call(document.querySelectorAll("#mealType .mt"),function(b){
+    b.addEventListener("click",function(){
+      document.querySelectorAll("#mealType .mt").forEach(function(x){x.classList.remove("active");});
+      b.classList.add("active"); cookType=b.getAttribute("data-mt"); renderCook();
+    });
+  });
+  /* favourites-only toggle */
+  $("favOnly").addEventListener("click",function(){
+    cookFavOnly=!cookFavOnly; $("favOnly").classList.toggle("on",cookFavOnly); renderCook();
+  });
+  /* search */
+  $("cookSearch").addEventListener("input",function(){
+    cookQuery=this.value.trim();
+    $("cookClear").style.display=cookQuery?"block":"none";
+    renderCook();
+  });
+  $("cookClear").addEventListener("click",function(){
+    cookQuery=""; $("cookSearch").value=""; this.style.display="none"; $("cookSearch").focus(); renderCook();
+  });
+  /* favourite star clicks (delegated) — also block accordion toggle */
+  $("cookResults").addEventListener("click",function(e){
+    var fav=e.target.closest&&e.target.closest(".mfav");
+    if(fav){
+      e.stopPropagation();
+      var id=fav.getAttribute("data-fav");
+      toggleFav(id);
+      var on=isFav(id);
+      fav.classList.toggle("faved",on); fav.setAttribute("aria-pressed",on?"true":"false");
+      /* update count line without full re-render (keeps any open card open) */
+      var nf=recipesOfType(cookType).filter(function(x){return isFav(x)&&matchQuery(RECIPES[x],cookQuery);}).length;
+      if(cookFavOnly&&!on){renderCook();}
+      return;
+    }
+  });
+  renderCook();
+
+
   Array.prototype.forEach.call(document.querySelectorAll(".subtab"),function(btn){
     btn.addEventListener("click",function(){
       document.querySelectorAll(".subtab").forEach(function(b){b.classList.remove("active");});
       btn.classList.add("active");
       var view=btn.getAttribute("data-kview");
+      $("view-cook").classList.toggle("show",view==="cook");
       $("view-plan").classList.toggle("show",view==="plan");
       $("view-grocery").classList.toggle("show",view==="grocery");
     });
@@ -1134,6 +1599,10 @@ var GROCERY = [
 
   /* ---- HABIT TRACKER ---- */
   var HKEY="lfl_habits", WKEY="lfl_week", C=389.6;
+  /* daily rollover: habits are stamped with the day; a new day starts fresh */
+  (function(){var h=loadObj(HKEY); if(h.__day && h.__day!==todayKey()){saveObj(HKEY,{__day:todayKey()});} else if(!h.__day){h.__day=todayKey();saveObj(HKEY,h);} })();
+  /* weekly rollover: week dots reset when the ISO week changes */
+  (function(){var w=loadObj(WKEY); if(w.__week && w.__week!==weekKey()){saveObj(WKEY,{__week:weekKey()});} else if(!w.__week){w.__week=weekKey();saveObj(WKEY,w);} })();
   var habitEls=document.querySelectorAll("#habitList .habit");
   function paintHabits(){
     var saved=loadObj(HKEY), done=0, total=habitEls.length;
@@ -1145,6 +1614,7 @@ var GROCERY = [
   }
   habitEls.forEach(function(el){el.addEventListener("click",function(){
     var saved=loadObj(HKEY), id=el.getAttribute("data-id");
+    saved.__day=todayKey();
     if(saved[id])delete saved[id]; else saved[id]=1;
     saveObj(HKEY,saved); paintHabits();
   });});
@@ -1156,11 +1626,111 @@ var GROCERY = [
   }
   weekEls.forEach(function(el){el.addEventListener("click",function(){
     var saved=loadObj(WKEY), d=el.getAttribute("data-day");
+    saved.__week=weekKey();
     if(saved[d])delete saved[d]; else saved[d]=1;
     saveObj(WKEY,saved); paintWeek();
   });});
-  $("resetBtn").addEventListener("click",function(){saveObj(HKEY,{});saveObj(WKEY,{});paintHabits();paintWeek();});
+  $("resetBtn").addEventListener("click",function(){saveObj(HKEY,{__day:todayKey()});saveObj(WKEY,{__week:weekKey()});paintHabits();paintWeek();});
   paintHabits(); paintWeek();
+
+  /* ---- WEIGHT LOG + TREND CHART ---- */
+  var WLKEY="lfl_weight";
+  function wData(){return loadArr(WLKEY).slice().sort(function(a,b){return a.d<b.d?-1:1;});}
+  function rollingAvg(arr,i,win){var s=0,n=0;for(var j=Math.max(0,i-win+1);j<=i;j++){s+=arr[j].kg;n++;}return n?s/n:0;}
+  function shortDate(iso){var p=iso.split("-");return p[2]+"/"+p[1];}
+  function paintWeight(){
+    var data=wData();
+    var cur=$("wCur"),avg=$("wAvg"),chg=$("wChg");
+    if(!data.length){cur.innerHTML="&mdash;";avg.innerHTML="&mdash;";chg.innerHTML="&mdash;";$("wList").innerHTML="";drawChart([]);return;}
+    var last=data[data.length-1];
+    cur.textContent=last.kg.toFixed(1);
+    var a=rollingAvg(data,data.length-1,7);
+    avg.textContent=a.toFixed(1);
+    var delta=last.kg-data[0].kg;
+    chg.textContent=(delta>0?"+":"")+delta.toFixed(1);
+    chg.style.color=delta<0?"var(--olive-deep)":(delta>0?"var(--clay-deep)":"var(--ink)");
+    var rows=data.slice().reverse().slice(0,30).map(function(e){
+      return "<div class='wli'><span class='wd-date'>"+shortDate(e.d)+"</span><span class='wd-kg'>"+e.kg.toFixed(1)+" kg</span><button class='wd-del' data-d='"+e.d+"' title='Remove'>&times;</button></div>";
+    }).join("");
+    $("wList").innerHTML=rows;
+    drawChart(data);
+  }
+  function drawChart(data){
+    var wrap=$("wChartWrap");
+    if(!data.length){wrap.innerHTML="<div class='wempty'><svg width='34' height='34' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.6'><path d='M3 3v18h18M7 14l4-4 3 3 5-6' stroke-linecap='round' stroke-linejoin='round'/></svg><span>Log a few mornings to see your trend take shape.</span></div>";return;}
+    var W=560,H=240,pl=38,pr=14,pt=14,pb=26;
+    var iw=W-pl-pr, ih=H-pt-pb;
+    var start=86, goal=75;
+    var kgs=data.map(function(e){return e.kg;});
+    var maxKg=Math.max(start,Math.max.apply(null,kgs))+1;
+    var minKg=Math.min(goal,Math.min.apply(null,kgs))-1;
+    var n=data.length;
+    function x(i){return pl+(n<=1?iw/2:iw*i/(n-1));}
+    function y(kg){return pt+ih*(maxKg-kg)/(maxKg-minKg);}
+    /* goal path: from first logged date@start projection to goal — simple straight guide from max to goal across span */
+    var goalY1=y(start), goalY2=y(goal);
+    var gridY=[];
+    for(var g=Math.ceil(minKg);g<=Math.floor(maxKg);g++){if(g%2===0)gridY.push(g);}
+    var grid=gridY.map(function(g){return "<line x1='"+pl+"' y1='"+y(g)+"' x2='"+(W-pr)+"' y2='"+y(g)+"' stroke='var(--line)' stroke-width='1'/><text x='"+(pl-6)+"' y='"+(y(g)+3)+"' text-anchor='end' font-family='monospace' font-size='9' fill='var(--muted)'>"+g+"</text>";}).join("");
+    /* daily line */
+    var dPts=data.map(function(e,i){return x(i)+","+y(e.kg);}).join(" ");
+    /* trend (7-day rolling) */
+    var tPts=data.map(function(e,i){return x(i)+","+y(rollingAvg(data,i,7));}).join(" ");
+    var dots=data.map(function(e,i){return "<circle cx='"+x(i)+"' cy='"+y(e.kg)+"' r='2.4' fill='#cdbfa3'/>";}).join("");
+    var lastTrend=rollingAvg(data,n-1,7);
+    var goalLine="<line x1='"+pl+"' y1='"+goalY1+"' x2='"+(W-pr)+"' y2='"+goalY2+"' stroke='var(--muted)' stroke-width='1.5' stroke-dasharray='5 4' opacity='.6'/>";
+    var svg="<svg viewBox='0 0 "+W+" "+H+"' preserveAspectRatio='xMidYMid meet'>"+
+      grid+goalLine+
+      "<polyline points='"+dPts+"' fill='none' stroke='#cdbfa3' stroke-width='1.6'/>"+
+      dots+
+      "<polyline points='"+tPts+"' fill='none' stroke='var(--clay)' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/>"+
+      "<circle cx='"+x(n-1)+"' cy='"+y(lastTrend)+"' r='4.5' fill='var(--clay)' stroke='#fff' stroke-width='2'/>"+
+      "</svg>";
+    wrap.innerHTML=svg;
+  }
+  $("wAdd").addEventListener("click",function(){
+    var v=parseFloat($("wInput").value);
+    if(!v||v<40||v>200){$("wInput").focus();return;}
+    var arr=loadArr(WLKEY), tk=todayKey(), found=false;
+    arr.forEach(function(e){if(e.d===tk){e.kg=v;found=true;}});
+    if(!found)arr.push({d:tk,kg:v});
+    saveArr(WLKEY,arr); $("wInput").value=""; paintWeight();
+  });
+  $("wInput").addEventListener("keydown",function(e){if(e.key==="Enter")$("wAdd").click();});
+  $("wList").addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest(".wd-del"); if(!b)return;
+    var d=b.getAttribute("data-d");
+    saveArr(WLKEY,loadArr(WLKEY).filter(function(e){return e.d!==d;}));
+    paintWeight();
+  });
+  paintWeight();
+
+  /* ---- EXPORT / IMPORT ---- */
+  var ALL_KEYS=["lfl_weight","lfl_habits","lfl_week","lfl_grocery","lfl_grocery_picks","lfl_picks","lfl_favs","lfl_mealsel"];
+  $("dtExport").addEventListener("click",function(){
+    var dump={_app:"lean-for-life",_v:1,_exported:new Date().toISOString(),data:{}};
+    ALL_KEYS.forEach(function(k){var r=store.get(k);if(r!=null)dump.data[k]=r;});
+    var blob=new Blob([JSON.stringify(dump,null,2)],{type:"application/json"});
+    var url=URL.createObjectURL(blob), a=document.createElement("a");
+    a.href=url; a.download="lean-for-life-backup-"+todayKey()+".json";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){URL.revokeObjectURL(url);},1000);
+  });
+  $("dtImport").addEventListener("click",function(){$("dtFile").click();});
+  $("dtFile").addEventListener("change",function(e){
+    var f=e.target.files&&e.target.files[0]; if(!f)return;
+    var r=new FileReader();
+    r.onload=function(){
+      try{
+        var obj=JSON.parse(r.result);
+        if(!obj||!obj.data)throw new Error("bad file");
+        if(!window.confirm("Import this backup? It will replace your current data on this device."))return;
+        ALL_KEYS.forEach(function(k){if(obj.data[k]!=null)store.set(k,obj.data[k]);});
+        window.location.reload();
+      }catch(err){window.alert("That doesn't look like a valid Lean for Life backup file.");}
+    };
+    r.readAsText(f); e.target.value="";
+  });
 
   /* ---- keep body padding in sync with fixed-nav height ---- */
   var navEl=document.querySelector(".nav");
@@ -1207,6 +1777,13 @@ var GROCERY = [
     document.querySelectorAll(".reveal").forEach(function(el){el.classList.add("in");});
   }
 })();
+
+/* ---- PWA service worker (activates on http(s); silently skipped on file://) ---- */
+if("serviceWorker" in navigator && location.protocol.indexOf("http")===0){
+  window.addEventListener("load",function(){
+    navigator.serviceWorker.register("sw.js").catch(function(){/* offline support unavailable; app still works */});
+  });
+}
 </script>
 </body>
 </html>

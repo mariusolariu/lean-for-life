@@ -376,6 +376,17 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
 .gseg-btn{font-family:var(--sans);font-size:.82rem;font-weight:700;padding:8px 15px;border-radius:99px;border:none;background:transparent;color:var(--ink-soft);cursor:pointer;transition:.2s;white-space:nowrap}
 .gseg-btn.active{background:var(--olive);color:#fff;box-shadow:0 5px 13px -7px var(--olive-deep)}
 @media(max-width:560px){.gctrl{flex-direction:column;gap:8px}.gseg{width:100%}.gseg-btn{flex:1;text-align:center;padding:9px 8px}}
+.gadd{display:flex;gap:9px;margin-bottom:18px}
+.gadd input{font-family:var(--sans);font-size:.95rem;padding:11px 13px;border:1.5px solid var(--line);border-radius:var(--r-sm);background:var(--surface);color:var(--ink);transition:.2s}
+.gadd input:focus{outline:none;border-color:var(--clay);box-shadow:0 0 0 4px var(--clay-tint)}
+.gadd #gAddName{flex:1;min-width:0}
+.gadd #gAddQty{width:84px;flex:none}
+.gadd #gAddBtn{flex:none;font-family:var(--sans);font-weight:700;font-size:.9rem;padding:0 16px;border-radius:var(--r-sm);border:none;background:var(--olive);color:#fff;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:6px}
+.gadd #gAddBtn:hover{background:var(--olive-deep)}
+@media(max-width:560px){.gadd{flex-wrap:wrap}.gadd #gAddName{flex-basis:100%}.gadd #gAddQty{flex:1;width:auto}.gadd #gAddBtn{flex:none}}
+.gcat.custom .gch .gci{background:var(--ochre-tint);color:#9a6b14}
+.gitem .gdel{flex:none;background:none;border:none;color:var(--muted);font-size:1.15rem;line-height:1;cursor:pointer;padding:2px 7px;border-radius:6px;margin-left:8px}
+.gitem .gdel:hover{color:var(--clay);background:var(--clay-tint)}
 
 /* ---------- SCHEDULE (training week) ---------- */
 .week{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
@@ -396,6 +407,10 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
 .acc-head .ad{font-size:.8rem;color:var(--muted);margin-top:1px}
 .ex{display:grid;grid-template-columns:1fr auto;gap:12px;padding:11px 0;border-top:1px solid var(--line);align-items:center}
 .ex .en{font-weight:600;font-size:.93rem}
+.ex a.en{color:var(--ink);text-decoration:none;border-bottom:1.5px dotted var(--clay);padding-bottom:1px;display:inline-flex;align-items:center;gap:5px;transition:.2s}
+.ex a.en:hover{color:var(--clay-deep);border-bottom-style:solid}
+.ex a.en svg{flex:none;opacity:.45;transition:.2s}
+.ex a.en:hover svg{opacity:.9}
 .ex .es{font-family:var(--mono);font-size:.8rem;font-weight:500;color:var(--clay-deep);background:var(--clay-tint);padding:4px 10px;border-radius:7px;white-space:nowrap}
 
 /* statcards + thresholds */
@@ -725,6 +740,11 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span id="gNoteTx">Built from the meals you tick on the 7-Day Plan. Pick meals across the week and they're aggregated into one shopping list here.</span>
       </div>
+      <div class="gadd">
+        <input type="text" id="gAddName" placeholder="Add your own item (e.g. olive oil, coffee)…" autocomplete="off">
+        <input type="text" id="gAddQty" placeholder="qty" autocomplete="off">
+        <button id="gAddBtn" title="Add item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Add</button>
+      </div>
       <div class="gprog"><div class="gtrack"><div class="gfill" id="gfill"></div></div><div class="glab"><span id="gcount">0</span> / <span id="gtotal">0</span> in basket</div></div>
       <div class="grocery-cats" id="groceryContent"></div>
       <div class="gtools">
@@ -745,11 +765,11 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
   <div class="reveal" style="margin-bottom:40px">
     <div class="week">
       <div class="day"><div class="dh">Mon</div><span class="pill pl-lift">Lift</span><div class="dnm">Full Body A</div><div class="dt">~50 min</div></div>
-      <div class="day"><div class="dh">Tue</div><span class="pill pl-card">Cardio</span><div class="dnm">Zone 2</div><div class="dt">40&ndash;50 min</div></div>
+      <div class="day"><div class="dh">Tue</div><span class="pill pl-card">Cardio</span><div class="dnm">Zone 2 &mdash; bike/treadmill</div><div class="dt">40&ndash;50 min easy</div></div>
       <div class="day"><div class="dh">Wed</div><span class="pill pl-lift">Lift</span><div class="dnm">Full Body B</div><div class="dt">~50 min</div></div>
-      <div class="day"><div class="dh">Thu</div><span class="pill pl-card">Cardio</span><div class="dnm">Zone 2 / walk</div><div class="dt">30&ndash;45 min</div></div>
+      <div class="day"><div class="dh">Thu</div><span class="pill pl-card">Cardio</span><div class="dnm">Zone 2 or brisk walk</div><div class="dt">30&ndash;45 min easy</div></div>
       <div class="day"><div class="dh">Fri</div><span class="pill pl-lift">Lift</span><div class="dnm">Full Body C</div><div class="dt">~50 min</div></div>
-      <div class="day"><div class="dh">Sat</div><span class="pill pl-card">Optional</span><div class="dnm">HIIT or family</div><div class="dt">20&ndash;25 min</div></div>
+      <div class="day"><div class="dh">Sat</div><span class="pill pl-card">Optional</span><div class="dnm">Short HIIT or family</div><div class="dt">20&ndash;25 min</div></div>
       <div class="day"><div class="dh">Sun</div><span class="pill pl-rest">Rest</span><div class="dnm">Light walk</div><div class="dt">recover</div></div>
     </div>
   </div>
@@ -759,31 +779,31 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
       <div class="acc">
         <div class="acc-head"><div class="badge">A</div><div style="flex:1"><div class="at">Full Body A</div><div class="ad">Squat-focused</div></div><svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></div>
         <div class="acc-body"><div class="acc-body-in">
-          <div class="ex"><span class="en">Back squat / leg press</span><span class="es">3 &times; 6&ndash;8</span></div>
-          <div class="ex"><span class="en">Bench press / push-up</span><span class="es">3 &times; 8&ndash;10</span></div>
-          <div class="ex"><span class="en">Lat pulldown / row</span><span class="es">3 &times; 8&ndash;10</span></div>
-          <div class="ex"><span class="en">Romanian deadlift</span><span class="es">3 &times; 10&ndash;12</span></div>
-          <div class="ex"><span class="en">Plank</span><span class="es">3 &times; 30&ndash;45s</span></div>
+          <div class="ex"><a class="en" href="https://www.google.com/search?q=barbell%20squat%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Back squat / leg press<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 6&ndash;8</span></div>
+          <div class="ex"><a class="en" href="https://www.google.com/search?q=barbell%20bench%20press%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Bench press / push-up<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 8&ndash;10</span></div>
+          <div class="ex"><a class="en" href="https://www.google.com/search?q=lat%20pulldown%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Lat pulldown / row<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 8&ndash;10</span></div>
+          <div class="ex"><a class="en" href="https://www.google.com/search?q=romanian%20deadlift%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Romanian deadlift<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 10&ndash;12</span></div>
+          <div class="ex"><a class="en" href="https://www.google.com/search?q=plank%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Plank<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 30&ndash;45s</span></div>
         </div></div>
       </div>
       <div class="acc">
         <div class="acc-head"><div class="badge">B</div><div style="flex:1"><div class="at">Full Body B</div><div class="ad">Hinge-focused</div></div><svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></div>
         <div class="acc-body"><div class="acc-body-in">
-          <div class="ex"><span class="en">Deadlift / hip hinge</span><span class="es">3 &times; 5&ndash;6</span></div>
-          <div class="ex"><span class="en">Overhead press</span><span class="es">3 &times; 6&ndash;8</span></div>
-          <div class="ex"><span class="en">Seated cable row</span><span class="es">3 &times; 8&ndash;10</span></div>
-          <div class="ex"><span class="en">Leg curl</span><span class="es">3 &times; 10&ndash;12</span></div>
-          <div class="ex"><span class="en">Face pulls</span><span class="es">3 &times; 12&ndash;15</span></div>
+          <div class="ex"><a class="en" href="https://www.google.com/search?q=barbell%20deadlift%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Deadlift / hip hinge<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 5&ndash;6</span></div>
+          <div class="ex"><a class="en" href="https://www.google.com/search?q=overhead%20press%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Overhead press<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 6&ndash;8</span></div>
+          <div class="ex"><a class="en" href="https://www.google.com/search?q=seated%20cable%20row%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Seated cable row<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 8&ndash;10</span></div>
+          <div class="ex"><a class="en" href="https://www.google.com/search?q=leg%20curl%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Leg curl<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 10&ndash;12</span></div>
+          <div class="ex"><a class="en" href="https://www.google.com/search?q=face%20pull%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Face pulls<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 12&ndash;15</span></div>
         </div></div>
       </div>
       <div class="acc">
         <div class="acc-head"><div class="badge">C</div><div style="flex:1"><div class="at">Full Body C</div><div class="ad">Volume &amp; arms</div></div><svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></div>
         <div class="acc-body"><div class="acc-body-in">
-          <div class="ex"><span class="en">Leg press / walking lunge</span><span class="es">3 &times; 8&ndash;10</span></div>
-          <div class="ex"><span class="en">Incline DB press</span><span class="es">3 &times; 8&ndash;10</span></div>
-          <div class="ex"><span class="en">Assisted pull-ups</span><span class="es">3 &times; 6&ndash;10</span></div>
-          <div class="ex"><span class="en">Dumbbell row</span><span class="es">3 &times; 8&ndash;10</span></div>
-          <div class="ex"><span class="en">Hanging knee raise</span><span class="es">3 &times; 12&ndash;15</span></div>
+          <div class="ex"><a class="en" href="https://www.google.com/search?q=leg%20press%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Leg press / walking lunge<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 8&ndash;10</span></div>
+          <div class="ex"><a class="en" href="https://www.google.com/search?q=incline%20dumbbell%20press%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Incline DB press<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 8&ndash;10</span></div>
+          <div class="ex"><a class="en" href="https://www.google.com/search?q=pull%20up%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Assisted pull-ups<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 6&ndash;10</span></div>
+          <div class="ex"><a class="en" href="https://www.google.com/search?q=dumbbell%20row%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Dumbbell row<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 8&ndash;10</span></div>
+          <div class="ex"><a class="en" href="https://www.google.com/search?q=hanging%20knee%20raise%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Hanging knee raise<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 12&ndash;15</span></div>
         </div></div>
       </div>
       <div class="note" style="margin-top:16px">
@@ -792,7 +812,23 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:20px">
-      <div class="card block"><div class="label">Cardio</div><h4>Bias toward Zone 2</h4><p>Matched for effort, HIIT and steady-state burn similar fat &mdash; but <b>Zone 2</b> (conversational pace, ~60&ndash;70% max HR) is far gentler on recovery, which matters when sleep is short. Keep HIIT to <b>one</b> 20-minute session a week, max.</p><div class="chips" style="margin-top:14px"><span class="chip accent">Incline treadmill walk</span><span class="chip accent">Cycling</span><span class="chip accent">Rower</span></div></div>
+      <div class="card block"><div class="label">Cardio &mdash; what to actually do</div><h4>Zone 2, on any of these machines</h4><p><b>Zone 2 = easy, conversational pace</b> &mdash; you can talk in full sentences but wouldn't want to sing (~60&ndash;70% max HR, RPE 3&ndash;4/10). Pick <b>one</b> machine per session and hold a steady effort the whole time:</p>
+        <ul class="ul" style="margin-top:12px">
+          <li><span class="mk">&rarr;</span><span><b>Incline treadmill walk</b> &mdash; 4&ndash;6 km/h at 6&ndash;10% incline. The most joint-friendly option. 40&ndash;50 min.</span></li>
+          <li><span class="mk">&rarr;</span><span><b>Stationary bike</b> &mdash; moderate resistance, 70&ndash;85 rpm. Easiest to keep truly easy. 40&ndash;50 min.</span></li>
+          <li><span class="mk">&rarr;</span><span><b>Rower</b> &mdash; relaxed 20&ndash;24 spm, smooth strokes. Adds a little upper body. 30&ndash;40 min.</span></li>
+          <li><span class="mk">&rarr;</span><span><b>Elliptical / cross-trainer</b> &mdash; steady, low resistance. Good if knees complain. 40&ndash;50 min.</span></li>
+          <li><span class="mk">&rarr;</span><span><b>Stair climber</b> &mdash; slow, controlled, no leaning on the rails. 25&ndash;35 min (it's harder than it looks).</span></li>
+        </ul>
+        <div class="note" style="margin-top:14px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5" stroke-linecap="round"/></svg><span><b>The talk test</b> beats chasing a heart-rate number: if you're gasping, slow down &mdash; Zone 2 only works if it stays easy.</span></div>
+      </div>
+      <div class="card block"><div class="label">Your cardio days, decoded</div><h4>Tue &middot; Thu &middot; Sat</h4>
+        <ul class="ul" style="margin-top:12px">
+          <li><span class="mk">2</span><span><b>Tuesday &mdash; 40&ndash;50 min Zone 2.</b> Your main steady session. Pick one machine above (bike or incline walk are ideal) and hold easy pace. Catch up on a podcast.</span></li>
+          <li><span class="mk">4</span><span><b>Thursday &mdash; 30&ndash;45 min Zone 2 or brisk walk.</b> Shorter and flexible. A real outdoor walk counts &mdash; pram laps with the toddler are perfect here.</span></li>
+          <li><span class="mk">6</span><span><b>Saturday &mdash; optional, 20&ndash;25 min.</b> Either <b>one</b> short HIIT session (e.g. bike: 8&ndash;10 rounds of 20s hard / 60s easy) <i>or</i> just active family time (a hike, swimming, playground). Skip guilt-free on a rough-sleep week.</span></li>
+        </ul>
+      </div>
       <div class="card block"><div class="label">NEAT &mdash; the silent lever</div><h4>8,000&ndash;10,000 steps</h4><p>Non-exercise movement can swing daily burn by up to ~2,000 kcal between similar people &mdash; and it quietly <em>drops</em> when you diet. When the scale stalls, add 1,000&ndash;2,000 steps before cutting food.</p><ul class="ul" style="margin-top:8px"><li><span class="mk">&rarr;</span><span>Walking meetings &amp; hourly desk breaks</span></li><li><span class="mk">&rarr;</span><span>A 10-min walk after each meal</span></li><li><span class="mk">&rarr;</span><span>Stairs, far parking, pram laps with the toddler</span></li></ul></div>
       <div class="card block"><div class="label">Recovery for tired parents</div><h4>Train smart on no sleep</h4><p>Keep lifting to 3 days so muscles get 48h+ to recover. On a bad-sleep day, swap HIIT for a Zone 2 walk. <b>Deload</b> (cut volume ~40%) every 6&ndash;8 weeks or after a rough stretch.</p></div>
     </div>
@@ -1299,6 +1335,22 @@ var GROCERY = [
   var gIcon="<svg width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.2'><path d='M5 8h14l-1.2 11H6.2L5 8zM8 8V6a4 4 0 018 0v2' stroke-linecap='round' stroke-linejoin='round'/></svg>";
   var GKEY="lfl_grocery";           /* checked-state for staples mode */
   var GPKEY="lfl_grocery_picks";    /* checked-state for picks mode */
+  var GCKEY="lfl_grocery_custom";   /* user's own added items: [{id,name,qty,got}] */
+  function customItems(){return loadArr(GCKEY);}
+  function saveCustom(a){saveArr(GCKEY,a);}
+  function customCatHTML(){
+    var items=customItems();
+    var rows=items.map(function(it){
+      return "<div class='gitem"+(it.got?" got":"")+"' data-cust='"+it.id+"'>"+
+        "<span class='gbox'><svg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3.5'><path d='M5 12l5 5L19 7'/></svg></span>"+
+        "<span class='gname'>"+esc(it.name)+"</span>"+
+        (it.qty?"<span class='gqty'>"+esc(it.qty)+"</span>":"")+
+        "<button class='gdel' data-del='"+it.id+"' title='Remove item'>&times;</button>"+
+      "</div>";
+    }).join("");
+    if(!rows)rows="<p style='color:var(--muted);font-size:.86rem;padding:4px 2px 2px'>Add anything the meal plan doesn't cover &mdash; these stay in your list and aren't scaled by the &times;1/&times;2.5 toggle.</p>";
+    return "<div class='card gcat custom'><div class='gch'><div class='gci'><svg width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.2'><path d='M12 5v14M5 12h14' stroke-linecap='round'/></svg></div><h4>My extras</h4></div>"+rows+"</div>";
+  }
   var gMode="picks", gMult=1;
 
   /* parse "200 g" / "300 ml" / "1 clove" / "2" / "1 pinch" -> {n, unit, raw} */
@@ -1353,10 +1405,10 @@ var GROCERY = [
     if(gMode==="staples"){renderStaples();return;}
     var agg=buildFromPicks();
     var aisles=Object.keys(agg);
-    var saved=loadObj(GPKEY), html="", total=0;
+    var saved=loadObj(GPKEY), html=customCatHTML(), total=0;
     if(!aisles.length){
-      $("groceryContent").innerHTML="<div class='card gcat' style='grid-column:1/-1'><p style='color:var(--muted);font-size:.92rem;padding:6px 2px'>No meals picked yet. Go to <b>7-Day Plan</b> and tick the meals you want this week &mdash; they'll be aggregated into a shopping list here.</p></div>";
-      $("gtotal").textContent=0; updateGroceryCount(); return;
+      $("groceryContent").innerHTML=html+"<div class='card gcat' style='grid-column:1/-1'><p style='color:var(--muted);font-size:.92rem;padding:6px 2px'>No meals picked yet. Go to <b>7-Day Plan</b> and tick the meals you want this week &mdash; they'll be aggregated into a shopping list here.</p></div>";
+      $("gtotal").textContent=customItems().length; updateGroceryCount(); return;
     }
     /* order aisles by AISLES order */
     var order=AISLES.map(function(a){return a[0];}).concat(["Other"]);
@@ -1378,7 +1430,7 @@ var GROCERY = [
       html+="<div class='card gcat'><div class='gch'><div class='gci'>"+gIcon+"</div><h4>"+esc(aisle)+"</h4></div>"+rows+"</div>";
     });
     $("groceryContent").innerHTML=html;
-    $("gtotal").textContent=total;
+    $("gtotal").textContent=total+customItems().length;
     updateGroceryCount();
   }
 
@@ -1398,7 +1450,7 @@ var GROCERY = [
   }
 
   function renderStaples(){
-    var saved=loadObj(GKEY), html="", total=0;
+    var saved=loadObj(GKEY), html=customCatHTML(), total=0;
     GROCERY.forEach(function(cat,ci){
       var rows="";
       cat.items.forEach(function(it,ii){
@@ -1410,7 +1462,7 @@ var GROCERY = [
       html+="<div class='card gcat'><div class='gch'><div class='gci'>"+gIcon+"</div><h4>"+esc(cat.cat)+"</h4></div>"+rows+"</div>";
     });
     $("groceryContent").innerHTML=html;
-    $("gtotal").textContent=total;
+    $("gtotal").textContent=total+customItems().length;
     updateGroceryCount();
   }
   /* staples list is already family-sized (~2.5x). Treat its numbers as the x2.5 baseline:
@@ -1432,17 +1484,49 @@ var GROCERY = [
     $("gfill").style.width=(items.length?(done/items.length*100):0)+"%";
   }
   $("groceryContent").addEventListener("click",function(e){
+    /* delete a custom item */
+    var del=e.target.closest&&e.target.closest(".gdel");
+    if(del){
+      e.stopPropagation();
+      var did=del.getAttribute("data-del");
+      saveCustom(customItems().filter(function(it){return it.id!==did;}));
+      renderGrocery();
+      return;
+    }
     var row=e.target.closest&&e.target.closest(".gitem"); if(!row)return;
-    var on=row.classList.toggle("got");
+    /* custom item check-off */
+    var cid=row.getAttribute("data-cust");
+    if(cid){
+      var on=row.classList.toggle("got");
+      var arr=customItems();
+      arr.forEach(function(it){if(it.id===cid)it.got=on?1:0;});
+      saveCustom(arr); updateGroceryCount(); return;
+    }
+    /* generated/staple item */
+    var on2=row.classList.toggle("got");
     var saved=loadObj(curKey()); var k=row.getAttribute("data-key");
-    if(on)saved[k]=1; else delete saved[k];
+    if(on2)saved[k]=1; else delete saved[k];
     saveObj(curKey(),saved); updateGroceryCount();
   });
   $("gReset").addEventListener("click",function(){
     saveObj(curKey(),{});
+    var arr=customItems(); arr.forEach(function(it){it.got=0;}); saveCustom(arr);
     document.querySelectorAll("#groceryContent .gitem.got").forEach(function(r){r.classList.remove("got");});
     updateGroceryCount();
   });
+  /* add a custom item */
+  function addCustom(){
+    var name=$("gAddName").value.trim(); if(!name)return;
+    var qty=$("gAddQty").value.trim();
+    var arr=customItems();
+    arr.push({id:"c"+Date.now()+Math.floor(Math.random()*1000),name:name,qty:qty,got:0});
+    saveCustom(arr);
+    $("gAddName").value=""; $("gAddQty").value=""; $("gAddName").focus();
+    renderGrocery();
+  }
+  $("gAddBtn").addEventListener("click",addCustom);
+  $("gAddName").addEventListener("keydown",function(e){if(e.key==="Enter")addCustom();});
+  $("gAddQty").addEventListener("keydown",function(e){if(e.key==="Enter")addCustom();});
   $("gCopy").addEventListener("click",function(){
     var who=gMult===1?"just me":"family (x2.5)";
     var src=gMode==="staples"?"full-week staples":"my picked meals";
@@ -1696,7 +1780,7 @@ var GROCERY = [
   paintWeight();
 
   /* ---- EXPORT / IMPORT ---- */
-  var ALL_KEYS=["lfl_weight","lfl_habits","lfl_week","lfl_grocery","lfl_grocery_picks","lfl_picks","lfl_favs","lfl_mealsel"];
+  var ALL_KEYS=["lfl_weight","lfl_habits","lfl_week","lfl_grocery","lfl_grocery_picks","lfl_grocery_custom","lfl_picks","lfl_favs","lfl_mealsel"];
   $("dtExport").addEventListener("click",function(){
     var dump={_app:"lean-for-life",_v:1,_exported:new Date().toISOString(),data:{}};
     ALL_KEYS.forEach(function(k){var r=store.get(k);if(r!=null)dump.data[k]=r;});

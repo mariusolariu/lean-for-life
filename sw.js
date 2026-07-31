@@ -1,12 +1,13 @@
 /* Lean for Life service worker — offline app shell */
-var CACHE = "lfl-v1";
+var CACHE = "lfl-v5";
 var ASSETS = [
   "lean-for-life.html",
   "manifest.webmanifest",
   "icon-192.png",
   "icon-512.png",
   "icon-180.png",
-  "lean-for-life-meal-plan.pdf"
+  "lean-for-life-meal-plan.pdf",
+  "lean-for-life-research.pptx"
 ];
 
 self.addEventListener("install", function (e) {

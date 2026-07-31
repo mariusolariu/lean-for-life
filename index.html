@@ -405,7 +405,19 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
 .acc-head .badge{font-family:var(--serif);font-weight:600;width:38px;height:38px;border-radius:10px;background:var(--clay);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex:none}
 .acc-head .at{font-family:var(--serif);font-weight:600;font-size:1.1rem;letter-spacing:-.01em}
 .acc-head .ad{font-size:.8rem;color:var(--muted);margin-top:1px}
-.ex{display:grid;grid-template-columns:1fr auto;gap:12px;padding:11px 0;border-top:1px solid var(--line);align-items:center}
+.ex{display:grid;grid-template-columns:auto 1fr auto;gap:12px;padding:11px 0;border-top:1px solid var(--line);align-items:center}
+.edemo{position:relative;width:78px;height:52px;border-radius:8px;overflow:hidden;background:var(--surface-2);border:1px solid var(--line);flex:none;cursor:zoom-in;padding:0}
+.edemo img{width:100%;height:100%;object-fit:cover;display:block}
+.edemo:hover{border-color:var(--clay)}
+@media(max-width:560px){.edemo{width:64px;height:46px}}
+.exlight{position:fixed;inset:0;background:rgba(28,24,18,.82);z-index:2000;display:none;align-items:center;justify-content:center;padding:22px}
+.exlight.open{display:flex}
+.exlight .box{background:var(--surface);border-radius:var(--r);overflow:hidden;max-width:min(480px,94vw);width:100%;box-shadow:var(--shadow-lg)}
+.exlight img{width:100%;display:block}
+.exlight .cap{display:flex;align-items:center;gap:10px;padding:13px 16px}
+.exlight .cap b{font-family:var(--serif);font-size:1.05rem;flex:1}
+.exlight .cap button{flex:none;background:var(--surface-2);border:1px solid var(--line);border-radius:99px;padding:7px 14px;font-family:var(--sans);font-weight:700;font-size:.84rem;color:var(--ink);cursor:pointer}
+.exlight .cap button:hover{border-color:var(--ink)}
 .ex .en{font-weight:600;font-size:.93rem}
 .ex a.en{color:var(--ink);text-decoration:none;border-bottom:1.5px dotted var(--clay);padding-bottom:1px;display:inline-flex;align-items:center;gap:5px;transition:.2s}
 .ex a.en:hover{color:var(--clay-deep);border-bottom-style:solid}
@@ -532,9 +544,10 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
     </div>
     <div class="nav-links" id="navLinks">
       <a href="#overview" class="active">Overview</a>
-      <a href="#calculator">Numbers</a>
       <a href="#kitchen">Kitchen</a>
       <a href="#move">Move</a>
+      <a href="#calculator">Numbers</a>
+      <a href="#research">Research</a>
       <a href="#rest">Rest</a>
       <a href="#track">Track</a>
     </div>
@@ -557,10 +570,10 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
       </h1>
       <p class="sub">A sustainable, evidence-based plan to drop <b>11 kg over ~5 months</b> and keep it off &mdash; built on a moderate deficit, three lifts a week, Mediterranean meal-prep, and sleep that survives a toddler.</p>
       <div class="hero-cta">
-        <a href="#calculator" class="btn btn-primary">Run my numbers
+        <a href="#kitchen" class="btn btn-primary">Open the kitchen
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <a href="#kitchen" class="btn btn-ghost">Open the kitchen</a>
+        <a href="#calculator" class="btn btn-ghost">Run my numbers</a>
       </div>
     </div>
     <div class="reveal in">
@@ -587,62 +600,6 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
 </header>
 
 <!-- ============ CALCULATOR ============ -->
-<section id="calculator" class="wrap">
-  <div class="reveal">
-    <div class="eyebrow">Your numbers, live</div>
-    <h2 class="sec-title">The math behind the deficit</h2>
-    <p class="sec-lead">Mifflin&ndash;St Jeor BMR, your activity level, and a deficit <em>you</em> control. Update your weight as it drops &mdash; targets recalculate, because a lighter you burns less.</p>
-  </div>
-  <div class="calc-shell reveal">
-    <div class="calc-in">
-      <h3>About you</h3>
-      <p class="hint">Pre-filled with your stats. Tweak anytime.</p>
-      <div class="field"><label>Current weight <span class="lv" id="lw">86 kg</span></label><input type="number" id="w" value="86" min="50" max="200" step="0.5" inputmode="decimal"></div>
-      <div class="field"><label>Height <span class="lv" id="lh">170 cm</span></label><input type="number" id="h" value="170" min="120" max="220" step="1" inputmode="numeric"></div>
-      <div class="field"><label>Age <span class="lv" id="la">32 yrs</span></label><input type="number" id="age" value="32" min="16" max="90" step="1" inputmode="numeric"></div>
-      <div class="field"><label>Activity level</label>
-        <select id="act">
-          <option value="1.2">Sedentary &mdash; desk job, no training</option>
-          <option value="1.375">Light &mdash; train 1&ndash;3&times;/week</option>
-          <option value="1.55" selected>Moderate &mdash; train 3&ndash;5&times;/week</option>
-          <option value="1.725">Very active &mdash; train 6&ndash;7&times;/week</option>
-        </select>
-      </div>
-      <div class="field"><label>Daily deficit <span class="lv"><span id="ldef">550</span> kcal&nbsp; <span class="def-badge def-ok" id="defbadge">Sustainable</span></span></label>
-        <input type="range" id="deficit" value="550" min="300" max="800" step="50">
-        <div class="range-scale"><span>300 gentle</span><span>550 ideal</span><span>800 aggressive</span></div>
-      </div>
-    </div>
-    <div class="calc-out">
-      <h3 style="color:#fff">Your daily target</h3>
-      <div class="cal-hero"><div class="kcal" id="o-kcal">2,190</div><div class="kcal-lab">kcal<br>to eat</div></div>
-      <div class="cal-sub">BMR <span id="o-bmr">1,768</span> kcal &nbsp;&bull;&nbsp; maintenance (TDEE) <span id="o-tdee">2,740</span> kcal</div>
-      <div class="macro-row">
-        <div class="donut" id="donut"><div class="donut-c"><div class="dn" id="o-pg">163g</div><div class="dl">protein</div></div></div>
-        <div class="macro-leg">
-          <div class="mleg"><span class="sw" style="background:var(--olive)"></span><span class="mn"><span id="o-p">163</span>g</span><span class="ml">Protein</span><span class="mk" id="o-pp">31%</span></div>
-          <div class="mleg"><span class="sw" style="background:var(--clay)"></span><span class="mn"><span id="o-c">191</span>g</span><span class="ml">Carbs</span><span class="mk" id="o-cp">37%</span></div>
-          <div class="mleg"><span class="sw" style="background:var(--ochre)"></span><span class="mn"><span id="o-f">76</span>g</span><span class="ml">Fat</span><span class="mk" id="o-fp">32%</span></div>
-        </div>
-      </div>
-      <div class="out-foot">
-        <div class="ff"><div class="v" id="o-rate">0.50</div><div class="k">kg lost / week (est.)</div></div>
-        <div class="ff"><div class="v" id="o-date">early Nov</div><div class="k">on track to hit 75 kg</div></div>
-      </div>
-      <div class="prog-wrap">
-        <div class="prog-top"><span>86 kg start</span><span>75 kg goal</span></div>
-        <div class="prog-track"><div class="prog-fill" id="o-prog"></div></div>
-        <div class="prog-lab" id="o-proglab"><b>0%</b> of the way there &mdash; 11.0 kg to go</div>
-      </div>
-    </div>
-  </div>
-  <div class="note reveal">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5" stroke-linecap="round"/></svg>
-    <span>The activity multiplier is the least precise input. Treat this as a starting hypothesis &mdash; weigh in for 2&ndash;3 weeks; if your <b>trend</b> is slower than ~0.4 kg/wk eat a little less, faster than ~0.9 kg/wk eat a little more to protect muscle.</span>
-  </div>
-</section>
-
-<!-- ============ KITCHEN ============ -->
 <section id="kitchen" class="wrap">
   <div class="reveal">
     <div class="eyebrow">The kitchen &mdash; eat well, prep once</div>
@@ -660,6 +617,20 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
     </span>
   </a>
+
+  <!-- bowl template -->
+  <div class="card block reveal" style="margin-bottom:24px">
+    <div class="label">New &mdash; steady energy tricks</div>
+    <h4>Four small habits that stop the post-meal slump</h4>
+    <p style="margin-top:6px">Same food, smarter order. These keep your energy steadier, hunger quieter, and cravings down &mdash; no extra cooking, no weighing anything:</p>
+    <ul class="ul" style="margin-top:12px">
+      <li><span class="mk">1</span><span><b>Eat in order:</b> veg first, then meat/fish/eggs, carbs last. That's it &mdash; same plate, start at the salad end.</span></li>
+      <li><span class="mk">2</span><span><b>Walk 10 minutes after big meals.</b> A slow stroll after lunch or dinner &mdash; pram laps count. Your muscles soak up the meal instead of storing it.</span></li>
+      <li><span class="mk">3</span><span><b>Lemon or vinegar on the plate.</b> A vinaigrette on the salad or lemon squeezed over the meal takes the edge off the carbs. (The recipes already do this a lot.)</span></li>
+      <li><span class="mk">4</span><span><b>Fruit whole, never juiced</b> &mdash; and sweet things after a meal, not on an empty stomach.</span></li>
+    </ul>
+    <p style="margin-top:12px;font-size:.86rem;color:var(--muted)">The plan below has also been quietly upgraded: slower-burning carbs everywhere &mdash; bulgur &amp; basmati instead of plain rice, sweet potato instead of white, muesli instead of granola, berries instead of honey. Same calories, steadier fuel.</p>
+  </div>
 
   <!-- bowl template -->
   <div class="card bowl reveal" style="margin-bottom:34px">
@@ -754,8 +725,6 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
     </div>
   </div>
 </section>
-
-<!-- ============ MOVE ============ -->
 <section id="move" class="wrap">
   <div class="reveal">
     <div class="eyebrow">Move &mdash; lift heavy, walk often</div>
@@ -779,31 +748,31 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
       <div class="acc">
         <div class="acc-head"><div class="badge">A</div><div style="flex:1"><div class="at">Full Body A</div><div class="ad">Squat-focused</div></div><svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></div>
         <div class="acc-body"><div class="acc-body-in">
-          <div class="ex"><a class="en" href="https://www.google.com/search?q=barbell%20squat%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Back squat / leg press<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 6&ndash;8</span></div>
-          <div class="ex"><a class="en" href="https://www.google.com/search?q=barbell%20bench%20press%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Bench press / push-up<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 8&ndash;10</span></div>
-          <div class="ex"><a class="en" href="https://www.google.com/search?q=lat%20pulldown%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Lat pulldown / row<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 8&ndash;10</span></div>
-          <div class="ex"><a class="en" href="https://www.google.com/search?q=romanian%20deadlift%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Romanian deadlift<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 10&ndash;12</span></div>
-          <div class="ex"><a class="en" href="https://www.google.com/search?q=plank%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Plank<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 30&ndash;45s</span></div>
+          <div class="ex"><button class="edemo" data-ex="squat" title="Tap to enlarge" type="button"><img src="exercises/squat.gif" alt="" loading="lazy"></button><a class="en" href="https://www.google.com/search?q=barbell%20squat%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Back squat / leg press<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 6&ndash;8</span></div>
+          <div class="ex"><button class="edemo" data-ex="bench" title="Tap to enlarge" type="button"><img src="exercises/bench.gif" alt="" loading="lazy"></button><a class="en" href="https://www.google.com/search?q=barbell%20bench%20press%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Bench press / push-up<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 8&ndash;10</span></div>
+          <div class="ex"><button class="edemo" data-ex="pulldown" title="Tap to enlarge" type="button"><img src="exercises/pulldown.gif" alt="" loading="lazy"></button><a class="en" href="https://www.google.com/search?q=lat%20pulldown%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Lat pulldown / row<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 8&ndash;10</span></div>
+          <div class="ex"><button class="edemo" data-ex="rdl" title="Tap to enlarge" type="button"><img src="exercises/rdl.gif" alt="" loading="lazy"></button><a class="en" href="https://www.google.com/search?q=romanian%20deadlift%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Romanian deadlift<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 10&ndash;12</span></div>
+          <div class="ex"><button class="edemo" data-ex="plank" title="Tap to enlarge" type="button"><img src="exercises/plank.gif" alt="" loading="lazy"></button><a class="en" href="https://www.google.com/search?q=plank%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Plank<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 30&ndash;45s</span></div>
         </div></div>
       </div>
       <div class="acc">
         <div class="acc-head"><div class="badge">B</div><div style="flex:1"><div class="at">Full Body B</div><div class="ad">Hinge-focused</div></div><svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></div>
         <div class="acc-body"><div class="acc-body-in">
-          <div class="ex"><a class="en" href="https://www.google.com/search?q=barbell%20deadlift%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Deadlift / hip hinge<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 5&ndash;6</span></div>
-          <div class="ex"><a class="en" href="https://www.google.com/search?q=overhead%20press%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Overhead press<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 6&ndash;8</span></div>
-          <div class="ex"><a class="en" href="https://www.google.com/search?q=seated%20cable%20row%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Seated cable row<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 8&ndash;10</span></div>
-          <div class="ex"><a class="en" href="https://www.google.com/search?q=leg%20curl%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Leg curl<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 10&ndash;12</span></div>
-          <div class="ex"><a class="en" href="https://www.google.com/search?q=face%20pull%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Face pulls<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 12&ndash;15</span></div>
+          <div class="ex"><button class="edemo" data-ex="deadlift" title="Tap to enlarge" type="button"><img src="exercises/deadlift.gif" alt="" loading="lazy"></button><a class="en" href="https://www.google.com/search?q=barbell%20deadlift%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Deadlift / hip hinge<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 5&ndash;6</span></div>
+          <div class="ex"><button class="edemo" data-ex="ohp" title="Tap to enlarge" type="button"><img src="exercises/ohp.gif" alt="" loading="lazy"></button><a class="en" href="https://www.google.com/search?q=overhead%20press%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Overhead press<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 6&ndash;8</span></div>
+          <div class="ex"><button class="edemo" data-ex="cablerow" title="Tap to enlarge" type="button"><img src="exercises/cablerow.gif" alt="" loading="lazy"></button><a class="en" href="https://www.google.com/search?q=seated%20cable%20row%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Seated cable row<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 8&ndash;10</span></div>
+          <div class="ex"><button class="edemo" data-ex="legcurl" title="Tap to enlarge" type="button"><img src="exercises/legcurl.gif" alt="" loading="lazy"></button><a class="en" href="https://www.google.com/search?q=leg%20curl%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Leg curl<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 10&ndash;12</span></div>
+          <div class="ex"><button class="edemo" data-ex="facepull" title="Tap to enlarge" type="button"><img src="exercises/facepull.gif" alt="" loading="lazy"></button><a class="en" href="https://www.google.com/search?q=face%20pull%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Face pulls<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 12&ndash;15</span></div>
         </div></div>
       </div>
       <div class="acc">
         <div class="acc-head"><div class="badge">C</div><div style="flex:1"><div class="at">Full Body C</div><div class="ad">Volume &amp; arms</div></div><svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></div>
         <div class="acc-body"><div class="acc-body-in">
-          <div class="ex"><a class="en" href="https://www.google.com/search?q=leg%20press%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Leg press / walking lunge<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 8&ndash;10</span></div>
-          <div class="ex"><a class="en" href="https://www.google.com/search?q=incline%20dumbbell%20press%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Incline DB press<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 8&ndash;10</span></div>
-          <div class="ex"><a class="en" href="https://www.google.com/search?q=pull%20up%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Assisted pull-ups<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 6&ndash;10</span></div>
-          <div class="ex"><a class="en" href="https://www.google.com/search?q=dumbbell%20row%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Dumbbell row<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 8&ndash;10</span></div>
-          <div class="ex"><a class="en" href="https://www.google.com/search?q=hanging%20knee%20raise%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Hanging knee raise<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 12&ndash;15</span></div>
+          <div class="ex"><button class="edemo" data-ex="legpress" title="Tap to enlarge" type="button"><img src="exercises/legpress.gif" alt="" loading="lazy"></button><a class="en" href="https://www.google.com/search?q=leg%20press%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Leg press / walking lunge<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 8&ndash;10</span></div>
+          <div class="ex"><button class="edemo" data-ex="inclinedb" title="Tap to enlarge" type="button"><img src="exercises/inclinedb.gif" alt="" loading="lazy"></button><a class="en" href="https://www.google.com/search?q=incline%20dumbbell%20press%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Incline DB press<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 8&ndash;10</span></div>
+          <div class="ex"><button class="edemo" data-ex="pullup" title="Tap to enlarge" type="button"><img src="exercises/pullup.gif" alt="" loading="lazy"></button><a class="en" href="https://www.google.com/search?q=pull%20up%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Assisted pull-ups<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 6&ndash;10</span></div>
+          <div class="ex"><button class="edemo" data-ex="dbrow" title="Tap to enlarge" type="button"><img src="exercises/dbrow.gif" alt="" loading="lazy"></button><a class="en" href="https://www.google.com/search?q=dumbbell%20row%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Dumbbell row<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 8&ndash;10</span></div>
+          <div class="ex"><button class="edemo" data-ex="kneeraise" title="Tap to enlarge" type="button"><img src="exercises/kneeraise.gif" alt="" loading="lazy"></button><a class="en" href="https://www.google.com/search?q=hanging%20knee%20raise%20site%3Aexrx.net" target="_blank" rel="noopener noreferrer">Hanging knee raise<svg width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4'><path d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5' stroke-linecap='round' stroke-linejoin='round'/></svg></a><span class="es">3 &times; 12&ndash;15</span></div>
         </div></div>
       </div>
       <div class="note" style="margin-top:16px">
@@ -826,47 +795,157 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
         <ul class="ul" style="margin-top:12px">
           <li><span class="mk">2</span><span><b>Tuesday &mdash; 40&ndash;50 min Zone 2.</b> Your main steady session. Pick one machine above (bike or incline walk are ideal) and hold easy pace. Catch up on a podcast.</span></li>
           <li><span class="mk">4</span><span><b>Thursday &mdash; 30&ndash;45 min Zone 2 or brisk walk.</b> Shorter and flexible. A real outdoor walk counts &mdash; pram laps with the toddler are perfect here.</span></li>
-          <li><span class="mk">6</span><span><b>Saturday &mdash; optional, 20&ndash;25 min.</b> Either <b>one</b> short HIIT session (e.g. bike: 8&ndash;10 rounds of 20s hard / 60s easy) <i>or</i> just active family time (a hike, swimming, playground). Skip guilt-free on a rough-sleep week.</span></li>
+          <li><span class="mk">6</span><span><b>Saturday &mdash; optional, 20&ndash;25 min.</b> Either <b>one</b> short burst session (e.g. bike: 8&ndash;10 rounds of 20s hard / 60s easy) <i>or</i> just active family time (a hike, swimming, playground). Skip guilt-free on a rough-sleep week.</span></li>
         </ul>
+      </div>
+      <div class="card block"><div class="label">New &mdash; for busy mornings</div><h4>The 25-minute morning run (before he wakes up)</h4>
+        <p style="margin-top:6px">You don't need to be a runner. You need 25 minutes, three mornings a week, out the door before family life starts:</p>
+        <ul class="ul" style="margin-top:12px">
+          <li><span class="mk">1</span><span><b>Run 30 seconds, walk 30 seconds.</b> Repeat for 20&ndash;25 minutes. Yes, it counts &mdash; walk breaks are how beginners avoid injuries and actually stick with it.</span></li>
+          <li><span class="mk">2</span><span><b>Keep it chatty.</b> If you couldn't hold a conversation, you're going too hard. Slow is the plan, not a failure of it.</span></li>
+          <li><span class="mk">3</span><span><b>Progress gently:</b> every week or two, run a little more, walk a little less (30/30 &rarr; 60/30 &rarr; 90/30&hellip;). Never add much more than 10% in a week.</span></li>
+          <li><span class="mk">4</span><span><b>Morning is the magic slot:</b> it's the only time nobody needs you, the daylight sets your body clock for better sleep tonight, and it's done before excuses wake up. Water before you go; breakfast after is fine.</span></li>
+        </ul>
+        <p style="margin-top:12px;font-size:.86rem;color:var(--muted)">These can replace the Tuesday/Thursday cardio sessions entirely &mdash; a run-walk outdoors <i>is</i> your Zone 2.</p>
       </div>
       <div class="card block"><div class="label">NEAT &mdash; the silent lever</div><h4>8,000&ndash;10,000 steps</h4><p>Non-exercise movement can swing daily burn by up to ~2,000 kcal between similar people &mdash; and it quietly <em>drops</em> when you diet. When the scale stalls, add 1,000&ndash;2,000 steps before cutting food.</p><ul class="ul" style="margin-top:8px"><li><span class="mk">&rarr;</span><span>Walking meetings &amp; hourly desk breaks</span></li><li><span class="mk">&rarr;</span><span>A 10-min walk after each meal</span></li><li><span class="mk">&rarr;</span><span>Stairs, far parking, pram laps with the toddler</span></li></ul></div>
       <div class="card block"><div class="label">Recovery for tired parents</div><h4>Train smart on no sleep</h4><p>Keep lifting to 3 days so muscles get 48h+ to recover. On a bad-sleep day, swap HIIT for a Zone 2 walk. <b>Deload</b> (cut volume ~40%) every 6&ndash;8 weeks or after a rough stretch.</p></div>
     </div>
   </div>
 </section>
+<section id="calculator" class="wrap">
+  <div class="reveal">
+    <div class="eyebrow">Your numbers, live</div>
+    <h2 class="sec-title">The math behind the deficit</h2>
+    <p class="sec-lead">Mifflin&ndash;St Jeor BMR, your activity level, and a deficit <em>you</em> control. Update your weight as it drops &mdash; targets recalculate, because a lighter you burns less.</p>
+  </div>
+  <div class="calc-shell reveal">
+    <div class="calc-in">
+      <h3>About you</h3>
+      <p class="hint">Pre-filled with your stats. Tweak anytime.</p>
+      <div class="field"><label>Current weight <span class="lv" id="lw">86 kg</span></label><input type="number" id="w" value="86" min="50" max="200" step="0.5" inputmode="decimal"></div>
+      <div class="field"><label>Height <span class="lv" id="lh">170 cm</span></label><input type="number" id="h" value="170" min="120" max="220" step="1" inputmode="numeric"></div>
+      <div class="field"><label>Age <span class="lv" id="la">32 yrs</span></label><input type="number" id="age" value="32" min="16" max="90" step="1" inputmode="numeric"></div>
+      <div class="field"><label>Activity level</label>
+        <select id="act">
+          <option value="1.2">Sedentary &mdash; desk job, no training</option>
+          <option value="1.375">Light &mdash; train 1&ndash;3&times;/week</option>
+          <option value="1.55" selected>Moderate &mdash; train 3&ndash;5&times;/week</option>
+          <option value="1.725">Very active &mdash; train 6&ndash;7&times;/week</option>
+        </select>
+      </div>
+      <div class="field"><label>Daily deficit <span class="lv"><span id="ldef">550</span> kcal&nbsp; <span class="def-badge def-ok" id="defbadge">Sustainable</span></span></label>
+        <input type="range" id="deficit" value="550" min="300" max="800" step="50">
+        <div class="range-scale"><span>300 gentle</span><span>550 ideal</span><span>800 aggressive</span></div>
+      </div>
+    </div>
+    <div class="calc-out">
+      <h3 style="color:#fff">Your daily target</h3>
+      <div class="cal-hero"><div class="kcal" id="o-kcal">2,190</div><div class="kcal-lab">kcal<br>to eat</div></div>
+      <div class="cal-sub">BMR <span id="o-bmr">1,768</span> kcal &nbsp;&bull;&nbsp; maintenance (TDEE) <span id="o-tdee">2,740</span> kcal</div>
+      <div class="macro-row">
+        <div class="donut" id="donut"><div class="donut-c"><div class="dn" id="o-pg">163g</div><div class="dl">protein</div></div></div>
+        <div class="macro-leg">
+          <div class="mleg"><span class="sw" style="background:var(--olive)"></span><span class="mn"><span id="o-p">163</span>g</span><span class="ml">Protein</span><span class="mk" id="o-pp">31%</span></div>
+          <div class="mleg"><span class="sw" style="background:var(--clay)"></span><span class="mn"><span id="o-c">191</span>g</span><span class="ml">Carbs</span><span class="mk" id="o-cp">37%</span></div>
+          <div class="mleg"><span class="sw" style="background:var(--ochre)"></span><span class="mn"><span id="o-f">76</span>g</span><span class="ml">Fat</span><span class="mk" id="o-fp">32%</span></div>
+        </div>
+      </div>
+      <div class="out-foot">
+        <div class="ff"><div class="v" id="o-rate">0.50</div><div class="k">kg lost / week (est.)</div></div>
+        <div class="ff"><div class="v" id="o-date">early Nov</div><div class="k">on track to hit 75 kg</div></div>
+      </div>
+      <div class="prog-wrap">
+        <div class="prog-top"><span>86 kg start</span><span>75 kg goal</span></div>
+        <div class="prog-track"><div class="prog-fill" id="o-prog"></div></div>
+        <div class="prog-lab" id="o-proglab"><b>0%</b> of the way there &mdash; 11.0 kg to go</div>
+      </div>
+    </div>
+  </div>
+  <div class="note reveal">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5" stroke-linecap="round"/></svg>
+    <span>The activity multiplier is the least precise input. Treat this as a starting hypothesis &mdash; weigh in for 2&ndash;3 weeks; if your <b>trend</b> is slower than ~0.4 kg/wk eat a little less, faster than ~0.9 kg/wk eat a little more to protect muscle.</span>
+  </div>
+</section>
+
+<!-- ============ KITCHEN ============ -->
+
+<!-- ============ MOVE ============ -->
 
 <!-- ============ REST ============ -->
-<section id="rest" class="wrap">
+<section id="research" class="wrap">
   <div class="reveal">
-    <div class="eyebrow">Rest &mdash; the fat-loss lever you're skipping</div>
-    <h2 class="sec-title">Sleep decides where<br>the weight comes off</h2>
-    <p class="sec-lead">In a controlled trial, dieters on identical calories who slept <em>5.5h vs 8.5h</em> lost the same total weight &mdash; but far less of it was fat, and far more was muscle. With a 2-year-old you can't guarantee 8 hours. You <b>can</b> stack the odds.</p>
+    <div class="eyebrow">Research &mdash; what actually keeps weight off</div>
+    <h2 class="sec-title">The science, minus<br>the jargon</h2>
+    <p class="sec-lead">Thousands of people have lost weight and kept it off for a decade &mdash; and researchers have studied exactly what they do differently. Here's the short version, in plain English.</p>
   </div>
   <div class="statcards reveal" style="margin-bottom:38px">
-    <div class="sc"><div class="scv">&minus;55%</div><div class="scl">of weight lost came from <b>fat</b> on short sleep &mdash; the rest was lean mass (which rose 60%).</div><div class="src">Nedeltcheva et al., 2010</div></div>
-    <div class="sc"><div class="scv">+28%</div><div class="scl">ghrelin (hunger hormone) after just two short nights &mdash; leptin down 18%, hunger up 24%.</div><div class="src">Spiegel et al., 2004</div></div>
-    <div class="sc"><div class="scv">+45%</div><div class="scl">spike in appetite for <b>calorie-dense, high-carb</b> foods when sleep-deprived. Tired brains crave sugar.</div><div class="src">Spiegel et al., 2004</div></div>
+    <div class="sc"><div class="scv">87%</div><div class="scl">of long-term losers were <b>still keeping the weight off 10 years later</b>. Their common habits: weigh in weekly, eat breakfast, move about an hour a day.</div><div class="src">10,000-person registry study</div></div>
+    <div class="sc"><div class="scv">~500</div><div class="scl">fewer calories a day &mdash; how much <b>less</b> your body burns after crash-dieting, even years later. It's why slow beats fast, every time.</div><div class="src">6-year follow-up study</div></div>
+    <div class="sc"><div class="scv">66</div><div class="scl">days, on average, for a new habit to feel automatic. Missing a single day made <b>no difference</b>. Give routines two months before judging them.</div><div class="src">Habit-formation research</div></div>
   </div>
   <div class="grid cols-2 reveal" style="align-items:start">
     <div class="card block">
-      <div class="label">Protect the sleep you can get</div>
-      <h4>Seven realistic moves</h4>
+      <div class="label">The five that matter most</div>
+      <h4>What the keep-it-off crowd actually does</h4>
       <ul class="ul" style="margin-top:14px">
-        <li><span class="mk">1</span><span><b>Anchor your wake time.</b> A fixed rise time &mdash; even after a broken night &mdash; steadies your body clock more than a fixed bedtime.</span></li>
-        <li><span class="mk">2</span><span><b>Guard an 8h window.</b> Be in bed for the opportunity even if sleep fragments; the buffer absorbs night-wakings.</span></li>
-        <li><span class="mk">3</span><span><b>Caffeine off by 2pm.</b> Half-life ~5&ndash;6h; even 6h before bed it measurably cuts sleep.</span></li>
-        <li><span class="mk">4</span><span><b>Nap smart.</b> 20&ndash;30 min on weekdays; one 90-min cycle on a weekend. Avoid late-afternoon naps.</span></li>
+        <li><span class="mk">1</span><span><b>Weigh in weekly and write it down.</b> Boring, unbeatable. Your weight log in Track does exactly this &mdash; it's the single strongest predictor of keeping weight off.</span></li>
+        <li><span class="mk">2</span><span><b>Keep protein high and keep lifting.</b> That's what makes the weight you lose come from fat instead of muscle. Your plan already does both.</span></li>
+        <li><span class="mk">3</span><span><b>Sleep like it's part of the diet.</b> People who slept longer ate ~270 fewer calories a day <i>without trying</i>. Tired brains order takeaway.</span></li>
+        <li><span class="mk">4</span><span><b>Eat earlier.</b> A proper breakfast and an earlier, lighter dinner beat the same food eaten late. Your body handles food better before dark.</span></li>
+        <li><span class="mk">5</span><span><b>Move between workouts.</b> For a desk job this is the sleeper hit: steps, standing, pacing on calls. The fidgety burn between sessions can outweigh the gym itself.</span></li>
       </ul>
     </div>
     <div class="card block">
-      <div class="label">&nbsp;</div>
-      <h4 style="height:0;margin:0;opacity:0">.</h4>
-      <ul class="ul">
-        <li><span class="mk">5</span><span><b>Wind-down ritual (30&ndash;60 min).</b> Warm shower &rarr; dim lights below ~100 lux &rarr; read. The same sequence nightly conditions sleep onset.</span></li>
-        <li><span class="mk">6</span><span><b>Limit alcohol.</b> It fragments the back half of the night and suppresses early REM.</span></li>
-        <li><span class="mk">7</span><span><b>On low-sleep days:</b> swap HIIT for a walk, front-load protein at breakfast, lean on pre-planned meals so willpower isn't the gatekeeper. Don't catastrophise one bad night.</span></li>
+      <div class="label">And the mindset</div>
+      <h4>Why "slow" is the strategy, not the compromise</h4>
+      <ul class="ul" style="margin-top:14px">
+        <li><span class="mk">&rarr;</span><span><b>Your body fights back</b> when you lose weight: hunger goes up, burn goes down. That's biology, not weak will. The counter-moves are exactly the five on the left.</span></li>
+        <li><span class="mk">&rarr;</span><span><b>Expect the scale to argue with you.</b> Day-to-day jumps are water and salt. Judge the weekly trend line, nothing else.</span></li>
+        <li><span class="mk">&rarr;</span><span><b>One bad day costs nothing.</b> The habit research is clear: consistency over weeks wins; perfection is irrelevant.</span></li>
+        <li><span class="mk">&rarr;</span><span><b>The finish line isn't 75 kg</b> &mdash; it's the routine that got you there, kept. That's why this whole site is built around habits, not a deadline.</span></li>
       </ul>
-      <div class="note" style="margin-top:18px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z" stroke-linejoin="round"/></svg><span>Short-term hormone effects vary between studies &mdash; but the body-composition and behavioural effects are robust. Either way: protect sleep.</span></div>
+    </div>
+  </div>
+  <a class="pdf-dl reveal" href="lean-for-life-research.pptx" download style="margin-top:34px">
+    <span class="pdf-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4" stroke-linecap="round"/></svg></span>
+    <span class="pdf-tx"><b>The research, as a slide deck</b><span>A short PowerPoint of these findings &mdash; download, keep, or share it.</span></span>
+    <span class="pdf-btn">Download .pptx</span>
+  </a>
+</section>
+<section id="rest" class="wrap">
+  <div class="reveal">
+    <div class="eyebrow">Rest &amp; rhythm &mdash; the levers you're skipping</div>
+    <h2 class="sec-title">Keep your days on rails,<br>and sleep follows</h2>
+    <p class="sec-lead">Two things are true at once: <b>sleep decides where the weight comes off</b> (short sleep = more muscle lost, more hunger), and <b>a steady daily rhythm keeps your mood on an even keel</b>. The good news &mdash; one habit serves both: doing the same few things at the same times every day.</p>
+  </div>
+  <div class="statcards reveal" style="margin-bottom:38px">
+    <div class="sc"><div class="scv">&minus;270</div><div class="scl">calories a day &mdash; how much less people ate when they simply slept longer. No dieting involved, just more sleep.</div><div class="src">JAMA Internal Medicine, 2022</div></div>
+    <div class="sc"><div class="scv">5</div><div class="scl">daily anchors that keep your body clock steady: wake up, first hello, start work, dinner, bed &mdash; at roughly the same times.</div><div class="src">Rhythm-therapy research</div></div>
+    <div class="sc"><div class="scv">#1</div><div class="scl">anchor of them all: <b>your wake-up time</b>. Hold it steady (even after a rough night) and everything else falls into line.</div><div class="src">The one to protect</div></div>
+  </div>
+  <div class="grid cols-2 reveal" style="align-items:start">
+    <div class="card block">
+      <div class="label">The routine</div>
+      <h4>Five anchors, same time daily</h4>
+      <ul class="ul" style="margin-top:14px">
+        <li><span class="mk">1</span><span><b>Wake at the same time</b> every day &mdash; weekends too, within half an hour. This is the master switch; guard it even after a broken night.</span></li>
+        <li><span class="mk">2</span><span><b>Get daylight (or your morning run) soon after waking.</b> Morning light and movement tell your body clock "the day has started" &mdash; you'll feel sleepy at the right time that night.</span></li>
+        <li><span class="mk">3</span><span><b>Eat at regular times</b>, especially dinner. Your meal times are clock-setters too &mdash; and an early, consistent dinner beats late grazing for weight anyway.</span></li>
+        <li><span class="mk">4</span><span><b>Caffeine off by 2pm, easy on alcohol.</b> Both quietly wreck the second half of your night, and rough nights knock the whole rhythm sideways.</span></li>
+        <li><span class="mk">5</span><span><b>Same wind-down, then bed at the same time.</b> Warm shower, dim lights, read. Boring is the point &mdash; your body learns the cue.</span></li>
+      </ul>
+    </div>
+    <div class="card block">
+      <div class="label">Worth knowing</div>
+      <h4>Listen to your sleep &mdash; it talks</h4>
+      <ul class="ul" style="margin-top:14px">
+        <li><span class="mk">&rarr;</span><span><b>If you suddenly need much less sleep</b> &mdash; wide awake on a few hours, mind racing, feeling unusually energetic &mdash; treat that as a signal worth acting on, not a productivity gift. It's a good moment to check in with your care team.</span></li>
+        <li><span class="mk">&rarr;</span><span><b>Drifting the other way</b> &mdash; sleeping ever later, struggling to start the day &mdash; is also your rhythm slipping. Go back to anchor #1 gently, and mention it if it persists.</span></li>
+        <li><span class="mk">&rarr;</span><span><b>If you take a daily medication</b>, mention your new exercise plan to your prescriber, and drink plenty of water around sweaty sessions &mdash; big changes in sweat, fluids or diet can matter more for you than for most people.</span></li>
+        <li><span class="mk">&rarr;</span><span><b>On a low-sleep day:</b> skip the hard workout, walk instead, front-load protein at breakfast, and lean on the meal plan so willpower isn't the gatekeeper. One bad night changes nothing.</span></li>
+      </ul>
+      <div class="note" style="margin-top:18px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-4.6-9.5-9A5.7 5.7 0 0112 5.6 5.7 5.7 0 0121.5 12c-2.5 4.4-9.5 9-9.5 9z" stroke-linejoin="round"/></svg><span>This page is here to support the care you already have &mdash; it never replaces your doctor or therapist. They know you; this is just good scaffolding around their advice.</span></div>
     </div>
   </div>
 </section>
@@ -1020,13 +1099,16 @@ h2.sec-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,7vw
   </div>
 </footer>
 
+<div class="exlight" id="exLight" role="dialog" aria-modal="true">
+  <div class="box"><img id="exLightImg" src="" alt=""><div class="cap"><b id="exLightName"></b><button id="exLightClose" type="button">Close</button></div></div>
+</div>
 <script>
 /* =================== MEAL DATA =================== */
 var RECIPES = {
   /* ---- BREAKFAST ---- */
-  b1:{name:"Greek Yoghurt & Berry Bowl",k:320,p:28,t:5,ing:[["200 g","Greek yoghurt (0-2%)"],["80 g","mixed berries"],["20 g","walnuts, chopped"],["10 g","honey"],["10 g","chia seeds"]],steps:["Spoon yoghurt into a bowl.","Top with berries, walnuts and chia.","Drizzle with honey."]},
+  b1:{name:"Greek Yoghurt & Berry Bowl",k:320,p:28,t:5,ing:[["200 g","Greek yoghurt (0-2%)"],["80 g","mixed berries"],["20 g","walnuts, chopped"],["30 g","berries (instead of honey)"],["10 g","chia seeds"]],steps:["Spoon yoghurt into a bowl.","Top with berries, walnuts and chia.","Scatter the berries on top."]},
   b2:{name:"Spinach & Feta Omelette",k:340,p:26,t:10,ing:[["3","eggs"],["40 g","feta, crumbled"],["30 g","spinach"],["5 g","olive oil"],["1 pinch","black pepper"]],steps:["Wilt spinach in oiled non-stick pan, 1 min.","Pour in whisked eggs; cook on low.","Scatter feta, fold and serve."]},
-  b3:{name:"Apple-Cinnamon Overnight Oats",k:380,p:18,t:5,ing:[["60 g","rolled oats"],["200 ml","milk"],["60 g","apple, grated"],["15 g","almonds"],["10 g","honey"],["1 pinch","cinnamon"]],steps:["Mix oats, milk, apple and cinnamon in a jar.","Chill overnight.","Top with almonds and honey before eating."]},
+  b3:{name:"Apple-Cinnamon Overnight Oats",k:380,p:18,t:5,ing:[["60 g","rolled oats"],["200 ml","milk"],["60 g","apple, grated"],["15 g","almonds"],["30 g","berries (instead of honey)"],["1 pinch","cinnamon"]],steps:["Mix oats, milk, apple and cinnamon in a jar.","Chill overnight.","Top with almonds and berries before eating."]},
   b4:{name:"Shakshuka",k:330,p:20,t:20,ing:[["2","eggs"],["200 g","chopped tomatoes"],["60 g","onion, diced"],["60 g","pepper, diced"],["1 clove","garlic"],["20 g","feta"],["5 g","olive oil"],["1 tsp","cumin & paprika"]],steps:["Soften onion, pepper and garlic in oil.","Add tomatoes and spices; simmer 8 min.","Make wells, crack in eggs, cover until set.","Top with feta and parsley."]},
   b5:{name:"Avocado & Egg Toast",k:360,p:18,t:8,ing:[["50 g","whole-grain bread"],["75 g","avocado"],["1","egg, poached"],["1 squeeze","lemon"],["1 pinch","chilli flakes"]],steps:["Toast the bread.","Mash avocado with lemon and spread.","Top with poached egg and chilli flakes."]},
   b6:{name:"Cottage Cheese & Tomato Toast",k:300,p:24,t:5,ing:[["50 g","whole-grain bread"],["120 g","cottage cheese"],["60 g","cherry tomatoes, halved"],["3 g","olive oil"],["1 pinch","oregano"]],steps:["Toast the bread.","Spread cottage cheese.","Top with tomatoes, oregano and a drizzle of oil."]},
@@ -1035,7 +1117,7 @@ var RECIPES = {
   b9:{name:"Egg & Veg Muffins (batch of 12)",k:220,p:22,t:25,ing:[["8","eggs"],["80 g","spinach, chopped"],["60 g","feta"],["80 g","pepper, diced"],["5 g","olive oil"]],steps:["Heat oven to 190C; oil a muffin tin.","Whisk eggs; stir in veg and feta.","Pour into tin; bake 18 min. Macros = 3 muffins."]},
   b10:{name:"Smoked Salmon & Egg Scramble",k:350,p:30,t:8,ing:[["3","eggs"],["40 g","smoked salmon"],["5 g","olive oil"],["1 tsp","chives"],["50 g","whole-grain bread"]],steps:["Soft-scramble eggs in oil on low heat.","Fold through torn smoked salmon and chives.","Serve with toast."]},
   b11:{name:"Tomato & White Bean Toast",k:330,p:17,t:8,ing:[["50 g","whole-grain bread"],["120 g","white beans, drained"],["60 g","tomato"],["1 clove","garlic"],["5 g","olive oil"]],steps:["Warm beans with crushed garlic and oil; mash lightly.","Toast the bread.","Top with beans and sliced tomato."]},
-  b12:{name:"Greek Yoghurt, Honey & Walnut",k:310,p:22,t:3,ing:[["200 g","Greek yoghurt"],["20 g","walnuts"],["15 g","honey"],["1 pinch","cinnamon"]],steps:["Spoon yoghurt into a bowl.","Top with walnuts, honey and cinnamon."]},
+  b12:{name:"Greek Yoghurt, Honey & Walnut",k:310,p:22,t:3,ing:[["200 g","Greek yoghurt"],["20 g","walnuts"],["40 g","berries (instead of honey)"],["1 pinch","cinnamon"]],steps:["Spoon yoghurt into a bowl.","Top with walnuts, berries and cinnamon."]},
 
   /* ---- LUNCH ---- */
   l1:{name:"Lemon-Oregano Chicken & Quinoa Bowl",k:480,p:45,t:10,ing:[["120 g","cooked chicken breast"],["100 g","cooked quinoa"],["80 g","cucumber"],["80 g","tomato"],["30 g","tzatziki"],["1 squeeze","lemon"],["5 g","olive oil"]],steps:["Combine quinoa, cucumber and tomato.","Slice chicken on top.","Add tzatziki, lemon and a drizzle of oil."]},
@@ -1056,27 +1138,27 @@ var RECIPES = {
   /* ---- DINNER ---- */
   d1:{name:"Slow-Roasted Salmon, Farro & Broccoli",k:520,p:38,t:25,ing:[["150 g","salmon fillet"],["100 g","cooked farro"],["150 g","broccoli"],["1 squeeze","lemon"],["8 g","olive oil"]],steps:["Roast salmon at 200C for 12-15 min.","Steam broccoli until tender.","Serve over farro with lemon and oil."]},
   d2:{name:"Greek Turkey-Feta Kofta with Bulgur",k:450,p:38,t:25,ing:[["150 g","turkey mince"],["30 g","feta"],["100 g","cooked bulgur"],["120 g","Greek salad"],["1 tbsp","mint"],["5 g","olive oil"]],steps:["Mix mince, feta and mint; shape into kofta.","Grill or pan-fry 10-12 min.","Serve with bulgur and a quick Greek salad."]},
-  d3:{name:"Baked Cod with Tomatoes & Olives",k:430,p:38,t:25,ing:[["160 g","cod fillet"],["150 g","cherry tomatoes"],["30 g","olives"],["150 g","potatoes"],["1 clove","garlic"],["8 g","olive oil"]],steps:["Roast diced potatoes at 200C for 20 min.","Add cod, tomatoes, olives and garlic.","Bake a further 12-15 min until cod flakes."]},
-  d4:{name:"Mediterranean Chicken Traybake",k:480,p:42,t:35,ing:[["150 g","chicken thigh"],["200 g","pepper, courgette & onion"],["150 g","potatoes"],["8 g","olive oil"],["1 tsp","oregano"]],steps:["Toss everything with oil and oregano on a tray.","Roast at 200C for 30-35 min.","Turn once halfway for even colour."]},
+  d3:{name:"Baked Cod with Tomatoes & Olives",k:430,p:38,t:25,ing:[["160 g","cod fillet"],["150 g","cherry tomatoes"],["30 g","olives"],["150 g","sweet potatoes"],["1 clove","garlic"],["8 g","olive oil"]],steps:["Roast diced potatoes at 200C for 20 min.","Add cod, tomatoes, olives and garlic.","Bake a further 12-15 min until cod flakes."]},
+  d4:{name:"Mediterranean Chicken Traybake",k:480,p:42,t:35,ing:[["150 g","chicken thigh"],["200 g","pepper, courgette & onion"],["150 g","sweet potatoes"],["8 g","olive oil"],["1 tsp","oregano"]],steps:["Toss everything with oil and oregano on a tray.","Roast at 200C for 30-35 min.","Turn once halfway for even colour."]},
   d5:{name:"Lentil Bolognese with Whole-Grain Pasta",k:470,p:22,t:30,ing:[["150 g","cooked lentils"],["200 g","chopped tomatoes"],["60 g","onion & carrot"],["1 clove","garlic"],["80 g","whole-grain pasta"],["15 g","parmesan"]],steps:["Soften onion, carrot and garlic.","Add lentils and tomatoes; simmer 15 min.","Serve over pasta with parmesan."]},
-  d6:{name:"Shrimp & Courgette Pasta",k:460,p:34,t:20,ing:[["130 g","shrimp"],["80 g","pasta"],["100 g","courgette"],["60 g","cherry tomatoes"],["1 clove","garlic"],["8 g","olive oil"],["10 g","parmesan"]],steps:["Boil pasta.","Sear shrimp, courgette and garlic in oil.","Toss with pasta, tomatoes and parmesan."]},
-  d7:{name:"Chicken Souvlaki with Tzatziki & Rice",k:510,p:42,t:25,ing:[["150 g","chicken, cubed"],["100 g","cooked brown rice"],["40 g","tzatziki"],["100 g","salad"],["6 g","olive oil"]],steps:["Toss chicken in oil and oregano; grill 10 min.","Serve over brown rice.","Add tzatziki and a side salad."]},
-  d8:{name:"Stuffed Peppers (rice, beans, feta)",k:440,p:20,t:40,ing:[["2","peppers"],["80 g","cooked brown rice"],["100 g","white beans"],["60 g","tomato"],["30 g","feta"],["5 g","olive oil"]],steps:["Halve and deseed peppers.","Fill with rice, beans, tomato and feta.","Bake at 190C for 30-35 min."]},
-  d9:{name:"Baked Salmon, Potatoes & Green Beans",k:520,p:38,t:30,ing:[["150 g","salmon"],["200 g","potatoes"],["120 g","green beans"],["1 squeeze","lemon"],["8 g","olive oil"]],steps:["Roast diced potatoes at 200C for 20 min.","Add salmon and beans; roast 12 min more.","Finish with lemon."]},
+  d6:{name:"Shrimp & Courgette Pasta",k:460,p:34,t:20,ing:[["130 g","shrimp"],["80 g","whole-grain pasta (cooked al dente)"],["100 g","courgette"],["60 g","cherry tomatoes"],["1 clove","garlic"],["8 g","olive oil"],["10 g","parmesan"]],steps:["Boil pasta.","Sear shrimp, courgette and garlic in oil.","Toss with pasta, tomatoes and parmesan."]},
+  d7:{name:"Chicken Souvlaki with Tzatziki & Rice",k:510,p:42,t:25,ing:[["150 g","chicken, cubed"],["100 g","cooked bulgur or basmati rice"],["40 g","tzatziki"],["100 g","salad"],["6 g","olive oil"]],steps:["Toss chicken in oil and oregano; grill 10 min.","Serve over brown rice.","Add tzatziki and a side salad."]},
+  d8:{name:"Stuffed Peppers (rice, beans, feta)",k:440,p:20,t:40,ing:[["2","peppers"],["80 g","cooked bulgur or basmati rice"],["100 g","white beans"],["60 g","tomato"],["30 g","feta"],["5 g","olive oil"]],steps:["Halve and deseed peppers.","Fill with rice, beans, tomato and feta.","Bake at 190C for 30-35 min."]},
+  d9:{name:"Baked Salmon, Potatoes & Green Beans",k:520,p:38,t:30,ing:[["150 g","salmon"],["200 g","sweet potatoes"],["120 g","green beans"],["1 squeeze","lemon"],["8 g","olive oil"]],steps:["Roast diced potatoes at 200C for 20 min.","Add salmon and beans; roast 12 min more.","Finish with lemon."]},
   d10:{name:"Turkey & Vegetable Stew with Beans",k:440,p:38,t:35,ing:[["150 g","turkey, diced"],["120 g","white beans"],["80 g","carrot & onion"],["200 g","chopped tomatoes"],["250 ml","stock"],["60 g","greens"]],steps:["Brown turkey; add carrot and onion.","Add tomatoes, beans and stock; simmer 20 min.","Stir in greens until wilted."]},
-  d11:{name:"Pasta Primavera with Chicken",k:490,p:40,t:25,ing:[["130 g","chicken"],["80 g","pasta"],["150 g","courgette, peas & tomato"],["1 clove","garlic"],["8 g","olive oil"],["10 g","parmesan"]],steps:["Boil pasta.","Sauté chicken, then the vegetables with garlic.","Toss with pasta, oil and parmesan."]},
-  d12:{name:"White Fish en Papillote",k:420,p:36,t:25,ing:[["160 g","white fish (sea bass/cod)"],["120 g","courgette & tomato"],["150 g","potatoes"],["1 squeeze","lemon"],["6 g","olive oil"],["1 sprig","thyme"]],steps:["Wrap fish, veg, lemon and thyme in parchment.","Bake at 200C for 15 min.","Serve with boiled or roasted potatoes."]},
-  d13:{name:"Chickpea & Spinach Stew with Rice",k:430,p:18,t:25,ing:[["150 g","chickpeas"],["80 g","spinach"],["200 g","chopped tomatoes"],["60 g","onion"],["1 clove","garlic"],["100 g","cooked brown rice"],["1 tsp","cumin"]],steps:["Soften onion, garlic and cumin.","Add chickpeas and tomatoes; simmer 12 min.","Stir in spinach; serve over rice."]},
+  d11:{name:"Pasta Primavera with Chicken",k:490,p:40,t:25,ing:[["130 g","chicken"],["80 g","whole-grain pasta (cooked al dente)"],["150 g","courgette, peas & tomato"],["1 clove","garlic"],["8 g","olive oil"],["10 g","parmesan"]],steps:["Boil pasta.","Sauté chicken, then the vegetables with garlic.","Toss with pasta, oil and parmesan."]},
+  d12:{name:"White Fish en Papillote",k:420,p:36,t:25,ing:[["160 g","white fish (sea bass/cod)"],["120 g","courgette & tomato"],["150 g","sweet potatoes"],["1 squeeze","lemon"],["6 g","olive oil"],["1 sprig","thyme"]],steps:["Wrap fish, veg, lemon and thyme in parchment.","Bake at 200C for 15 min.","Serve with boiled or roasted potatoes."]},
+  d13:{name:"Chickpea & Spinach Stew with Rice",k:430,p:18,t:25,ing:[["150 g","chickpeas"],["80 g","spinach"],["200 g","chopped tomatoes"],["60 g","onion"],["1 clove","garlic"],["100 g","cooked bulgur or basmati rice"],["1 tsp","cumin"]],steps:["Soften onion, garlic and cumin.","Add chickpeas and tomatoes; simmer 12 min.","Stir in spinach; serve over rice."]},
   d14:{name:"Grilled Chicken, Salad & Pita",k:470,p:42,t:20,ing:[["150 g","chicken breast"],["60 g","whole-grain pita"],["80 g","tomato"],["60 g","cucumber"],["40 g","salad leaves"],["8 g","olive oil"]],steps:["Grill seasoned chicken, 10 min.","Make a tomato-cucumber salad.","Serve with warm pita and chicken."]},
 
   /* ---- SNACKS (pairings — split across the day; sized to close the gap to target) ---- */
-  s1:{name:"Whey Shake + Yoghurt-Granola Berry Bowl",k:890,p:70,t:5,ing:[["45 g","whey protein"],["300 ml","milk"],["150 g","Greek yoghurt"],["40 g","granola"],["80 g","mixed berries"],["10 g","honey"]],steps:["Blend whey with milk for the shake (post-workout or mid-morning).","Top yoghurt with granola, berries and honey for the second snack."]},
+  s1:{name:"Whey Shake + Yoghurt-Granola Berry Bowl",k:890,p:70,t:5,ing:[["45 g","whey protein"],["300 ml","milk"],["150 g","Greek yoghurt"],["40 g","no-added-sugar muesli"],["80 g","mixed berries"],["30 g","berries (instead of honey)"]],steps:["Blend whey with milk for the shake (post-workout or mid-morning).","Top yoghurt with muesli and berries for the second snack."]},
   s2:{name:"Blended Shake + PB-Oat Energy",k:870,p:66,t:5,ing:[["40 g","whey protein"],["300 ml","milk"],["1","banana"],["30 g","rolled oats"],["30 g","peanut butter"]],steps:["Blend whey, milk, banana and oats into a thick shake.","Have the peanut butter on apple or oatcakes alongside, split across the day."]},
-  s3:{name:"Cottage Cheese, Eggs + Apple & Almonds",k:880,p:62,t:8,ing:[["250 g","cottage cheese"],["2","eggs, boiled"],["1","apple"],["30 g","almonds"],["10 g","honey"]],steps:["Boil the eggs ahead; pack with the apple and almonds for one snack.","Have cottage cheese with honey for the other (whole-food, no shake)."]},
-  s4:{name:"Tuna Crackers + Yoghurt & Walnuts",k:900,p:68,t:6,ing:[["80 g","tuna (in water)"],["40 g","whole-grain crackers"],["200 g","Greek yoghurt"],["30 g","walnuts"],["10 g","honey"]],steps:["Top crackers with tuna for a savoury snack.","Stir honey into yoghurt; top with walnuts for the second."]},
+  s3:{name:"Cottage Cheese, Eggs + Apple & Almonds",k:880,p:62,t:8,ing:[["250 g","cottage cheese"],["2","eggs, boiled"],["1","apple"],["30 g","almonds"],["30 g","berries (instead of honey)"]],steps:["Boil the eggs ahead; pack with the apple and almonds for one snack.","Have cottage cheese with berries for the other (whole-food, no shake)."]},
+  s4:{name:"Tuna Crackers + Yoghurt & Walnuts",k:900,p:68,t:6,ing:[["80 g","tuna (in water)"],["40 g","whole-grain crackers"],["200 g","Greek yoghurt"],["30 g","walnuts"],["30 g","berries (instead of honey)"]],steps:["Top crackers with tuna for a savoury snack.","Stir berries into yoghurt; top with walnuts for the second."]},
   s5:{name:"Shake + Hummus, Edamame & Pita",k:860,p:67,t:8,ing:[["40 g","whey protein"],["300 ml","milk"],["60 g","hummus"],["150 g","edamame (shelled)"],["40 g","whole-grain pita"]],steps:["Blend the shake.","Steam edamame; serve with hummus and warm pita strips for the second snack."]},
   s6:{name:"Edamame, Jerky + Cheese & Crackers",k:890,p:64,t:5,ing:[["150 g","edamame (shelled)"],["40 g","beef jerky"],["30 g","cheese"],["40 g","whole-grain crackers"],["20 g","dark chocolate"]],steps:["Steam or thaw edamame; pair with jerky for a high-protein snack.","Cheese, crackers and a square of dark chocolate later (whole-food, no shake)."]},
-  s7:{name:"Shake + Cottage Cheese, Berries & Granola",k:900,p:69,t:5,ing:[["40 g","whey protein"],["300 ml","milk"],["150 g","cottage cheese"],["80 g","mixed berries"],["30 g","granola"]],steps:["Blend whey with milk.","Top cottage cheese with berries and granola for the second snack."]},
+  s7:{name:"Shake + Cottage Cheese, Berries & Granola",k:900,p:69,t:5,ing:[["40 g","whey protein"],["300 ml","milk"],["150 g","cottage cheese"],["80 g","mixed berries"],["30 g","no-added-sugar muesli"]],steps:["Blend whey with milk.","Top cottage cheese with berries and muesli for the second snack."]},
   s8:{name:"Protein Yoghurt Bowl + Banana & PB",k:870,p:65,t:5,ing:[["200 g","Greek yoghurt"],["25 g","whey protein"],["80 g","mixed berries"],["1","banana"],["30 g","peanut butter"]],steps:["Stir whey into yoghurt; top with berries.","Have banana with peanut butter as the second snack."]},
   s9:{name:"Eggs, Tuna Hummus + Nuts & Pita",k:880,p:66,t:8,ing:[["2","eggs, boiled"],["80 g","tuna (in water)"],["60 g","hummus"],["40 g","whole-grain pita"],["30 g","almonds"]],steps:["Pack boiled eggs and a handful of almonds for one snack.","Mix tuna into hummus; scoop with pita strips for the other (whole-food, no shake)."]}
 };
@@ -1156,6 +1238,27 @@ var GROCERY = [
   }
   ["w","h","age","act","deficit"].forEach(function(id){var el=$(id);if(el){el.addEventListener("input",calc);el.addEventListener("change",calc);}});
   calc();
+
+  /* ---- exercise demo lightbox ---- */
+  (function(){
+    var light=$("exLight"), img=$("exLightImg"), name=$("exLightName");
+    document.addEventListener("click",function(e){
+      var d=e.target.closest&&e.target.closest(".edemo");
+      if(d){
+        e.stopPropagation();
+        var key=d.getAttribute("data-ex");
+        var row=d.closest(".ex"); var en=row&&row.querySelector(".en");
+        img.src="exercises/"+key+".gif";
+        name.textContent=en?en.textContent.trim():"How to do it";
+        light.classList.add("open");
+        return;
+      }
+      if(e.target===light||e.target.closest&&e.target.closest("#exLightClose")){
+        light.classList.remove("open"); img.src="";
+      }
+    });
+    document.addEventListener("keydown",function(e){if(e.key==="Escape")light.classList.remove("open");});
+  })();
 
   /* ---- accordion (event delegation: serves workouts + meals) ---- */
   document.addEventListener("click",function(e){

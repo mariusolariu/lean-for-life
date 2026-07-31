@@ -2,7 +2,7 @@
   "name": "Lean for Life",
   "short_name": "Lean for Life",
   "description": "A sustainable, evidence-based weight-loss lifestyle plan.",
-  "start_url": "lean-for-life.html",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
